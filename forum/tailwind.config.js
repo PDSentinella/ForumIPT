@@ -10,6 +10,7 @@ module.exports = {
      "space_cadet": "#2D2C50ff",
      "robin-egg-blue": "#3CE1E9ff",
      "light-cyan": "#D9FAFFff",
+     "cadet-gray": "#9EA7B9ff",
      "alice-blue": "#EEF4F8ff",
       "seasalt": "#F9F9F9ff",
     },
