@@ -4,8 +4,6 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-<<<<<<< Updated upstream
-=======
     colors:{
      "pale_purple": "#F0E4FFff",
      "phlox": "#B959FFff",
@@ -16,7 +14,6 @@ module.exports = {
      "alice-blue": "#EEF4F8ff",
       "seasalt": "#F9F9F9ff",
     },
->>>>>>> Stashed changes
     extend: {},
   },
   plugins: [],

@@ -1,10 +1,8 @@
-import logo from './logo.svg';
-import './Header/Header'
-import Header from './Header/Header';
+import HomePage from "./Pages/HomePage";
 function App() {
   return (
-    <div className="">
-      <Header ></Header>
+    <div className="w-full h-full">
+     <HomePage></HomePage>
     </div>
   );
 }
