@@ -8,9 +8,8 @@ function HomePage() {
     <Header></Header>
     <div className="flex flex-auto h-full">
       <Drawerl></Drawerl>
-      <div className='bg-alice-blue h-full w-full p-8'>HomePage</div>
+      <div className='bg-alice-blue  text-2xl flex-1 h-full font-semibold w-full p-8'>HomePage</div>
     </div>
-    
     <Footer></Footer>
     </>
   )
