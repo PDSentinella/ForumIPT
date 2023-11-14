@@ -6,7 +6,7 @@ function HomePage() {
   return (
     <>
     <Header></Header>
-    <div className='bg-alice-blue h-full w-full'>HomePage</div>
+    <div className='bg-alice-blue h-full w-full'>HomePage122</div>
     <Footer></Footer>
     </>
   )
