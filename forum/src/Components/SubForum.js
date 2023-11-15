@@ -1,12 +1,13 @@
 import {useState} from 'react'
 import React from 'react';
 
-function SubForum({name, notification }){
+function SubForum(props){
     return ( 
-    <div className="flex flex-no overflow-hidden flex-nowrap">
-        <img scr=""/>
-        <div className="flex">{name}</div>
-        <div className={`${notification==0 && 'hidden'} flex`}><h1>{notification}</h1></div>
-    </div> )
+    <div className={`flex flex-initial  gap-4 m-2   items-center p-1 rounded  ${!props.open && 'justify-center '}  `}>
+            <div className=' flex  bg-space_cadet w-4 h-4 rounded  items-center justify-center'><div className='bg-phlox w-1 h-1 rounded-full absolute '></div></div>
+            <div className={` ${!props.open && 'hidden'} w-3/4  text-center `}>{props.name}</div>
+            <div className={` ${(props.notification===0 || !props.open ) && 'hidden'}  flex  bg-space_cadet w-4 h-4 rounded gap-2  justify-center`}><h3 className=' text-alice-blue text-xs'>{props.notification}</h3></div>
+    </div>
+    )
 }
 export default SubForum
