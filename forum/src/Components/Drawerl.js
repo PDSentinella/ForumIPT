@@ -25,21 +25,22 @@ const channels = [
   }
 ]
 
-function Drawerl(){
+function Drawerl(props){
   const [open, setOpen] = useState(true);
     return (
-      <div className='flex w-20 md:w-20 h-screen justify-center static'>
-        <div  className='flex h-full  pt-4  flex-col  '>
-          <div className='flex flex-initial  gap-4 mb-2 realtive  items-center p-1 rounded'>
-            <div className="flex  top-4 h-8 w-8 m-2  absolute border p-1 rounded " onClick={()=>setOpen(!open)} ></div>
-          </div>
-          <div className='flex flex-1 flex-nowrap flex-col h-10 w-full'>
-          {channels.map( (element) => (
-            <>
-              <SubForum open={open} name = {element.name} notificaiton = {element.notificaiton}></SubForum>  
-            </>     
-          ))}
-          </div>
+      <div className='flex flex-col  justify-center pt-2  '>
+        <div className='flex'>
+          <h1 className={`text-pale_purple ${!props.open ?'hidden':'pr-4'}`}>Courses ({channels.length})</h1>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none"  PencilIcon color='#F0E4FFff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={`w-6 h-6 ${open&&'rotate-180'} `} onClick={()=>setOpen(!open)}>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+        </div>
+        <div className={`${!open && 'hidden'} flex`}>
+            <ul>
+              <li>
+                  <h1>{channels[0].name}</h1>
+              </li>   
+            </ul>
         </div>
 
 

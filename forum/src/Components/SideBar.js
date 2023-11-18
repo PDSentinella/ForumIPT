@@ -1,5 +1,6 @@
 import react from 'react'
 import React, { useState } from 'react'
+import Drawerl from './Drawerl';
 
 
 
@@ -18,7 +19,7 @@ function SideBar(){
                     <h1 className={`${!open && 'hidden'} duration-500 text-4xl text-pale_purple font-bold`}>FORUM</h1>  
                 </div>
 
-                <div className={`flex flex-col cursor-pointer  justify-center w-full gap-y-6 pt-8 ${!open ?'items-center':'items-start ml-14'}`}>
+                <div className={`flex flex-col cursor-pointer  justify-center gap-y-6 pt-8 ${!open ?'items-center w-full':'items-start ml-14 w-62'}`}>
                     <div className={`flex gap-x-2 justify-center `}>
                         <div className={` flex rounded items-center justify-center bg-pale_purple w-6 h-6 `}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
@@ -43,14 +44,15 @@ function SideBar(){
                     {/*Your treads*/}
                     <div className='flex gap-x-2 items-center '>
                         <div className=' flex rounded items-center justify-center bg-pale_purple w-6 h-6 '>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                             </svg>
                         </div>
                         <h1 className={`${!open&&'hidden'} text-pale_purple`}>Saved</h1>
                     </div>  
                     {/*Saved*/}
-        
+                    {/*Drawerl*/}
+                    <Drawerl open={open}></Drawerl>
                 </div>
             </div>
             </div>
