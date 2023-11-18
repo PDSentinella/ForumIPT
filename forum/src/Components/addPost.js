@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 function AddPost(props){
     const [open, setOpen] = useState(false);
     return ( 
-    <div className={`flex flex-initial gap-4 item-center  justify-between bg-white mt-2 p-2  w-full h-auto rounded-md `}>
+    <div className={`flex flex-initial gap-4 items-center  justify-between bg-white mt-2 p-2  w-full h-auto rounded-md `}>
             {/*titulo*/}
                 <h1 className='text-xs font-extralight'>Add publication</h1>
                 <div className="flex items-center justify-center ">
