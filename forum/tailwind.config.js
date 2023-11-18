@@ -13,6 +13,7 @@ module.exports = {
      "cadet-gray": "#9EA7B9ff",
      "alice-blue": "#EEF4F8ff",
       "seasalt": "#F9F9F9ff",
+      "ipt":"#88b77b",
     },
     extend: {},
   },
