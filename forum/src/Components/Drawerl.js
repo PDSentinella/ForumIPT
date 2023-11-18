@@ -30,8 +30,7 @@ const channels = [
   }
 ]
 
-<<<<<<< HEAD
-=======
+
 function Drawerl(props){
   const [open, setOpen] = useState(true);
     return (
@@ -107,4 +106,3 @@ export default Drawerl
                 
                 //list item list itembutton
 */
->>>>>>> paulo
