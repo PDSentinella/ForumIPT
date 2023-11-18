@@ -18,9 +18,9 @@ function SideBar(){
                     <h1 className={`${!open && 'hidden'} duration-500 text-4xl text-pale_purple font-bold`}>FORUM</h1>  
                 </div>
 
-                <div className={`flex flex-col cursor-pointer justify-center w-full gap-y-4 pt-6 ${!open ?'items-center':'items-start ml-14'}`}>
+                <div className={`flex flex-col cursor-pointer  justify-center w-full gap-8 pt-8 ${!open ?'items-center':'items-start ml-8'}`}>
                     <div className={`flex gap-x-2 justify-center `}>
-                        <div className={` flex rounded items-center justify-center bg-pale_purple w-6 h-6 `}>
+                        <div className={` flex rounded items-center justify-center bg-pale_purple w-8 h-8 `}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                             </svg>
@@ -31,7 +31,7 @@ function SideBar(){
                     {/*Home*/}
                     
                     <div className='flex gap-x-2 items-center '>
-                        <div className=' flex rounded items-center justify-center bg-pale_purple w-6 h-6 '>
+                        <div className=' flex rounded items-center justify-center bg-pale_purple w-8 h-8 '>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
                         </svg>
@@ -42,7 +42,7 @@ function SideBar(){
                     </div>                     
                     {/*Your treads*/}
                     <div className='flex gap-x-2 items-center '>
-                        <div className=' flex rounded items-center justify-center bg-pale_purple w-6 h-6 '>
+                        <div className=' flex rounded items-center justify-center bg-pale_purple w-8 h-8 '>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                             </svg>
@@ -50,7 +50,7 @@ function SideBar(){
                         <h1 className={`${!open&&'hidden'} text-pale_purple`}>Saved</h1>
                     </div>  
                     {/*Saved*/}
-
+        
                 </div>
             </div>
             </div>
