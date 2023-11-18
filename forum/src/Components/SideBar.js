@@ -7,8 +7,8 @@ import Drawerl from './Drawerl';
 function SideBar(){
     const [open, setOpen] = useState(false);
       return (
-        <div className='w-16 flex 'onMouseOver={(e) => {setOpen(true)}} >
-            <div className={`${open ?'w-72 absolute': 'w-16 relative'} absolute duration-300 h-screen bg-ipt overflow-y-auto  `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
+        <div className='w-16 flex  ' onMouseOver={(e) => {setOpen(true)}} >
+            <div className={`${open ?'w-72 absolute': 'w-16  '} absolute duration-300 h-screen bg-ipt overflow-y-auto  `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
                 <div className={`flex  cursor-pointer items-center justify-center w-full gap-x-6 pt-8`}>
                     <div className={`lg:hidden  w-8 h-8  items-center justify-center border-pale_purple rounded`} onClick={()=>setOpen(!open)}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="" PencilIcon color='#F0E4FFff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="" >
@@ -52,7 +52,15 @@ function SideBar(){
                     {/*Saved*/}
                     {/*Drawerl*/}
                     <Drawerl open={open}></Drawerl>
+                    
                 </div>
+                <button className={` flex gap-2 p-3 place-self-end self-center mt-8 ml-14 bg-pale_purple text-ipt rounded ${!open && 'hidden'}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                </svg>
+
+                    Join a new class
+                </button>
             </div>
            
         </div>
