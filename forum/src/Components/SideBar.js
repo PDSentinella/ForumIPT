@@ -7,8 +7,8 @@ import Drawerl from './Drawerl';
 function SideBar(){
     const [open, setOpen] = useState(false);
       return (
-        <div className='w-16 flex 'onMouseOver={(e) => {setOpen(true)}} >
-            <div className={`${open ?'w-72 absolute': 'w-16 relative'} absolute duration-300 h-screen bg-ipt overflow-y-auto  `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
+        <div className='w-16 flex ' onMouseOver={(e) => {setOpen(true)}} >
+            <div className={`${open ?'w-72 absolute': 'w-16  '} absolute duration-300 h-screen bg-ipt overflow-y-auto  `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
                 <div className={`flex  cursor-pointer items-center justify-center w-full gap-x-6 pt-8`}>
                     <div className={`lg:hidden  w-8 h-8  items-center justify-center border-pale_purple rounded`} onClick={()=>setOpen(!open)}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="" PencilIcon color='#F0E4FFff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="" >

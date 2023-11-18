@@ -5,6 +5,7 @@ module.exports = {
   ],
   theme: {
     colors:{
+      "white":"#FFFFFF",
      "pale_purple": "#F0E4FFff",
      "phlox": "#B959FFff",
      "space_cadet": "#2D2C50ff",
