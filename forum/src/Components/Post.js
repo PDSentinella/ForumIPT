@@ -55,7 +55,7 @@ function Post(props){
             {/* comment and save icons besides the number and opening of comments */}
             <div className='flex'>
                 {/*comment and save icons*/}
-                <div className='flex w-full'>
+                <div className='flex w-full gap-1'>
                         {/*save icon*/}
                         <div  className='flex p-1 justify-center items-center '>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
