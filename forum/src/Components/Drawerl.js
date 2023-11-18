@@ -36,7 +36,7 @@ function Drawerl(props){
       <div className='flex flex-col  items-center pt-2 overflow-y-auto h-full'>
         <div className='flex cursor-pointer pb-2 '>
           <h1 className={`text-pale_purple ${!props.open ?'hidden':'pr-4'}`}>Courses ({channels.length})</h1>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none"  PencilIcon color='#F0E4FFff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={`w-6 h-6 self-center ${!props.open && 'lg:hidden'} ${open&&'rotate-180'} `} onClick={()=>setOpen(!open)}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none"  PencilIcon color='#F0E4FFff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={`w-6 h-6 self-center ${!props.open && 'hidden'} ${open&&'rotate-180'} `} onClick={()=>setOpen(!open)}>
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
           </svg>
         </div>
