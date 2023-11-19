@@ -4,10 +4,10 @@ import Drawerl from './Drawerl';
 
 
 
-function SideBar(){
+function SideBar(props){
     const [open, setOpen] = useState(false);
       return (
-        <div className='w-16 flex  ' onMouseOver={(e) => {setOpen(true)}} >
+        <div className={`w-16 flex`} onMouseOver={(e) => {setOpen(true)}} > {/*${open &&'w-0 '} sm:w-16*/}{/*w-0 sm:w-16*/}
             <div className={`${open ?'w-72 absolute': 'w-16  '} absolute duration-300 h-screen bg-ipt overflow-y-auto  `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
                 <div className={`flex  cursor-pointer items-center justify-center w-full gap-x-6 pt-8`}>
                     <div className={`lg:hidden  w-8 h-8  items-center justify-center border-pale_purple rounded`} onClick={()=>setOpen(!open)}>
