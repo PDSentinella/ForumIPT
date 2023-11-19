@@ -1,11 +1,11 @@
-export class UserAPI {
+class UserAPI {
     #username;
     #email;
     #password;
-    constructor(user){
-        this.#username = user.username;
-        this.#email = user.email;
-        this.#password = user.password;
+    constructor(userinfo){
+        this.#username = userinfo.username;
+        this.#email = userinfo.email;
+        this.#password = userinfo.password;
     }
     static loginPasswordVerifier(inputPass, realPass){
         //encryptation
@@ -25,10 +25,13 @@ export class UserAPI {
     }
 
     toJson(){
-        return {username:this.#username,
-                email:this.#email,
-                password:this.#password}
-     }
+        return {"email":
+                    {
+                        "username":`${this.#username}`,
+                        "email":`${this.#email}`,
+                        "password":`${this.#password}`
+                    }
+                }
 
-
+    }
 }

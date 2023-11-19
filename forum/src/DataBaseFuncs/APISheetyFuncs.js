@@ -1,37 +1,4 @@
-class UserAPI {
-    #username;
-    #email;
-    #password;
-    constructor(user){
-        this.#username = user.username;
-        this.#email = user.email;
-        this.#password = user.password;
-    }
-    static loginPasswordVerifier(inputPass, realPass){
-        //encryptation
-        if(inputPass === realPass){
-            return true;
-        }
-        return false;
-    }
-    getusername(){
-        return this.#username;
-    }
-    getpassword(){
-        return this.#password;
-    }
-    getemail(){
-        return this.#email;
-    }
 
-    toJson(){
-        return {username:this.#username,
-                email:this.#email,
-                password:this.#password}
-     }
-
-
-}
 class APISheetyFuncs{
     url;
     constructor(url){
@@ -45,12 +12,12 @@ class APISheetyFuncs{
         var array = [];
         // Do something with the data
         //we got the data in json
-        console.log(json);
+        
         //json.emails[0].username
-        for(let i = 0;i<json.element.length;i++){
-            array.push(new UserAPI(json.element[i]))
-        }
-        return array;
+        
+        
+        console.log(json.emails[0].email)
+        return json.emails;
         });
     }
     //private for security
@@ -94,6 +61,6 @@ class APISheetyFuncs{
 }
 //creating table apis object
 //user api
-export const User = new APISheetyFuncs('https://api.sheety.co/fb92c09eaad214da086d51fb7c8f7735/users/emails')
+export const Users = new APISheetyFuncs('https://api.sheety.co/fb92c09eaad214da086d51fb7c8f7735/users/emails')
 
 //
