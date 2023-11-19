@@ -1,11 +1,10 @@
 import react from 'react'
 import React, { useState } from 'react'
 import Drawerl from './Drawerl';
-
-
-
+  
 function SideBar(props){
     const [open, setOpen] = useState(false);
+
       return (
         <div className={`w-16 flex`} onMouseOver={(e) => {setOpen(true)}} > {/*${open &&'w-0 '} sm:w-16*/}{/*w-0 sm:w-16*/}
             <div className={`${open ?'w-72 absolute': 'w-16  '} absolute duration-300 h-screen bg-ipt overflow-y-auto  `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
@@ -67,4 +66,6 @@ function SideBar(props){
       )
     }
 
+       
+    
 export default SideBar;
