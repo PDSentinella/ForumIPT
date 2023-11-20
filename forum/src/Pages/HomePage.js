@@ -9,7 +9,7 @@ import Bar from '../Components/Bar'
 function HomePage() {
   return (
     <>
-      <div className='h-full absolute top-0'>
+      <div className='h-full relative top-0'>
       <div className="flex  h-screen overflow-hidden ">
 
         <SideBar></SideBar>
