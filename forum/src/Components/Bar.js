@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 function Bar(props){
     const [open, setOpen] = useState(false);
     return ( 
-    <div className={`flex flex-initial b-0 sm:hidden gap-14 items-center  justify-center bg-ipt   w-full h-10 rounded `}>
+    <div className={`flex flex-initial b-0 sm:hidden gap-12 items-center  justify-center bg-ipt   w-full h-10 rounded `}>
                     
                     <div className={`flex  justify-center cursor-pointer `}>
                         <div className={` flex rounded items-center justify-center bg-ipt border border-pale_purple w-6 h-6 `}>
