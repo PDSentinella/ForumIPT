@@ -1,13 +1,13 @@
 import react from 'react'
 import React, { useState } from 'react'
 import Drawerl from './Drawerl';
-  
+//instagram side bar, quando a screen é grande o suficiente a side bar expande de vez, podemos recriar algo parecido usando xs-max: ou algo do genero, tentar
 function SideBar(props){
     const [open, setOpen] = useState(false);
 
       return (
-        <div className={`w-16 flex`} onMouseOver={(e) => {setOpen(true)}} > {/*${open &&'w-0 '} sm:w-16*/}{/*w-0 sm:w-16*/}
-            <div className={`${open ?'w-72 absolute': 'w-16  '} absolute duration-300 h-screen bg-ipt overflow-y-auto  `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
+        <div className={`${open &&'w-0 '} sm:w-16 flex `} onMouseOver={(e) => {setOpen(true)}} > {/*${open &&'w-0 '} sm:w-16*/}{/*w-0 sm:w-16*/}
+            <div className={`${open ?'w-72 absolute': 'w-0 sm:w-16  '}  absolute duration-300 h-screen bg-ipt overflow-y-auto  `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
                 <div className={`flex  cursor-pointer items-center justify-center w-full gap-x-6 pt-8`}>
                     <div className={`lg:hidden  w-8 h-8  items-center justify-center border-pale_purple rounded`} onClick={()=>setOpen(!open)}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="" PencilIcon color='#F0E4FFff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="" >

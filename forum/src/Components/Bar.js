@@ -3,8 +3,8 @@ import React, {useState} from 'react'
 function Bar(props){
     const [open, setOpen] = useState(false);
     return ( 
-    <div className={`flex flex-initial absolute b-0  gap-4 items-center  justify-around bg-ipt   w-full h-10 rounded-xs `}>
-
+    <div className={`flex flex-initial b-0 sm:hidden gap-14 items-center  justify-center bg-ipt   w-full h-10 rounded `}>
+                    
                     <div className={`flex  justify-center cursor-pointer `}>
                         <div className={` flex rounded items-center justify-center bg-ipt border border-pale_purple w-6 h-6 `}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="" PencilIcon color='#F0E4FFff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" >

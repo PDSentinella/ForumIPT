@@ -5,18 +5,28 @@ import Drawerl from '../Components/Drawerl'
 import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
+import Bar from '../Components/Bar'
 function HomePage() {
   return (
     <>
-    <Header></Header>
-    <div className="flex  h-full">
-      <SideBar></SideBar>
-      <div className='bg-alice-blue  px-6  text-2xl flex-1 h-full font-semibold w-full overflow-y-auto'>
-        <AddPost></AddPost>
-        <Post></Post>
+      <div className='h-full absolute top-0'>
+      <div className="flex  h-screen overflow-hidden ">
+
+        <SideBar></SideBar>
+        <div className='bg-alice-blue  sm:px-6  flex-1 h-full font-semibold w-full overflow-y-auto'>
+          <Header></Header>
+          <AddPost></AddPost>
+          <Post></Post>
+          <Post></Post>
+          <Post></Post>
+          <Footer></Footer>
+        </div>
       </div>
-    </div>
-    <Footer></Footer>
+      </div>
+      <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
+        <Bar></Bar>
+      </div>
+    
     </>
   )
 }
