@@ -13,7 +13,7 @@ function HomePage() {
       <div className="flex  h-screen overflow-hidden ">
 
         <SideBar></SideBar>
-        <div className='bg-alice-blue  sm:px-6  flex-1 h-full font-semibold w-full overflow-y-auto'>
+        <div className='bg-alice-blue  sm:px-6  px-2 flex-1 h-full font-semibold w-full overflow-y-auto'>
           <Header></Header>
           <AddPost></AddPost>
           <Post></Post>

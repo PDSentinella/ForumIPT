@@ -3,7 +3,7 @@ import React from 'react';
 let publicacao = {
     titulo:"Date of the final exams",
     user:{name:"Paulo Santo",
-        foto:""       
+        foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg"       
         },
     time:"2 hrs ago",
     msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
@@ -40,7 +40,7 @@ function Post(props){
             {/*user profile pic, name and publication date*/}
             <div>
                 <div className='flex gap-x-2 '>
-                    <img className="w-8 h-8 cursor-pointer" src="https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg" />
+                    <img className="w-8 h-8 cursor-pointer" src={`${publicacao.user.foto}`} />
                     <div >
                         <h2 className='text-xs font-thin text-opacity-10'>{publicacao.user.name}</h2>
                         <h2 className="text-xs font-thin text-opacity-40">{publicacao.time}</h2>
@@ -63,7 +63,7 @@ function Post(props){
                             </svg>
                         </div>
                         {/*comment icon*/}
-                        <button className='flex p-1 justify-center items-center bg-pale_purple rounded-full'>
+                        <button className='flex p-1 justify-center items-center bg-alice-blue rounded-full'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
                             </svg>
@@ -73,7 +73,7 @@ function Post(props){
                 </div>
                 {/*numbers of comments*/}
                 <div className={`flex justify-end w-full cursor-pointer`}> {/*justify-start sm:!justify-end  ${open && 'hidden'}*/}
-                    <div className={`flex ${publicacao.coments.length==0 && 'hidden'} bg-pale_purple rounded p-2 h-8 items-center justify-center`} onClick={()=>setOpen(!open)}>
+                    <div className={`flex ${publicacao.coments.length==0 && 'hidden'} bg-alice-blue rounded p-2 h-8 items-center justify-center`} onClick={()=>setOpen(!open)}>
                         <h3 className={`text-ipt text-xs `}>comments {publicacao.coments.length}</h3>{/* ${open && 'hidden'}*/}
                         {/*<h3 className={`text-ipt text-xs ${!open && 'hidden'} `}> show less</h3>*/}
                     </div>
