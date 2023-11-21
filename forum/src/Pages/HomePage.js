@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import Drawerl from '../Components/Drawerl'
@@ -7,6 +7,12 @@ import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
 function HomePage() {
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    // localStorage.setItem("login", {islogin});
+  });
+
   return (
     <>
       <div className='h-full relative top-0'>
