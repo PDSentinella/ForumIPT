@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
-import Drawerl from '../Components/Drawerl'
 import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
