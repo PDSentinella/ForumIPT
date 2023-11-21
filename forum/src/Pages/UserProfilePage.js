@@ -40,7 +40,8 @@ function UserProfilePage() {
               </div>
               {/* content bellow chooser content*/}
               <div className='flex  mb-16'>
-                <UserInfo></UserInfo>
+                {selected=='info'?(<UserInfo></UserInfo>):selected=='g'?(<div>guardados</div>):selected=='cv'&&(<div>resume</div>)}
+                
               </div>
             </div>  
         </div>
