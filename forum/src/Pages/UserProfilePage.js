@@ -11,7 +11,7 @@ function UserProfilePage() {
       <div className="flex  h-screen overflow-hidden ">
 
         <SideBar></SideBar>
-        <div className=' flex  bg-alice-blue  justify-center sm:px-16  px-8 flex-1 h-full  w-full overflow-y-auto'>
+        <div className=' flex  bg-alice-blue  justify-center sm:px-16 lg:pt-8 px-8 flex-1 h-full  w-full overflow-y-auto'>
             <UserCard></UserCard>    
             <div>
 
