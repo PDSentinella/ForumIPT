@@ -2,8 +2,8 @@ import React from 'react'
 
 const UserCard = () => {
   return (
-    <div className='flex h-36 w-full  mx-4 py-4  justify-center'>            
-                <div className='flex flex-auto items-center justify-center gap-x-3'>
+    <div className='flex h-36 w-full  mx-4 py-4 justify-center'>            
+                <div className='flex items-center justify-center gap-x-3'>
                     <div className='w-20 h-20  flex flex-none sm:mr-12 overflow-hidden rounded-full sm:w-28 sm:h-28'>
             <           img  className="w-20 h-20 sm:w-28 sm:h-28" src ="https://th.bing.com/th/id/R.8990dc1385002c34b0362bbb237d51f6?rik=oOfpgBe6O0etGA&pid=ImgRaw&r=0"></img>
                     </div>
