@@ -12,7 +12,10 @@ function UserProfilePage() {
 
         <SideBar></SideBar>
         <div className=' flex  bg-alice-blue  justify-center sm:px-16  px-8 flex-1 h-full  w-full overflow-y-auto'>
-            <UserCard></UserCard>          
+            <UserCard></UserCard>    
+            <div>
+
+            </div>  
         </div>
       </div>
       </div>
