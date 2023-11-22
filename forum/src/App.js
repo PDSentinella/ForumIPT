@@ -10,7 +10,8 @@ function App() {
     </div>
   );
 }
-/*<HomePage></HomePage>*/
+/*<HomePage></HomePage>
+<UserProfilePage></UserProfilePage>*/
 /*<div className="w-full h-full justify-center item-center" >
       <HomePage></HomePage>
     </div>
