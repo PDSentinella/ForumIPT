@@ -32,7 +32,7 @@ const UserInfo = () => {
             <div className='flex flex-col items-center justify-center'>
             <div className='flex flex-col w-full pb-8 items-start justify-center '>
                     <h3 className='text-2x '>About Me</h3>
-                    <p className='font-light'>As my days went by, i found that loving and carraing are important, but there are also other important think in the world. Hello my name is Paulo i am a second year student of CS, and i am looking for a job. </p>
+                    <p className='font-light text-justify'>As my days went by, i found that loving and carraing are important, but there are also other important think in the world. Hello my name is Paulo i am a second year student of CS, and i am looking for a job. </p>
             </div>
 
             <div className='w-full flex flex-col py-8 items-start gap-4'>
