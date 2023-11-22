@@ -4,6 +4,7 @@ import Footer from '../Components/Footer'
 import SideBar from '../Components/SideBar'
 import Bar from '../Components/Bar'
 import UserInfo from '../Components/UserInfo'
+import UserSaved from '../Components/UserSaved'
 {/*  const [difined,setDefined] = UseState('info');
 */}
 function UserProfilePage() {
@@ -14,7 +15,7 @@ function UserProfilePage() {
       <div className="flex  h-screen w-full ">
 
         <SideBar></SideBar>
-        <div className=' flex flex-col bg-alice-blue  items-center sm:px-16  px-8 flex-1 h-full  w-full overflow-y-auto'>
+        <div className={` flex flex-col bg-alice-blue  items-center sm:px-16 px-8  flex-1 h-full  w-full overflow-y-auto`}>
             <UserCard></UserCard>    
             {/*content appear div*/}
             <div className='w-full mt-4 self-center'>
@@ -39,8 +40,8 @@ function UserProfilePage() {
                 </button>
               </div>
               {/* content bellow chooser content*/}
-              <div className='flex  mb-16'>
-                {selected=='info'?(<UserInfo></UserInfo>):selected=='g'?(<div>guardados</div>):selected=='cv'&&(<div>resume</div>)}
+              <div className='flex justify-center items-center mb-16'>
+                {selected=='info'?(<UserInfo></UserInfo>):selected=='g'?(<UserSaved></UserSaved>):selected=='cv'&&(<div>resume</div>)}
                 
               </div>
             </div>  

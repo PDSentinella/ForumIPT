@@ -36,10 +36,10 @@ const UserInfo = () => {
             </div>
 
             <div className='w-full flex flex-col py-8 items-start gap-4'>
-                <h1>Canais Incritos</h1> 
+                <h1 className='text-2x'>Canais Incritos</h1> 
                 <div className='flex flex-wrap gap-x-2 gap-y-2'>
                     {canais.map((canal)=>(
-                        <div className=' text-xs text-alice-blue px-2 py-1 rounded-full bg-ipt'>{canal}</div>
+                        <div className='  cursor-pointer text-xs text-alice-blue px-2 py-1 rounded-full bg-ipt'>{canal}</div>
                     ))}
                 </div>
             </div>
