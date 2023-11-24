@@ -11,7 +11,7 @@ const canais = [
 const UserSaved = () => {
   
   return (
-    <div className='flex flex-col justify-center mx-4 py-8 items-center'>
+    <div className='flex flex-col justify-center mx-4 pt-14 items-center'>
         <div className='w-full pb-4'>
         </div>
         <div className='flex items-center justify-center'> 

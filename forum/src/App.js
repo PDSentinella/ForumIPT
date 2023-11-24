@@ -6,7 +6,7 @@ import UserProfilePage from "./Pages/UserProfilePage";
 function App() {
   return (
     <div className="w-full h-full justify-center item-center overflow-hidden" >
-      <UserProfilePage></UserProfilePage>
+      <HomePage></HomePage>
     </div>
   );
 }
