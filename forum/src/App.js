@@ -5,7 +5,7 @@ import Test from "./Pages/Test";
 function App() {
   return (
     <div className="w-full h-full justify-center item-center overflow-hidden" >
-      <HomePage></HomePage>
+      <Login></Login>
     </div>
   );
 }
