@@ -3,15 +3,17 @@ import Login from "./Pages/Login";
 import index from "./index.css";
 import Test from "./Pages/Test";
 import UserProfilePage from "./Pages/UserProfilePage";
+import ChannelPage from "./Pages/ChannelPage";
 function App() {
   return (
     <div className="w-full h-full justify-center item-center overflow-hidden" >
-      <HomePage></HomePage>
+        <HomePage></HomePage>
     </div>
   );
 }
-/*<HomePage></HomePage>
-<UserProfilePage></UserProfilePage>*/
+/*
+<UserProfilePage></UserProfilePage>
+<ChannelPage></ChannelPage>*/
 /*<div className="w-full h-full justify-center item-center" >
       <HomePage></HomePage>
     </div>

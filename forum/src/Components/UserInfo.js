@@ -9,7 +9,7 @@ const canais = [
 ]
 const UserInfo = () => {
   return (
-    <div className='flex flex-col justify-between p-4 items-center w-full h-full gap-y-8 pt-16'>
+    <div className='flex flex-col justify-between p-4 lg:gap-y-16 items-center w-full h-full gap-y-8 pt-16'>
         <h3>aluno24880@ipt.pt</h3>
         <div className='flex flex-wrap items-center lg:flex-co justify-center gap-y-8  py-8 pb-18'>
             <div className='flex flex-col w-56 items-center'>
