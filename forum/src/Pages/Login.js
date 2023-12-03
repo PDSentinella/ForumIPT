@@ -36,7 +36,7 @@ export default function Login() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
-      const response = await loginUserPassword(data.get('email'));
+      const response = await loginUserPassword(data.get('email'), data.get('password'));
       console.log(response);
   } catch (error) {
       console.log(error);
