@@ -19,12 +19,14 @@ function HomePage() {
 
         <SideBar></SideBar>
         <div className='bg-background-gray  sm:px-6  px-2 flex flex-1 h-full font-semibold w-full overflow-y-auto justify-center'>
-          <div className='flex flex-col w-full sm:w-3/4'>
+          <div className='flex flex-col w-full '>
           <Header></Header>
+          <div className='flex flex-col items-center'>
           <AddPost></AddPost>
           <Post></Post>
           <Post></Post>
           <Post></Post>
+          </div>
           <Footer></Footer>
           </div>
         </div>

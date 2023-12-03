@@ -37,7 +37,7 @@ function Post(props){
     const [open, setOpen] = useState(false);
     const [mo, setMo] = useState(false)
     return ( 
-    <div className={`flex flex-initial flex-col gap-6  pt-6 bg-white mt-2 px-4  w-full h-auto rounded-md  `}>
+    <div className={`flex flex-initial flex-col gap-6  pt-6 bg-white mt-2 px-4  w-full h-auto rounded-md  sm:max-w-lg lg:max-w-2xl xl:max-w-4xl`}>
             {/*titulo*/}
             <div className='flex justify-between pr-1'>
                 <h1 className='text-xl font-bold'>{publicacao.titulo}</h1>
