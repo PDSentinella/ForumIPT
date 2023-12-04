@@ -30,14 +30,21 @@ function Copyright(props) {
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
+//const navigate = useNavigate();
 
 export default function Login() {
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
       const response = await loginUserPassword(data.get('email'), data.get('password'));
-      console.log(response);
+      if(!response){
+        localStorage.setItem("user", "");
+      }else{
+        localStorage.setItem("user", JSON.stringify(response));
+        window.location.reload(false);
+      }
   } catch (error) {
       console.log(error);
   }
