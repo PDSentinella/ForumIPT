@@ -25,7 +25,7 @@ function SideBar(){
                             </svg>
                         </div>
 
-                        <h1 className={`${!open&&'hidden'}  text-white`}>Home</h1>
+                        <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Home</h1>
                     </div>
                     </Link> 
                     {/*Home*/}
@@ -38,7 +38,7 @@ function SideBar(){
 
                         </div>
 
-                        <h1 className={`${!open&&'hidden'} text-white`}>Your treads</h1>
+                        <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Your treads</h1>
                     </div>                     
                     {/*Your treads*/}
                     <div className='flex gap-x-2 items-center cursor-pointer '>
@@ -47,7 +47,7 @@ function SideBar(){
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                             </svg>
                         </div>
-                        <h1 className={`${!open&&'hidden'} text-white`}>Saved</h1>
+                        <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Saved</h1>
                     </div>  
                     {/*Saved*/}
                     {/*Drawerl*/}
