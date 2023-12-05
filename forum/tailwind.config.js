@@ -15,6 +15,8 @@ module.exports = {
      "alice-blue": "#EEF4F8ff",
       "seasalt": "#F9F9F9ff",
       "ipt":"#88b77b",
+      "preto":"#000000",
+      "background-gray":"#eee",
     },
     extend: {},
   },

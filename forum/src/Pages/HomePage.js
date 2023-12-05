@@ -18,13 +18,17 @@ function HomePage() {
       <div className="flex  h-screen overflow-hidden ">
 
         <SideBar></SideBar>
-        <div className='bg-alice-blue  sm:px-6  px-2 flex-1 h-full font-semibold w-full overflow-y-auto'>
+        <div className='bg-background-gray  sm:px-6  px-2 flex flex-1 h-full font-semibold w-full overflow-y-auto justify-center'>
+          <div className='flex flex-col w-full '>
           <Header></Header>
+          <div className='flex flex-col items-center'>
           <AddPost></AddPost>
           <Post></Post>
           <Post></Post>
           <Post></Post>
+          </div>
           <Footer></Footer>
+          </div>
         </div>
       </div>
       </div>
