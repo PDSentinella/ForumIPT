@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import SubForum from './SubForum'
 const channels = [
   {
   notification:2,
