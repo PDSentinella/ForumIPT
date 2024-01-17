@@ -6,12 +6,12 @@ import { Route, Routes } from 'react-router-dom';
 function App() {
 
   return (
-    <>
+    <div className="overflow-y-hidden">
     <Routes>
     <Route
         exact
         path="/"
-        element={localStorage.getItem("user") ? <HomePage /> : <Login />}
+        element={localStorage.getItem("user") ? <HomePage /> : <HomePage />}
       />
       <Route
         exact
@@ -19,7 +19,7 @@ function App() {
         element={<UserProfilePage></UserProfilePage>}
       />
     </Routes>
-    </>
+    </div>
   );
 }
 
