@@ -1,11 +1,50 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
+
+
+function getPublicatoin(publicationcount){
+  let publicacao = [{
+    titulo:"Date of the final exams",
+    img:"",
+    user:{name:"Paulo Santo",
+        foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg"       
+        },
+    time:"2 hrs ago",
+    msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
+    coments:[
+    {
+        user:{
+                name:"Paulo",
+                foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg",
+                teacher:true
+            },
+        commentMsg:"Good after noon teacher. I think that 18 Dezember will be a good date to do the test",
+        time:"2hrs ago",
+        teacher:false
+    }  ,
+
+    {
+        user:{
+                name:"Toninho",
+                foto:"",
+                teacher:false
+            },
+        commentMsg:"Good afternoon. I think that 18 dezember will ber an excellent day to do our asigniment",
+        time:"12/1/4",
+    },
+
+            ]
+}]
+  return publicacao
+}
 function HomePage() {
+  const [publicationcount, setPublicationcount] = useState(5);
+  const [publicatoins, setPublications] = useState(getPublicatoin(publicationcount));
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -27,7 +66,11 @@ function HomePage() {
         </div>
       </div>*/
   });
+ 
+  ///lista de publicações
+  function getPublications(){
 
+  }
   return (
     <>
       <div className='h-full relative top-0'>
@@ -39,9 +82,11 @@ function HomePage() {
           <Header></Header>
           <div className='flex flex-col items-center '>
           <AddPost></AddPost>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
+          {publicatoins.map((publication) => (
+             <Post publicacao={publication}></Post>
+        ))}
+         
+         
           </div>
           <Footer></Footer>
           </div>

@@ -1,5 +1,10 @@
 import {useState} from 'react'
 import React from 'react';
+import AddComment from './AddComment';
+import getUsers from '../utils/getsUser';
+import postUser from '../utils/postUser';
+import deleteUser from '../utils/deleteUser';
+import putUsers from '../utils/putUser';
 /* https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiO8lpJcBozNvY6ocapye6oly0SLGa80Bxw&usqp=CAU*/
 let publicacao = {
     titulo:"Date of the final exams",
@@ -33,14 +38,21 @@ let publicacao = {
 
             ]
 }
+function test(printMessage){
+    console.log(printMessage)
+    console.log("é nois")
+}
+
 function Post(props){
+    const [publication, setPublication] = useState(props.publicacao);
     const [open, setOpen] = useState(false);
     const [mo, setMo] = useState(false)
     return ( 
+
     <div className={`flex flex-initial flex-col gap-6  pt-6 bg-white mt-2 px-4  w-full h-auto rounded-md  sm:max-w-lg lg:max-w-2xl xl:max-w-4xl`}>
             {/*titulo*/}
             <div className='flex justify-between pr-1'>
-                <h1 className='text-xl font-bold'>{publicacao.titulo}</h1>
+                <h1 className='text-xl font-bold'>{publication.titulo}</h1>
                 <div>
                     <div onClick={()=>{setMo(!mo)}}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5" >
@@ -59,10 +71,10 @@ function Post(props){
             {/*user profile pic, name and publication date*/}
             <div>
                 <div className='flex gap-x-2 '>
-                    <img className="w-8 h-8 cursor-pointer" src={`${publicacao.user.foto}`} />
+                    <img className="w-8 h-8 cursor-pointer" src={`${publication.user.foto}`} />
                     <div >
-                        <h2 className='text-xs font-thin text-opacity-10'>{publicacao.user.name}</h2>
-                        <h2 className="text-xs font-thin text-opacity-40">{publicacao.time}</h2>
+                        <h2 className='text-xs font-thin text-opacity-10'>{publication.user.name}</h2>
+                        <h2 className="text-xs font-thin text-opacity-40">{publication.time}</h2>
                     </div>
                 </div>
 
@@ -70,13 +82,13 @@ function Post(props){
             {/*messagem e imagem da publicacao */}
             <div className='flex flex-col  gap-y-8 '>
                 
-                <div className={` ${ publicacao.img =="" && 'hidden'} flex w-full items-center  justify-center overflow-hidden`}>
-                    <img  className="w-full" src={`${publicacao.img}`}/>
+                <div className={` ${ publication.img =="" && 'hidden'} flex w-full items-center  justify-center overflow-hidden`}>
+                    <img  className="w-full" src={`${publication.img}`}/>
                 </div>
                 {/*text message da publicacao*/}
                 <div className='flex items-center justify-center lg:justify-end max-h-24 w-full'>
                     <div className='flex flex-1 max-h-20 overflow-hidden'>
-                        <p className='text-sm font-extralight text-justify overflow-ellipsis overflow-hidden '>{publicacao.msg}</p>
+                        <p className='text-sm font-extralight text-justify overflow-ellipsis overflow-hidden '>{props.publicacao.msg}</p>
                     </div>
                 </div>
                 
@@ -92,18 +104,18 @@ function Post(props){
                             </svg>
                         </div>
                         {/*comment icon*/}
-                        <button className='flex py-1 px-2 justify-center items-center bg-ipt rounded-full'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#FFFFFF' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
-                            </svg>
-                            <h3 className='text-white text-xs mr-1'>Comment</h3>
+                        <div className='flex p-1 justify-center items-center cursor-pointer rounded-xl'>
+                            <AddComment></AddComment>
+                        </div>
+                        <button  className='flex p-1 bg-space_cadet justify-center items-center cursor-pointer rounded-xl' onClick={putUsers(2)}>
                         </button>
+                        
                     
                 </div>
                 {/*numbers of comments*/}
                 <div className={`flex justify-end w-full `}> {/*justify-start sm:!justify-end  ${open && 'hidden'}*/}
-                    <div className={`flex ${publicacao.coments.length==0 && 'hidden'} bg-ipt rounded p-2 h-8 items-center justify-center cursor-pointer`} onClick={()=>setOpen(!open)}>
-                        <h3 className={`text-white text-xs `}>comments {publicacao.coments.length}</h3>{/* ${open && 'hidden'}*/}
+                    <div className={`flex ${publication.coments.length==0 && 'hidden'} bg-ipt rounded p-2 h-8 items-center justify-center cursor-pointer`} onClick={()=>setOpen(!open)}>
+                        <h3 className={`text-white text-xs `}>comments {publication.coments.length}</h3>{/* ${open && 'hidden'}*/}
                         {/*<h3 className={`text-ipt text-xs ${!open && 'hidden'} `}> show less</h3>*/}
                     </div>
                 </div>
