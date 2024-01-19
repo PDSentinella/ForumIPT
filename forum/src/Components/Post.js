@@ -5,6 +5,10 @@ import getUsers from '../utils/getsUser';
 import postUser from '../utils/postUser';
 import deleteUser from '../utils/deleteUser';
 import putUsers from '../utils/putUser';
+import getPublicacao from '../utils/getPublicacao';
+import getComment from '../utils/getComment';
+import getPublicacaoComment from '../utils/getPublicacaoComment';
+import getCanalUser from '../utils/getCanalUser';
 /* https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiO8lpJcBozNvY6ocapye6oly0SLGa80Bxw&usqp=CAU*/
 let publicacao = {
     titulo:"Date of the final exams",
@@ -14,6 +18,7 @@ let publicacao = {
         },
     time:"2 hrs ago",
     msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
+    
     coments:[
     {
         user:{
@@ -38,10 +43,7 @@ let publicacao = {
 
             ]
 }
-function test(printMessage){
-    console.log(printMessage)
-    console.log("é nois")
-}
+
 
 function Post(props){
     const [publication, setPublication] = useState(props.publicacao);
@@ -107,18 +109,12 @@ function Post(props){
                         <div className='flex p-1 justify-center items-center cursor-pointer rounded-xl'>
                             <AddComment></AddComment>
                         </div>
-                        <button  className='flex p-1 bg-space_cadet justify-center items-center cursor-pointer rounded-xl' onClick={putUsers(2)}>
-                        </button>
+                        {/*<button  className='flex  w-10 h-10 bg-space_cadet justify-center items-center cursor-pointer rounded-xl' onClick={getCanalUser("")}>
+                        </button>*/}
                         
                     
                 </div>
-                {/*numbers of comments*/}
-                <div className={`flex justify-end w-full `}> {/*justify-start sm:!justify-end  ${open && 'hidden'}*/}
-                    <div className={`flex ${publication.coments.length==0 && 'hidden'} bg-ipt rounded p-2 h-8 items-center justify-center cursor-pointer`} onClick={()=>setOpen(!open)}>
-                        <h3 className={`text-white text-xs `}>comments {publication.coments.length}</h3>{/* ${open && 'hidden'}*/}
-                        {/*<h3 className={`text-ipt text-xs ${!open && 'hidden'} `}> show less</h3>*/}
-                    </div>
-                </div>
+                
             </div>
             {/*
             {ivisible div that contains the comments is showed (it has to set comments to open}

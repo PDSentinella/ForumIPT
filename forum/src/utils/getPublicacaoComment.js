@@ -5,6 +5,6 @@ export default function getPublicacaoComment(filter="") {
     .then((response) => response.json())
     .then(json => {
     // Do something with the data
-    console.log(json.publicacaoComentarios);
+    console.log(json.publicacaoComentario);
     });
 }

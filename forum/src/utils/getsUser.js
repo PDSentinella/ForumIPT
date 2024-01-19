@@ -7,6 +7,6 @@ export default function getUsers(filter="") {
     .then(json => {
     // Do something with the data
     console.log(json.user);
-    //return json.user
+    return json.user
     });
 }

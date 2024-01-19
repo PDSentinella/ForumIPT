@@ -1,8 +1,8 @@
 export default function putUsers(number="") {
     let url = 'https://api.sheety.co/fb92c09eaad214da086d51fb7c8f7735/ipt/user/'+number;
 let body = {
-  user: {
-    nome:""
+  "users": {
+    "nome":"Paulo"
   }
 }
 fetch(url, {

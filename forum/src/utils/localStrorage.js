@@ -6,3 +6,5 @@ export function getStorageValue(key, defaultValue) {
       return initial;
     }
   }
+
+  
