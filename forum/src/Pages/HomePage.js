@@ -7,6 +7,7 @@ import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
 //import getPublicacao from '../utils/getPublicacao'
 import getUsers from '../utils/getsUser'
+import Publications from '../Components/Publications'
 
 async function getPublicacao(filter="") {
   let url = 'https://api.sheety.co/fb92c09eaad214da086d51fb7c8f7735/ipt/publicacao'+"/"+filter;
@@ -61,7 +62,7 @@ function HomePage() {
           <div className='flex flex-col items-center '>
           <AddPost></AddPost>
           
-             <Post publicacao={publications}></Post>
+             <Publications></Publications>
          
          
           </div>
