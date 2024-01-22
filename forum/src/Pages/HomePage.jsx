@@ -13,6 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 function HomePage() {
+  const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState(null);
 
