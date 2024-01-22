@@ -5,26 +5,12 @@ import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
-//import getPublicacao from '../utils/getPublicacao'
-import getUsers from '../utils/getsUser'
-import Publications from '../Components/Publications'
+import CircularProgress from '@mui/material/CircularProgress';
 
-async function getPublicacao(filter="") {
-  let url = 'https://api.sheety.co/fb92c09eaad214da086d51fb7c8f7735/ipt/publicacao'+"/"+filter;
-  let value;
-  await fetch(url)
-  .then((response) => response.json())
-  .then(json => {
-  // Do something with the data
-   value = json.publicacao
-  //console.log(value)
-  
-  });
-  
-  return value;
-  
-  
-}
+//import getPublicacao from '../utils/getPublicacao'
+
+
+
 
 function getPublication(publicationcount){
   let publicacao = {
@@ -41,15 +27,27 @@ console.log(publicacao)
 }
 function HomePage() {
   const [publicationcount, setPublicationcount] = useState(5);
-  const [publications, setPublications] = useState(getPublication(publicationcount));
+  const [publications, setPublications] = useState(null);
 
   useEffect(() => {
-  });
- 
-  ///lista de publicações
-  function getPublications(){
+    getPublicacao()
+    
+  },[]);
 
+  function getPublicacao(filter="") {
+    fetch('https://api.sheety.co/96746cd1ec0da26ab33a53d1667461a4/ipt/publicacao/'+filter)
+    .then((response) => response.json())
+    .then(json => {
+      
+      
+    setPublications(json.publicacao);
+    });
   }
+
+  
+
+  ///lista de publicações
+  
   return (
     <>
       <div className='h-full relative top-0'>
@@ -61,8 +59,12 @@ function HomePage() {
           <Header></Header>
           <div className='flex flex-col items-center '>
           <AddPost></AddPost>
-          
-             <Publications></Publications>
+          {publications==null?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:
+            publications.map((publication) => (
+              <Post publicacao={publication}></Post>
+            )) 
+          }
+             {/*<Publications></Publications>*/}
          
          
           </div>

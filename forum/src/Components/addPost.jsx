@@ -61,6 +61,28 @@ function AddPost(props){
                             fullWidth
                             variant="standard"
                         />
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="Imagem"
+                            name="Imagem"
+                            label="Imagem"
+                            type="file"
+                            fullWidth
+                            variant="standard"
+                        />
+                        <TextField
+                            autoFocus
+                            required
+                            margin="dense"
+                            id="Message"
+                            name="Menssagem"
+                            label="Message"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                        />
                          <DialogActions>
                         
                         </DialogActions>
@@ -68,10 +90,8 @@ function AddPost(props){
                        
                         </DialogContent>
                         <DialogActions>
-                        <Button color="primary"  onClick={handleClose}>Disagree</Button>
-                        <Button onClick={handleClose} autoFocus>
-                            Agree
-                        </Button>
+                        <Button color="primary"  onClick={handleClose}>Post</Button>
+                        <Button onClick={handleClose} autoFocus>Close</Button>
                         </DialogActions>
       </Dialog>
     </div>

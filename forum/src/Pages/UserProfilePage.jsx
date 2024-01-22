@@ -1,17 +1,21 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import UserCard from '../Components/UserCard'
 import Footer from '../Components/Footer'
 import SideBar from '../Components/SideBar'
 import Bar from '../Components/Bar'
 import UserInfo from '../Components/UserInfo'
 import UserSaved from '../Components/UserSaved'
-{/*  const [difined,setDefined] = UseState('info');
-*/}
+
 function UserProfilePage() {
+  useEffect(() => {
+    
+  },[]);
+  const [user,setUser] = useState();
   const [selected, setSelected] = useState('info');
   return (
     <>
-    <div className='h-full relative top-0'>
+    
+    {<div className='h-full relative top-0'>
       <div className="flex  h-screen w-full ">
 
         <SideBar></SideBar>
@@ -47,7 +51,7 @@ function UserProfilePage() {
             </div>  
         </div>
       </div>
-      </div>
+      </div>}
       <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
         <Bar></Bar>
       </div>

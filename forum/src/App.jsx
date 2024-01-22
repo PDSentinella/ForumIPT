@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import Login from "./Pages/Login";
 import HomePage from "./Pages/HomePage"
 import UserProfilePage from "../src/Pages/UserProfilePage"
 import { Route, Routes } from 'react-router-dom';
 import ChannelPage from "./Pages/ChannelPage";
-function App() {
 
+function App() {
+  //setar user se possivel, ou usar local storage
+  const [user, setUser] = useState();
   return (
     <div className="overflow-y-hidden">
     <Routes>
