@@ -14,7 +14,7 @@ function App() {
     <Route
         exact
         path="/"
-        element={localStorage.getItem("user") ? <HomePage/> : <HomePage/>}
+        element={localStorage.getItem("user") ? <HomePage/> : <Login/>}
       />
       <Route
         exact

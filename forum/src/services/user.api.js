@@ -1,6 +1,6 @@
 // user.api.js
 
-const base_url = "http://localhost:7071/api/";
+const base_url = "https://iwork947.azurewebsites.net/api/";
 async function loginUserPassword(email, password) {
 
     let userLogin = {
