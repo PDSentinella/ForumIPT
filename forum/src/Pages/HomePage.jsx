@@ -1,31 +1,72 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
+import CircularProgress from '@mui/material/CircularProgress';
+
+//import getPublicacao from '../utils/getPublicacao'
+
+
+
+
+function getPublication(publicationcount){
+  let publicacao = {
+    titulo:"Date of the final exams",
+    img:"",
+    user:{name:"Paulo Santo",
+        foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg"       
+        },
+    msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
+    
+} 
+console.log(publicacao)
+  return publicacao
+}
 function HomePage() {
+  const [publicationcount, setPublicationcount] = useState(5);
+  const [publications, setPublications] = useState(null);
 
   useEffect(() => {
-    // Update the document title using the browser API
-    // localStorage.setItem("login", {islogin});
-  });
+    getPublicacao()
+    
+  },[]);
 
+  function getPublicacao(filter="") {
+    fetch('https://api.sheety.co/96746cd1ec0da26ab33a53d1667461a4/ipt/publicacao/'+filter)
+    .then((response) => response.json())
+    .then(json => {
+      
+      
+    setPublications(json.publicacao);
+    });
+  }
+
+  
+
+  ///lista de publicações
+  
   return (
     <>
       <div className='h-full relative top-0'>
-      <div className="flex  h-screen overflow-hidden ">
+        <div className="flex  h-screen  ">
 
         <SideBar></SideBar>
         <div className='bg-background-gray  sm:px-6  px-2 flex flex-1 h-full font-semibold w-full overflow-y-auto justify-center'>
           <div className='flex flex-col w-full '>
           <Header></Header>
-          <div className='flex flex-col items-center'>
+          <div className='flex flex-col items-center '>
           <AddPost></AddPost>
-          <Post></Post>
-          <Post></Post>
-          <Post></Post>
+          {publications==null?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:
+            publications.map((publication) => (
+              <Post publicacao={publication}></Post>
+            )) 
+          }
+             {/*<Publications></Publications>*/}
+         
+         
           </div>
           <Footer></Footer>
           </div>
