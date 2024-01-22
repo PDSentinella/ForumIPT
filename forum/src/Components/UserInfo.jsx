@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 const canais = [
     "base de dados",
     "POO",
@@ -7,32 +7,33 @@ const canais = [
     "Probabilidades Estastisticas",
     "InterfaceWeb"
 ]
-const UserInfo = () => {
+const UserInfo = (props) => {
+    const [userInfo,setUserInfo] = useState(props.user);
   return (
     <div className='flex flex-col justify-between p-4 lg:gap-y-16 items-center w-full h-full gap-y-8 pt-16'>
-        <h3>aluno24880@ipt.pt</h3>
+        <h3>{userInfo.email}</h3>
         <div className='flex flex-wrap items-center lg:flex-co justify-center gap-y-8  py-8 pb-18'>
             <div className='flex flex-col w-56 items-center'>
                 <h3 className='font-light'>Telephone</h3>
-                <h3 className='font-bold'>+351 960360141</h3>
+                <h3 className='font-bold'>{userInfo.telefone}</h3>
             </div>
             <div className='flex flex-col w-56 items-center'>
                 <h3 className='font-light'>Location</h3>
-                <h3 className='font-bold'>Tomar</h3>
+                <h3 className='font-bold'>{userInfo.location}</h3>
             </div>
             <div className='flex flex-col w-56 items-center'>
                 <h3 className='font-light'>Job Title</h3>
-                <h3 className='font-bold'>PR Reoresent</h3>
+                <h3 className='font-bold'>{userInfo.job}</h3>
             </div>
             <div className='flex flex-col w-56 items-center'>
                 <h3 className='font-light'>Accont</h3>
-                <h3 className='font-bold'>Student</h3>
+                <h3 className='font-bold'>{userInfo.atype}</h3>
             </div>            
         </div>
             <div className='flex flex-col items-center justify-center'>
             <div className='flex flex-col w-full pb-8 items-start justify-center '>
                     <h3 className='text-2x '>About Me</h3>
-                    <p className='font-light text-justify'>As my days went by, i found that loving and carraing are important, but there are also other important think in the world. Hello my name is Paulo i am a second year student of CS, and i am looking for a job. </p>
+                    <p className='font-light text-justify'>{userInfo.aboutMe}</p>
             </div>
 
             <div className='w-full flex flex-col py-8 items-start gap-4'>
