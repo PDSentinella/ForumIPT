@@ -5,22 +5,34 @@ import SideBar from '../Components/SideBar'
 import Bar from '../Components/Bar'
 import UserInfo from '../Components/UserInfo'
 import UserSaved from '../Components/UserSaved'
+import CircularProgress from '@mui/material/CircularProgress';
 
-function UserProfilePage() {
+{/*  const [difined,setDefined] = UseState('info');
+*/}
+function UserProfilePage(props) {
+  function getUser(filter="") {
+    fetch('https://api.sheety.co/96746cd1ec0da26ab33a53d1667461a4/ipt/user/'+filter)
+    .then((response) => response.json())
+    .then(json => {
+      
+      console.log(typeof json.user)
+    setUserProfilePage(json.user);
+    });
+  }
   useEffect(() => {
-    
+    getUser(2)
   },[]);
-  const [user,setUser] = useState();
+  const [userProfilePage,setUserProfilePage] = useState();
   const [selected, setSelected] = useState('info');
   return (
     <>
     
-    {<div className='h-full relative top-0'>
+    {typeof userProfilePage =="object"?<div className='h-full relative top-0'>
       <div className="flex  h-screen w-full ">
 
         <SideBar></SideBar>
         <div className={` flex flex-col bg-alice-blue  items-center sm:px-16 px-8  flex-1 h-full  w-full overflow-y-auto`}>
-            <UserCard></UserCard>    
+            {typeof userProfilePage =="object" && <UserCard user={userProfilePage}></UserCard>}    
             {/*content appear div*/}
             <div className='w-full mt-4 self-center'>
             {/*<div className={` relative  border-2  ${selected=='info' && 'w-24 left-36'} ${selected=='g' && 'w-24 left-56'} `}></div>*/}
@@ -45,13 +57,13 @@ function UserProfilePage() {
               </div>
               {/* content bellow chooser content*/}
               <div className='flex justify-center items-center mb-16'>
-                {selected=='info'?(<UserInfo></UserInfo>):selected=='g'?(<UserSaved></UserSaved>):selected=='cv'&&(<div>resume</div>)}
+                {typeof userProfilePage =="object"? (selected=='info'?(<UserInfo user={userProfilePage} ></UserInfo>):selected=='g'?(<UserSaved user={userProfilePage}></UserSaved>):selected=='cv'&&(<div>resume</div>)):<CircularProgress color="success" />}
                 
               </div>
             </div>  
         </div>
       </div>
-      </div>}
+      </div>:<></>}
       <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
         <Bar></Bar>
       </div>

@@ -12,19 +12,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 
-function getPublication(publicationcount){
-  let publicacao = {
-    titulo:"Date of the final exams",
-    img:"",
-    user:{name:"Paulo Santo",
-        foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg"       
-        },
-    msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
-    
-} 
-console.log(publicacao)
-  return publicacao
-}
 function HomePage() {
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState(null);
