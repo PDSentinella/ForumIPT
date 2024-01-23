@@ -32,7 +32,7 @@ const Header = () => {
           <img alt="profile_image" className='h-12 md:h-24' src='/icons/ipt.png'></img>
         </a>
       </div>
-      <Tooltip title="Account settings">
+      <Tooltip title="Definições">
         <IconButton
           onClick={handleClick}
           size="medium"

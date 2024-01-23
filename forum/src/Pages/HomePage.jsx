@@ -19,7 +19,6 @@ function HomePage() {
 
   useEffect(() => {
     setPublications(getPublicacao(publicationcount))
-    
   },[]);
   //5 primeiras publicações das 
 
