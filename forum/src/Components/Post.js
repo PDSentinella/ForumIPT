@@ -1,14 +1,7 @@
 import {useState} from 'react'
 import React from 'react';
 import AddComment from './AddComment';
-import getUsers from '../utils/getsUser';
-import postUser from '../utils/postUser';
-import deleteUser from '../utils/deleteUser';
-import putUsers from '../utils/putUser';
-import getPublicacao from '../utils/getPublicacao';
-import getComment from '../utils/getComment';
-import getPublicacaoComment from '../utils/getPublicacaoComment';
-import getCanalUser from '../utils/getCanalUser';
+
 /* https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiO8lpJcBozNvY6ocapye6oly0SLGa80Bxw&usqp=CAU*/
 let publicacao = {
     titulo:"Date of the final exams",

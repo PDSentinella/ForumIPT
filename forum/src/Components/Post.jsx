@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react'
 import React from 'react';
 import AddComment from './AddComment';
-import postUser from '../utils/postUser';
 
 /* https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiO8lpJcBozNvY6ocapye6oly0SLGa80Bxw&usqp=CAU*/
 let publicacao = {
@@ -47,6 +46,7 @@ function Post(props){
     const [mo, setMo] = useState(false)
 
     useEffect(() => {
+        getPublicacao()
        getUser(publication.user)
       },[]);
 
@@ -59,6 +59,14 @@ function Post(props){
             console.log(json.user)
          setPublication(publicationfecth)
          setUser(json.user)
+        });
+      }
+     
+      function getPublicacao(filter="") {
+        fetch('https://api.sheety.co/96746cd1ec0da26ab33a53d1667461a4/ipt/publicacao/'+filter)
+        .then((response) => response.json())
+        .then(json => {          
+        setPublication(json.publicacao);
         });
       }
     return ( 
