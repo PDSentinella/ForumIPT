@@ -54,8 +54,9 @@ export default function Login() {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box
+        <Box className="rounded-lg p-4 sm:border"
           sx={{
+            borderColor: '#7ac142', 
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
