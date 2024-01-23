@@ -13,6 +13,39 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 function HomePage() {
+  var publicacao = [{
+    titulo:"Date of the final exams",
+    img:"",
+    user:{name:"Paulo Santo",
+        foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg"       
+        },
+    time:"2 hrs ago",
+    msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
+    
+    coments:[
+    {
+        user:{
+                name:"Paulo",
+                foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg",
+                teacher:true
+            },
+        commentMsg:"Good after noon teacher. I think that 18 Dezember will be a good date to do the test",
+        time:"2hrs ago",
+        teacher:false
+    }  ,
+
+    {
+        user:{
+                name:"Toninho",
+                foto:"",
+                teacher:false
+            },
+        commentMsg:"Good afternoon. I think that 18 dezember will ber an excellent day to do our asigniment",
+        time:"12/1/4",
+    },
+
+            ]
+}]
   const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState();
@@ -24,39 +57,6 @@ function HomePage() {
   //5 primeiras publicações das 
 
   function getPublicacao() {
-    let publicacao = [{
-      titulo:"Date of the final exams",
-      img:"",
-      user:{name:"Paulo Santo",
-          foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg"       
-          },
-      time:"2 hrs ago",
-      msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
-      
-      coments:[
-      {
-          user:{
-                  name:"Paulo",
-                  foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg",
-                  teacher:true
-              },
-          commentMsg:"Good after noon teacher. I think that 18 Dezember will be a good date to do the test",
-          time:"2hrs ago",
-          teacher:false
-      }  ,
-  
-      {
-          user:{
-                  name:"Toninho",
-                  foto:"",
-                  teacher:false
-              },
-          commentMsg:"Good afternoon. I think that 18 dezember will ber an excellent day to do our asigniment",
-          time:"12/1/4",
-      },
-  
-              ]
-  }]
   return publicacao
   }
   
@@ -79,7 +79,6 @@ function HomePage() {
               <Post publicacao={publication}></Post>
             )) 
           }
-             {/*<Publications></Publications>*/}
          
          
           </div>

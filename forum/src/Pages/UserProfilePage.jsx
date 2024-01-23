@@ -63,7 +63,7 @@ function UserProfilePage(props) {
             </div>  
         </div>
       </div>
-      </div>:<></>}
+      </div>:<div className='flex w-full h-96'><div className=' w-1/2'></div><CircularProgress color="success" /></div>}
       <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
         <Bar></Bar>
       </div>
