@@ -6,17 +6,16 @@ import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import loginUserPassword from '../services/user.api';
+import { loginUserPassword } from '../services/user.api'
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://www.ipt.pt/">
+      <Link to="https://www.ipt.pt/" color="inherit">
         IPT(Instituto Politecnico de Tomar)™
       </Link>{' '}
       {new Date().getFullYear()}
@@ -63,8 +62,7 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar src="/icons/ipt.png" sx={{ m: 1, bgcolor: 'white', width: 100, height: 100 }}>
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
