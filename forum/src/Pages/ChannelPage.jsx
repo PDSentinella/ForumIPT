@@ -8,10 +8,7 @@ import Bar from '../Components/Bar'
 function ChannelPage() {
     const [selected, setSelected] = useState("");
   useEffect(() => {
-    // Update the document title using the browser API
-    // localStorage.setItem("login", {islogin});
   });
-/* https://i.pinimg.com/736x/7c/58/a3/7c58a331634e34e4198383d4c82fb266.jpg*/
 
   return (
     <>
