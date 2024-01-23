@@ -16,7 +16,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://www.ipt.pt/">
         IPT(Instituto Politecnico de Tomar)™
       </Link>{' '}
       {new Date().getFullYear()}
@@ -36,6 +36,9 @@ export default function Login() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
+      if(data.get('email') === '' && data.get('password') === ''){
+        document.getElementById('errorLabel').innerText = "Dados insuficientes!"
+      }
       const response = await loginUserPassword(data.get('email'), data.get('password'));
       if(!response){
         localStorage.setItem("user", "");
@@ -44,7 +47,7 @@ export default function Login() {
         window.location.reload(false);
       }
   } catch (error) {
-      console.log(error);
+      document.getElementById('errorLabel').innerText = "Dados invalidos... Por favor tente outra vez!"
   }
   };
 
@@ -95,10 +98,13 @@ export default function Login() {
             >
               Sign In
             </Button>
+            <Typography className='hidden text-ipt' id="errorLabel" component="h1" variant="body1">
+            
+            </Typography>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Esquec?
+                  Forgot password?
                 </Link>
               </Grid>
               <Grid item>

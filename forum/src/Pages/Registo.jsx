@@ -15,7 +15,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://www.ipt.pt/">
         IPT(Instituto Politecnico de Tomar)™
       </Link>{' '}
       {new Date().getFullYear()}
