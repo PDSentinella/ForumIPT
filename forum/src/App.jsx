@@ -4,6 +4,7 @@ import HomePage from "./Pages/HomePage"
 import Registo from "./Pages/Registo";
 import UserProfilePage from "../src/Pages/UserProfilePage";
 import { Route, Routes } from 'react-router-dom';
+import ChannelPage from "./Pages/ChannelPage";
 
 function App() {
 
@@ -24,6 +25,11 @@ function App() {
         exact
         path="/Registo"
         element={<Registo></Registo>}
+      />
+      <Route
+        exact
+        path="/Discipinas/:id"
+        element={<ChannelPage></ChannelPage>}
       />
     </Routes>
     </div>

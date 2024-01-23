@@ -27,11 +27,11 @@ function UserProfilePage(props) {
   return (
     <>
     
-    {typeof userProfilePage =="object"?<div className='h-full relative top-0'>
+    <div className='h-full relative top-0'>
       <div className="flex  h-screen w-full ">
 
         <SideBar></SideBar>
-        <div className={` flex flex-col bg-alice-blue  items-center sm:px-16 px-8  flex-1 h-full  w-full overflow-y-auto`}>
+        {typeof userProfilePage =="object"?<><div className={` flex flex-col bg-alice-blue  items-center sm:px-16 px-8  flex-1 h-full  w-full overflow-y-auto`}>
             {typeof userProfilePage =="object" && <UserCard user={userProfilePage}></UserCard>}    
             {/*content appear div*/}
             <div className='w-full mt-4 self-center'>
@@ -61,9 +61,9 @@ function UserProfilePage(props) {
                 
               </div>
             </div>  
-        </div>
+        </div></>:<div className='flex w-full h-96'><div className=' w-1/2'></div><CircularProgress color="success" /></div>}
       </div>
-      </div>:<div className='flex w-full h-96'><div className=' w-1/2'></div><CircularProgress color="success" /></div>}
+      </div>
       <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
         <Bar></Bar>
       </div>
