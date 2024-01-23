@@ -26,7 +26,38 @@ async function loginUserPassword(email, password) {
     }
 }
 
-export default loginUserPassword;
+async function RegisterUser(name, email, genero, password, profile_image) {
+
+    let userRegister = {
+        name: name,
+        email: email,
+        password: password,
+        genero: genero,
+        profile_image: profile_image
+    }
+
+    try {
+        console.log(userRegister);
+        const response = await fetch(`${base_url}register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userRegister),
+        });
+        const data = await response.json();
+        console.log(data);
+        return data; // Assuming you want to return the data
+    } catch (error) {
+        console.log(error);
+        throw error; // Rethrow the error to handle it in the component
+    }
+}
+
+
+
+
+export {loginUserPassword, RegisterUser}
 
 
 

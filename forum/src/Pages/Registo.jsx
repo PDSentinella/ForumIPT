@@ -10,12 +10,17 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from "react-router-dom";
+import FileBase64 from 'react-file-base64';
+import { useState } from 'react';
+import { RegisterUser } from '../services/user.api'
+import { useNavigate } from "react-router-dom";
+
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link to="https://www.ipt.pt/" color="inherit">
+      <Link Link to="https://www.ipt.pt/" color="inherit">
         IPT(Instituto Politecnico de Tomar)™
       </Link>{' '}
       {new Date().getFullYear()}
@@ -26,15 +31,35 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+
+
 export default function SignUp() {
-  const handleSubmit = (event) => {
+
+  const [ File , setFile] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try {
+      if(data.get('email') === '' && data.get('password') === '' && data.get('genero') === '' && data.get('name') === ''){
+        document.getElementById('errorLabel').innerText = "Dados insuficientes!"
+      }
+      const response = await RegisterUser(data.get('name'), data.get('email'), data.get('genero'), data.get('password'), File);
+      if(!response){
+        document.getElementById('errorLabel').innerText = "Dados inseridos insuficientes ou erro no sistema!"
+      }else{
+        navigate("/");
+      }
+  } catch (error) {
+      document.getElementById('errorLabel').innerText = "Dados invalidos... Por favor tente outra vez!"
+  }
   };
+
+  function getFiles(File){
+    console.log(File.base64)
+    setFile(File.base64)
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -48,8 +73,8 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar src="/icons/ipt.png" sx={{ m: 1, bgcolor: 'white', width: 100, height: 100 }}>
+            <LockOutlinedIcon sx={{ color: 'black' }} />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -60,9 +85,9 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="Name"
-                  label="Name"
-                  name="Name"
+                  id="name"
+                  label="name"
+                  name="name"
                   autoComplete="Nome Completo"
                 />
               </Grid>
@@ -71,10 +96,23 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email"
+                  label="email"
                   name="email"
                   autoComplete="email"
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="genero"
+                  label="genero"
+                  name="genero"
+                  autoComplete="genero"
+                />
+              </Grid>
+              <Grid item xs={12}>
+              <FileBase64 multiple={ false } onDone={ getFiles.bind(this) } />
               </Grid>
               <Grid item xs={12}>
                 <TextField
