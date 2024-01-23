@@ -3,9 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -18,8 +16,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://www.ipt.pt/">
+        IPT(Instituto Politecnico de Tomar)™
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -38,6 +36,9 @@ export default function Login() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
+      if(data.get('email') === '' && data.get('password') === ''){
+        document.getElementById('errorLabel').innerText = "Dados insuficientes!"
+      }
       const response = await loginUserPassword(data.get('email'), data.get('password'));
       if(!response){
         localStorage.setItem("user", "");
@@ -46,7 +47,7 @@ export default function Login() {
         window.location.reload(false);
       }
   } catch (error) {
-      console.log(error);
+      document.getElementById('errorLabel').innerText = "Dados invalidos... Por favor tente outra vez!"
   }
   };
 
@@ -89,10 +90,6 @@ export default function Login() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -101,6 +98,9 @@ export default function Login() {
             >
               Sign In
             </Button>
+            <Typography className='hidden text-ipt' id="errorLabel" component="h1" variant="body1">
+            
+            </Typography>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -108,8 +108,8 @@ export default function Login() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link to="/Registo" variant="body2">
+                  {"Ainda não tem conta? Registe-se!"}
                 </Link>
               </Grid>
             </Grid>
