@@ -12,11 +12,40 @@ async function GetChannels(user_id) {
             body: JSON.stringify({"user_id": user_id}),
         });
         const data = await response.json();
-        return data; // Assuming you want to return the data
+        return data; 
     } catch (error) {
-        throw error; // Rethrow the error to handle it in the component
+        throw error; 
     }
 }
 
 
-export { GetChannels }
+async function GetAllChannels(){
+    try {
+        const response = await fetch(`${base_url}GetAllChannels`, {
+            method: 'GET'
+        });
+        const data = await response.json();
+        return data; 
+    } catch (error) {
+        throw error; 
+    }
+}
+
+
+async function RegisterChannel(sendInfo){
+
+    try{
+        const response = await fetch(`${base_url}RegisterChannel`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: sendInfo,
+        });
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export { GetChannels, GetAllChannels, RegisterChannel }

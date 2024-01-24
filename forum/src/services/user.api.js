@@ -19,10 +19,10 @@ async function loginUserPassword(email, password) {
         });
         const data = await response.json();
         console.log(data);
-        return data; // Assuming you want to return the data
+        return data; 
     } catch (error) {
         console.log(error);
-        throw error; // Rethrow the error to handle it in the component
+        throw error;
     }
 }
 
@@ -47,10 +47,10 @@ async function RegisterUser(name, email, genero, password, profile_image) {
         });
         const data = await response.json();
         console.log(data);
-        return data; // Assuming you want to return the data
+        return data; 
     } catch (error) {
         console.log(error);
-        throw error; // Rethrow the error to handle it in the component
+        throw error; 
     }
 }
 
