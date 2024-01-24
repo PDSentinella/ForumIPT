@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -13,6 +13,13 @@ const Header = () => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const [userProfileImage, setuserProfileImage] = useState('')
+
+  useEffect(() => {
+    let user = JSON.parse(localStorage.getItem('user'));
+    setuserProfileImage(user.profile_image);
+  },[]);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -41,7 +48,7 @@ const Header = () => {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
         >
-          <Avatar src="https://dsz7vodgjx60a.cloudfront.net/wp-content/uploads/2020/03/26150830/Anfernee-Simons.jpg" sx={{ width: 42, height: 42 }}>M</Avatar>
+          <Avatar src={userProfileImage} sx={{ width: 42, height: 42 }}>M</Avatar>
         </IconButton>
       </Tooltip>
       <Menu
@@ -80,7 +87,7 @@ const Header = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <Link to="/profile"><MenuItem onClick={() => handleClose(1)}>
-          <Avatar src="https://dsz7vodgjx60a.cloudfront.net/wp-content/uploads/2020/03/26150830/Anfernee-Simons.jpg" /> Profile
+          <Avatar src={userProfileImage} /> Profile
         </MenuItem></Link>
         <Divider />
         <MenuItem onClick={handleClose(5)}>
