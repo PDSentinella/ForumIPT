@@ -35,13 +35,14 @@ async function GetAllChannels(){
 async function RegisterChannel(sendInfo){
 
     try{
-        const response = await fetch(`${base_url}RegisterChannel`, {
+        const response = await fetch(`${base_url}registeruserinchannel`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: sendInfo,
         });
+        return response.status;
     } catch (error) {
         console.log(error);
         throw error;

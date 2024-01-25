@@ -26,7 +26,7 @@ function SideBar(){
    /*Variaveis para receber os canais, de modo a que no dialo possam ser escolhidos*/
     const [canais, setCanais] = useState([]);
     
-    const [canal, setCanal] = useState({canal_id: '', nome: ''});
+    const [canal, setCanal] = useState({ canal_id: 1, nome: "Engenharia. Informática" });
 
     const handleChange = (event) => {
         // vai ao array canais e seleciona o canal correspondente pelo id.
@@ -125,11 +125,13 @@ function SideBar(){
                 event.preventDefault();
                 let user = JSON.parse(localStorage.getItem('user'));
                 const formData = new FormData(event.currentTarget);
-                formData.append('canal', JSON.stringify(canal));
+                formData.set('canal', JSON.stringify(canal));
                 formData.append('user_id', JSON.stringify(user.user_id));
                 const formJson = Object.fromEntries(formData.entries());
+                console.log(formJson)
                 sendInfo(formJson);
                 handleClose();
+
             },
             }}
             >
@@ -140,8 +142,7 @@ function SideBar(){
 
             <DialogContent>
             <DialogContentText>
-                To subscribe to this website, please enter your email address here. We
-                will send updates occasionally.
+                Inscreve-se num canal aqui. Basta selecionar o mesmo e inserir a respetiva senha recebida no seu mail!
             </DialogContentText>
             <Box className="flex-col sm:!flex">
             <FormControl sx={{ m: 1, minWidth: 80 }}>

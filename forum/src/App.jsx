@@ -5,6 +5,7 @@ import Registo from "./Pages/Registo";
 import UserProfilePage from "../src/Pages/UserProfilePage";
 import { Route, Routes } from 'react-router-dom';
 import ChannelPage from './Pages/ChannelPage.jsx'
+import DashBoard from './Pages/DashBoard.jsx'
 
 function App() {
 
@@ -30,6 +31,11 @@ function App() {
         exact
         path="/canal/:id"
         element={<ChannelPage></ChannelPage>}
+      />
+      <Route
+        exact
+        path="/DashBoard"
+        element={<DashBoard></DashBoard>}
       />
     </Routes>
     </div>

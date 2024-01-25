@@ -13,11 +13,11 @@ const Header = () => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [userProfileImage, setuserProfileImage] = useState('')
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem('user'));
-    setuserProfileImage(user.profile_image);
+    setUser(user);
   },[]);
 
   const handleClick = (event) => {
@@ -48,7 +48,7 @@ const Header = () => {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
         >
-          <Avatar src={userProfileImage} sx={{ width: 42, height: 42 }}>M</Avatar>
+          <Avatar src={user.profile_image} sx={{ width: 42, height: 42 }}>M</Avatar>
         </IconButton>
       </Tooltip>
       <Menu
@@ -86,10 +86,20 @@ const Header = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <Link to="/profile"><MenuItem onClick={() => handleClose(1)}>
-          <Avatar src={userProfileImage} /> Profile
-        </MenuItem></Link>
+        <Link to="/profile">
+          <MenuItem onClick={() => handleClose(1)}>
+            <Avatar src={user.profile_image} /> Profile
+          </MenuItem>
+        </Link>
         <Divider />
+        {
+          user.admin_privileges === true ?
+          <Link to="/DashBoard">
+            <MenuItem onClick={() => handleClose(1)}> DashBoard </MenuItem> 
+          </Link>
+          : ''
+        }
+
         <MenuItem onClick={handleClose(5)}>
           <ListItemIcon>
             <Logout fontSize="small" />
