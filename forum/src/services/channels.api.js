@@ -2,7 +2,6 @@ const base_url = "https://iwork947.azurewebsites.net/api/";
 
 
 async function GetChannels(user_id) {
-
     try {
         const response = await fetch(`${base_url}GetChannels`, {
             method: 'POST',
@@ -11,12 +10,21 @@ async function GetChannels(user_id) {
             },
             body: JSON.stringify({"user_id": user_id}),
         });
-        const data = await response.json();
-        return data; 
+
+        // Check if the response status is in the range of 2xx (success)
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        } else {
+            // Return an empty array for a 404 response
+            return [];
+        }
     } catch (error) {
-        throw error; 
+        // Log other errors, or handle them as needed
+        console.error("Error in GetChannels:", error);
     }
 }
+
 
 
 async function GetAllChannels(){
