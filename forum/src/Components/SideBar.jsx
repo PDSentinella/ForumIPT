@@ -1,11 +1,67 @@
 import { Link } from "react-router-dom";
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Drawerl from './Drawerl';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import BookmarkAddedOutlinedIcon from '@mui/icons-material/BookmarkAddedOutlined';
+import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { GetAllChannels } from "../services/channels.api";
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Box } from "@mui/material";
+import { RegisterChannel } from "../services/channels.api"
 //instagram side bar, quando a screen é grande o suficiente a side bar expande de vez, podemos recriar algo parecido usando xs-max: ou algo do genero, tentar
 function SideBar(){
     const [open, setOpen] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+
+   /*Variaveis para receber os canais, de modo a que no dialo possam ser escolhidos*/
+    const [canais, setCanais] = useState([]);
+    
+    const [canal, setCanal] = useState({ canal_id: 1, nome: "Engenharia. Informática" });
+
+    const handleChange = (event) => {
+        // vai ao array canais e seleciona o canal correspondente pelo id.
+        const selectedCanalId = event.target.value;
+        const selectedCanal = canais.find((canal) => canal.canal_id === selectedCanalId);
+        setCanal(selectedCanal);
+      };
+
+
+      const handleClose = () => {
+        setOpenDialog(false);
+      };
+
+      // função responsavel pelo o envio do curso e da senha.
+      async function sendInfo(formJson){
+        try{
+            console.log(formJson)
+            await RegisterChannel(formJson);
+        }catch(error){
+
+        }
+      }
+
+      useEffect(() => {
+       async function getChannels(){
+        const channels = await GetAllChannels();
+        setCanais(channels);
+       }
+
+       getChannels();
+
+      },[]);
 
       return (
+        <>
         <div className={`${open &&'w-0 '} max-sm:hidden sm:w-16  flex `} onMouseOver={(e) => {setOpen(true)}} > {/*${open &&'w-0 '} sm:w-16*/}{/*w-0 sm:w-16*/}
             <div className={`${open ?'w-72 absolute': 'w-0 sm:w-16  '} max-sm:hidden absolute duration-300 h-full bg-ipt overflow-y-auto z-20 `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
                 <div className={`flex  cursor-pointer items-center justify-center w-full gap-x-6 pt-8`}>
@@ -17,35 +73,29 @@ function SideBar(){
                     <h1 className={`${!open && 'hidden'} duration-500 text-4xl text-white font-bold`}>FORUM</h1>  
                 </div>
 
-                <div className={`flex flex-col flex-1 justify-center gap-y-6 pt-8 ${!open ?'items-center w-full ':'items-start ml-14 w-62'}`}>
-                <Link to={"/"} reloadDocument><div className={`flex gap-x-2 justify-center cursor-pointer `}>
-                        <div className={` flex rounded items-center justify-center bg-white w-6 h-6 `}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 place-self-center">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                            </svg>
+                
+            <div className={`flex flex-col flex-1 justify-center gap-y-6 pt-8 ${!open ?'items-center w-full ':'items-start ml-14 w-62'}`}>
+                <Link to="/" reloadDocument><div className={`flex gap-x-2 justify-center cursor-pointer `}>
+                        <div className={` flex rounded items-center justify-center w-6 h-6 `}>
+                          <HomeOutlinedIcon sx={{ color: 'white', fontSize: 32}}/>  
                         </div>
 
                         <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Home</h1>
                     </div>
-                    </Link> 
+                </Link> 
                     {/*Home*/}
                     
                     <div className='flex gap-x-2 items-center cursor-pointer'>
-                        <div className=' flex rounded items-center justify-center bg-white w-6 h-6 '>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
-                        </svg>
-
+                        <div className=' flex rounded items-center justify-center w-6 h-6 '>
+                        <MessageOutlinedIcon sx={{ color: 'white', fontSize: 32}}/>  
                         </div>
 
-                        <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Your treads</h1>
+                        <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Mensagens</h1>
                     </div>                     
                     {/*Your treads*/}
                     <div className='flex gap-x-2 items-center cursor-pointer '>
-                        <div className=' flex rounded items-center justify-center bg-white w-6 h-6 '>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                            </svg>
+                        <div className=' flex rounded items-center justify-center w-6 h-6 '>
+                        <BookmarkAddedOutlinedIcon sx={{ color: 'white', fontSize: 32}}/>  
                         </div>
                         <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Saved</h1>
                     </div>  
@@ -54,16 +104,81 @@ function SideBar(){
                     <Drawerl open={open}></Drawerl>
                     
                 </div>
-                <button className={` flex gap-2 p-3 place-self-end self-center mt-8 ml-14 bg-white text-ipt rounded ${!open && 'hidden'}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-                </svg>
-
-                    Join a new class
-                </button>
+                <Tooltip title="Junta-te a um canal">
+                    <button onClick={() => { setOpenDialog(true)}} className={` flex gap-2 p-3 place-self-end self-center mt-8 ml-14 bg-white text-ipt rounded ${!open && 'hidden'}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                    </svg>
+                        Regista canal
+                    </button>
+                </Tooltip>
             </div>
            
         </div>
+
+            <Dialog
+            open={openDialog}
+            onClose={handleClose}
+            PaperProps={{
+            component: 'form',
+            onSubmit: (event) => {
+                event.preventDefault();
+                let user = JSON.parse(localStorage.getItem('user'));
+                const formData = new FormData(event.currentTarget);
+                formData.set('canal', JSON.stringify(canal));
+                formData.append('user_id', JSON.stringify(user.user_id));
+                const formJson = Object.fromEntries(formData.entries());
+                console.log(formJson)
+                sendInfo(formJson);
+                handleClose();
+
+            },
+            }}
+            >
+            {
+                canal.nome !== '' ?  <DialogTitle className="font-bold">Inscrição no canal {canal.nome}</DialogTitle> :
+                <DialogTitle className="font-bold">Inscrição</DialogTitle>
+            }
+
+            <DialogContent>
+            <DialogContentText>
+                Inscreve-se num canal aqui. Basta selecionar o mesmo e inserir a respetiva senha recebida no seu mail!
+            </DialogContentText>
+            <Box className="flex-col sm:!flex">
+            <FormControl sx={{ m: 1, minWidth: 80 }}>
+                <Select
+                id="listaCanais"
+                value={canal.canal_id}
+                onChange={handleChange}
+                autoWidth
+                label="Canal"
+                >
+                {canais.map((canal) =>
+                        <MenuItem key={canal.canal_id} value={canal.canal_id}>
+                          {canal.nome}
+                        </MenuItem>
+                      )}
+                </Select>
+            </FormControl>
+            <TextField            
+                autoFocus
+                required
+                margin="dense"
+                id="senha"
+                name="senha"
+                label="Senha"
+                type="senha"
+                variant="standard"
+            />
+            </Box>
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit">Inscrever</Button>
+            </DialogActions>
+            </Dialog>
+        </>
+
       )
     }
 

@@ -7,8 +7,6 @@ import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
 import CircularProgress from '@mui/material/CircularProgress';
 
-//import getPublicacao from '../utils/getPublicacao'
-
 
 
 
@@ -52,7 +50,6 @@ function HomePage() {
 
   useEffect(() => {
     setPublications(getPublicacao(publicationcount))
-    
   },[]);
   //5 primeiras publicações das 
 
