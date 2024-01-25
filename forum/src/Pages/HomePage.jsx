@@ -45,7 +45,7 @@ function HomePage() {
 
             ]
 }]
-  //const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
+  const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState([]);
 
@@ -55,7 +55,7 @@ function HomePage() {
   //5 primeiras publicações das 
 
   async function getPublicacao() {
-    let channels = await  GetChannels(localStorage.getItem("user"))
+    let channels = await  GetChannels(homePageUser.user_id)
     console.log(channels)
     return publicacao
   }
