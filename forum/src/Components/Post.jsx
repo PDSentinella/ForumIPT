@@ -43,7 +43,7 @@ function Post(props){
     
     const [publication, setPublication] = useState(props.publicacao);
     const [user,setUser]= useState("")
-    const [open, setOpen] = useState(false);
+    const [saved, setSaved] = useState(false);
     const [mo, setMo] = useState(false)
 
     useEffect(() => {
@@ -122,7 +122,7 @@ function Post(props){
                 <div className='flex w-full gap-1'>
                         {/*save icon*/}
                         <div  className='flex p-1 justify-center items-center cursor-pointer rounded-xl' >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color={`${saved?'#88b77b':'#ffffff'}`} viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                             </svg>
                         </div>

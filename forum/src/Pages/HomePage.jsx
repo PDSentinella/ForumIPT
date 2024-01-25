@@ -47,17 +47,17 @@ function HomePage() {
 }]
   //const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
   const [publicationcount, setPublicationcount] = useState(5);
-  const [publications, setPublications] = useState();
+  const [publications, setPublications] = useState([]);
 
   useEffect(() => {
     setPublications(getPublicacao(publicationcount))
   },[]);
   //5 primeiras publicações das 
 
-  function getPublicacao() {
-    let channels = GetChannels(localStorage.getItem("user"))
+  async function getPublicacao() {
+    let channels = await  GetChannels(localStorage.getItem("user"))
     console.log(channels)
-  return publicacao
+    return publicacao
   }
   
 
@@ -74,7 +74,7 @@ function HomePage() {
           <Header></Header>
           <div className='flex flex-col items-center '>
           <AddPost></AddPost>
-          {publications==null?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:
+          {publications!=[]?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:
             publications.map((publication) => (
               <Post publicacao={publication}></Post>
             )) 
