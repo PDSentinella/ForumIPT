@@ -6,6 +6,7 @@ import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
 import CircularProgress from '@mui/material/CircularProgress';
+import { GetChannels } from '../services/channels.api'
 
 
 
@@ -44,7 +45,7 @@ function HomePage() {
 
             ]
 }]
-  const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
+  //const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState();
 
@@ -54,6 +55,8 @@ function HomePage() {
   //5 primeiras publicações das 
 
   function getPublicacao() {
+    let channels = GetChannels(localStorage.getItem("user"))
+    console.log(channels)
   return publicacao
   }
   

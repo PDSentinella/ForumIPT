@@ -4,12 +4,8 @@ import HomePage from "./Pages/HomePage"
 import Registo from "./Pages/Registo";
 import UserProfilePage from "../src/Pages/UserProfilePage";
 import { Route, Routes } from 'react-router-dom';
-<<<<<<< HEAD
-import ChannelPage from "./Pages/ChannelPage";
-=======
 import ChannelPage from './Pages/ChannelPage.jsx'
 import DashBoard from './Pages/DashBoard.jsx'
->>>>>>> main
 
 function App() {
 
@@ -33,11 +29,6 @@ function App() {
       />
       <Route
         exact
-<<<<<<< HEAD
-        path="/Discipinas/:id"
-        element={<ChannelPage></ChannelPage>}
-      />
-=======
         path="/canal/:id"
         element={<ChannelPage></ChannelPage>}
       />
@@ -46,7 +37,6 @@ function App() {
         path="/DashBoard"
         element={<DashBoard></DashBoard>}
       />
->>>>>>> main
     </Routes>
     </div>
   );
