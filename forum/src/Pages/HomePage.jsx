@@ -51,7 +51,7 @@ function HomePage() {
   const [publications, setPublications] = useState(null);
 
   useEffect(() => {
-    getPublicacao(homePageUser.user_id)
+    getPublicacao(homePageUser.user_id,0,"","DESC")
     
   },[]);
   //5 primeiras publicações das 
