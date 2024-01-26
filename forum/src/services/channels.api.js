@@ -47,7 +47,7 @@ async function RegisterChannel(sendInfo){
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: sendInfo,
+            body: JSON.parse(sendInfo),
         });
         return response.status;
     } catch (error) {

@@ -19,8 +19,8 @@ import Select from '@mui/material/Select';
 import { Box } from "@mui/material";
 import { RegisterChannel } from "../services/channels.api"
 //instagram side bar, quando a screen é grande o suficiente a side bar expande de vez, podemos recriar algo parecido usando xs-max: ou algo do genero, tentar
-function SideBar(){
-    const [open, setOpen] = useState(false);
+function SideBar(props){
+    const [open, setOpen] = useState(props.openSideBar?props.openSideBar:false);
     const [openDialog, setOpenDialog] = useState(false);
 
    /*Variaveis para receber os canais, de modo a que no dialo possam ser escolhidos*/
@@ -34,10 +34,15 @@ function SideBar(){
         const selectedCanal = canais.find((canal) => canal.canal_id === selectedCanalId);
         setCanal(selectedCanal);
       };
-
+      function handleOpen(){
+      
+        setOpen(!open)
+       
+      }
 
       const handleClose = () => {
         setOpenDialog(false);
+        
       };
 
       // função responsavel pelo o envio do curso e da senha.
@@ -49,23 +54,25 @@ function SideBar(){
 
         }
       }
-
+      
+ 
       useEffect(() => {
        async function getChannels(){
         const channels = await GetAllChannels();
         setCanais(channels);
+        
        }
 
        getChannels();
-
-      },[]);
+       setOpen(props.open)
+      },[props.open]);
 
       return (
         <>
         <div className={`${open &&'w-0 '} max-sm:hidden sm:w-16  flex `} onMouseOver={(e) => {setOpen(true)}} > {/*${open &&'w-0 '} sm:w-16*/}{/*w-0 sm:w-16*/}
             <div className={`${open ?'w-72 absolute': 'w-0 sm:w-16  '} max-sm:hidden absolute duration-300 h-full bg-ipt overflow-y-auto z-20 `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
                 <div className={`flex  cursor-pointer items-center justify-center w-full gap-x-6 pt-8`}>
-                    <div className={`  w-8 h-8  items-center justify-center border-pale_purple rounded`} onClick={()=>setOpen(!open)}>
+                    <div className={`  w-8 h-8  items-center justify-center border-pale_purple rounded`} onClick={()=>handleOpen()}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="" PencilIcon color='#EEF4F8ff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="" >
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
@@ -125,7 +132,7 @@ function SideBar(){
                 event.preventDefault();
                 let user = JSON.parse(localStorage.getItem('user'));
                 const formData = new FormData(event.currentTarget);
-                formData.set('canal', JSON.stringify(canal));
+                formData.set('canal', JSON.parse(JSON.stringify({"canal_id":canal.canal_id,"nome":canal.nome})));
                 formData.append('user_id', JSON.stringify(user.user_id));
                 const formJson = Object.fromEntries(formData.entries());
                 console.log(formJson)

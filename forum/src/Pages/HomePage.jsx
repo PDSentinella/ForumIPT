@@ -49,7 +49,7 @@ function HomePage() {
   const [homePageUser,setHomePageUser] = useState(JSON.parse(localStorage.getItem("user")))
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState(null);
-
+  const [openSideBar, setOpenSideBar] = useState(false);
   useEffect(() => {
     getPublicacao(homePageUser.user_id,0,"","DESC")
     
@@ -59,28 +59,32 @@ function HomePage() {
  async function getPublicacao(user,page,filter,ascdes) {
     let p = await  GetUserPublications(user,0,"","DESC")
     setPublications(p)
+    console.log(p)
     
   }
   
-
-  ///lista de publicações
   
+  ///lista de publicações
+  function handleOpenSideBar(){
+    setOpenSideBar(!openSideBar);
+  }
   return (
     <>
       <div className='h-full relative top-0'>
         <div className="flex  h-screen  ">
 
-        <SideBar></SideBar>
+        <SideBar open={openSideBar} ></SideBar>
         <div className='bg-background-gray  sm:px-6  px-2 flex flex-1 h-full font-semibold w-full overflow-y-auto justify-center'>
           <div className='flex flex-col w-full '>
           <Header></Header>
           <div className='flex flex-col items-center '>
           <AddPost></AddPost>
-          {publications === null?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:(publications==[]?<div>blabla</div>:
-            publications.map((publication) => (
+          {publications === null?(<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>):
+          (publications.length==0?<div className='flex w-96 h-96 py-48 justify-items-center ali'><h1 className='text-center'>Não esta escrito em nenhum canal<br/>se <strong onClick={handleOpenSideBar}>increva</strong> em uma canal</h1><button></button></div>:
+            (publications.map((publication) => (
               <Post publicacao={publication}></Post>
             )) 
-          )}
+          ))}
          
          
           </div>

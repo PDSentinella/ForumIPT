@@ -1,7 +1,7 @@
 const base_url = "https://iwork947.azurewebsites.net/api/";
 
 
-async function GetUserPublications(user_id,page,InputFilter = ' ', AscDesc ='DESC') {
+async function GetUserPublications(user_id,page=0,InputFilter = ' ', AscDesc ='DESC') {
     try {
         const response = await fetch(`https://iwork947.azurewebsites.net/api/GetPublications`, {
             method: 'POST',
@@ -13,7 +13,10 @@ async function GetUserPublications(user_id,page,InputFilter = ' ', AscDesc ='DES
         });
 
         // Check if the response status is in the range of 2xx (success)
-        if (response.ok) {
+        if(response.status==202){
+            return [];
+        }
+        else if (response.status==200) {
             const data = await response.json();
             return data;
         } else {
