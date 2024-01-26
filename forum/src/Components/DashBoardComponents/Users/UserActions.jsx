@@ -2,6 +2,7 @@ import { Check, Save } from '@mui/icons-material';
 import { Box, CircularProgress, Fab } from '@mui/material'
 import { green } from '@mui/material/colors';
 import React, { useEffect, useState } from 'react'
+import { UpdateUserById } from '../../../services/DashBoard.api'
 
 function UserActions({params, rowId, setRowId}) {
 
@@ -12,11 +13,12 @@ function UserActions({params, rowId, setRowId}) {
     const handleSubmit = async () => {
       setLoading(true);
       const {genero, admin_privileges, user_id} = params.row;
-      //const result = await updateUser({genero: genero, admin_privileges: admin_privileges, user_id: user_id});
-      console.log({genero: genero, admin_privileges: admin_privileges, user_id: user_id});
-      setLoading(false);
-      setSuccess(true)
-      setRowId(null)
+      const result = await UpdateUserById({genero: genero, admin_privileges: admin_privileges, user_id: user_id});
+      if(result.ok){
+        setLoading(false);
+        setSuccess(true)
+        setRowId(null)
+      }
 
     };
 
