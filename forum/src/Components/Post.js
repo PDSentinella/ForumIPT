@@ -100,7 +100,7 @@ function Post(props){
                         </div>
                         {/*comment icon*/}
                         <div className='flex p-1 justify-center items-center cursor-pointer rounded-xl'>
-                            <AddComment></AddComment>
+                            <AddComment publication_id={publication.publication_id}></AddComment>
                         </div>
                         {/*<button  className='flex  w-10 h-10 bg-space_cadet justify-center items-center cursor-pointer rounded-xl' onClick={getCanalUser("")}>
                         </button>*/}

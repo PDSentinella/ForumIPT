@@ -59,4 +59,4 @@ async function getPublicationComments(publication_id){
 
 
 
-export { GetUserPublications}
+export { GetUserPublications,getPublicationComments}

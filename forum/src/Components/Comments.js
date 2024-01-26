@@ -12,26 +12,34 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
+import { getPublicationComments } from '../services/publication.api';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 function CommentsDialog(props) {
- const [comment,setComment] = useState(null);
+ const [comments,setComments] = useState(null);
+ const [publication_id,setPublication_id] = useState(props.publication_id)
+ async function getComments(){
+   const c =  await getPublicationComments(publication_id);
+   setComments(c);
+ }
  useEffect(() => {
-
+    getComments();
 },[]);
   return (
     <div>
          
       <CssBaseline />
       <List>
-        {/*comment!=null?(<>messageExamples.map(({ primary, secondary, person }, index) => (
-          <ListItemButton key={index + person}>
-            <ListItemAvatar>
-              <Avatar alt="Profile Picture" src={person} />
-            </ListItemAvatar>
-            <ListItemText primary={primary} secondary={secondary} />
-          </ListItemButton>
-        ))</>):<h1>No comments</h1>/* */}
+        {comments==null?(<div className='flex-col'><div className='flex w-1/2'></div><div className='flex'><div className='w-full h-20 '></div><CircularProgress color="success" /><div className='w-full h-20 flex'></div></div></div>):(comments.map((comment,index)=>(
+          <ListItemButton key={index }>
+          <ListItemAvatar>
+            <Avatar alt="Profile Picture" src={comment.profile_image} />
+          </ListItemAvatar>
+          <ListItemText primary={comment.nome} secondary={comment.comentario} />
+        </ListItemButton>
+        )))}
       </List>
 
     </div>

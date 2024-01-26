@@ -72,7 +72,7 @@ function AddComment(props){
                         </DialogActions>
                          
                        
-                        <CommentsDialog/>
+                        <CommentsDialog publication_id = {props.publication_id}/>
                         </DialogContent>
                         <DialogActions>
                         <Button onClick={handleClose} autoFocus>Close</Button>
