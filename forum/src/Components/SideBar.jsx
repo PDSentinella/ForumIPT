@@ -17,9 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Box } from "@mui/material";
-import { RegisterChannel } from "../services/channels.api";
-import SucessAlert from "./SucessAlert";
-
+import { RegisterChannel } from "../services/channels.api"
 //instagram side bar, quando a screen é grande o suficiente a side bar expande de vez, podemos recriar algo parecido usando xs-max: ou algo do genero, tentar
 function SideBar(props){
     const [open, setOpen] = useState(props.openSideBar?props.openSideBar:false);
@@ -29,8 +27,6 @@ function SideBar(props){
     const [canais, setCanais] = useState([]);
     
     const [canal, setCanal] = useState({ canal_id: 1, nome: "Engenharia. Informática" });
-
-    const [alertOpen, setAlertOpen] = useState(false);
 
     const handleChange = (event) => {
         // vai ao array canais e seleciona o canal correspondente pelo id.
@@ -49,19 +45,11 @@ function SideBar(props){
         
       };
 
-      const handleCloseAlert = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-    
-        setAlertOpen(false);
-      };
-
       // função responsavel pelo o envio do curso e da senha.
       async function sendInfo(formJson){
         try{
+            console.log(formJson)
             await RegisterChannel(formJson);
-            setAlertOpen(true);
         }catch(error){
 
         }
@@ -144,9 +132,10 @@ function SideBar(props){
                 event.preventDefault();
                 let user = JSON.parse(localStorage.getItem('user'));
                 const formData = new FormData(event.currentTarget);
-                formData.set('canal_id', JSON.stringify(canal.canal_id));
+                formData.set('canal', JSON.parse(JSON.stringify({"canal_id":canal.canal_id,"nome":canal.nome})));
                 formData.append('user_id', JSON.stringify(user.user_id));
                 const formJson = Object.fromEntries(formData.entries());
+                console.log(formJson)
                 sendInfo(formJson);
                 handleClose();
 
@@ -195,7 +184,6 @@ function SideBar(props){
             <Button type="submit">Inscrever</Button>
             </DialogActions>
             </Dialog>
-            <SucessAlert open={alertOpen} handleClose={handleCloseAlert} />
         </>
 
       )
