@@ -46,7 +46,7 @@ function HomePage() {
 
             ]
 }]
-  const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
+  const [homePageUser,setHomePageUser] = useState(JSON.parse(localStorage.getItem("user")))
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState(null);
 
@@ -56,10 +56,9 @@ function HomePage() {
   },[]);
   //5 primeiras publicações das 
 
- async function getPublicacao(user) {
-    let p = await  GetUserPublications(user)
+ async function getPublicacao(user,page,filter,ascdes) {
+    let p = await  GetUserPublications(user,0,"","DESC")
     setPublications(p)
-    return p
     
   }
   
@@ -77,11 +76,11 @@ function HomePage() {
           <Header></Header>
           <div className='flex flex-col items-center '>
           <AddPost></AddPost>
-          {publications === null?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:
+          {publications === null?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:(publications==[]?<div>blabla</div>:
             publications.map((publication) => (
               <Post publicacao={publication}></Post>
             )) 
-          }
+          )}
          
          
           </div>

@@ -8,7 +8,7 @@ async function GetUserPublications(user_id,page,InputFilter = ' ', AscDesc ='DES
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({"user_id":2,"Page":0,"InputFilter":" ","AscDesc":"DESC"}),
+            body: JSON.stringify({"user_id":user_id,"Page":page,"InputFilter":InputFilter,"AscDesc":AscDesc}),
             //InputFilter = ' ' e o AscDesc = ´DESC´
         });
 

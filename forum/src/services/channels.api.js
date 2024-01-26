@@ -10,10 +10,9 @@ async function GetChannels(user_id) {
             },
             body: JSON.stringify({"user_id": user_id}),
         });
-
         // Check if the response status is in the range of 2xx (success)
-        if (response.ok) {
-            const data = await response.json();
+        if ( response.status==200) {
+            const data = await response.json();           
             return data;
         } else {
             // Return an empty array for a 404 response
