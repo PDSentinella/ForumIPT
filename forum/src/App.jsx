@@ -20,6 +20,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={user ? <HomePage /> : <Login />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/Registo" element={<Registo />} />
 
         {/* Protected Routes */}
@@ -27,7 +28,13 @@ function App() {
           <>
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/canal/:id" element={<ChannelPage />} />
-            <Route path="/DashBoard" element={<DashBoard />} />
+               {/* Dashboard com nested Routes */}
+            <Route path="/DashBoard" element={<DashBoard />} >
+              <Route path="Geral" /> 
+              <Route path="users" />
+              <Route path="Pubs" />
+              <Route path="Canais" />
+            </Route>
           </>
         )}
 
