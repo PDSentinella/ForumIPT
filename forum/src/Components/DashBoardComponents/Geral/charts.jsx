@@ -1,13 +1,12 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { Box, Container, Grid, Typography } from '@mui/material';
 
-const data = [
-  { value: 5},
-];
+import { GetCounts } from '../../../services/DashBoard.api'
 
 const size = {
   width: 400,
@@ -31,22 +30,38 @@ function PieCenterLabel({ children }) {
 }
 
 function Charts() {
+
+  const [Counts, setCounts] = useState([]);
+
+  useEffect(() => {
+    async function getCounts() {
+      const counts = await GetCounts();
+      const entries = Object.entries(counts);
+      console.log(entries)
+      setCounts(entries);
+    }
+
+    getCounts();
+  },[]);
+
   return (
     <Container sx={{mt: 3}} maxWidth="md">
       <Grid container spacing={2}>
-      {Array.from(Array(6)).map((_, index) => (
+      {Counts.map((value, index) => (
         <Grid item xs={8} sm={6} md={4} lg={4}>
-          <Paper elevation={6} sx={{padding: {sx: '2rem'}}}>
+          <Paper rounded elevation={6} sx={{padding: {sx: '2rem'}}}>
             <Typography variant='h5' sx={{ textAlign: 'center', margin: 'auto' }}>
-              Users
+              {
+                value[0] === 'userscount' ? 'Users' :  value[0] === 'publicationcount' ? 'Publicações' : value[0] === 'comentarioscount' ? 'Comentarios' : value[0] === 'canaiscount' ? 'Canais' : ''
+              }
             </Typography>
             <Box sx={{ margin: 'auto' }}>
               <PieChart
-                series={[{ data, innerRadius: 80 }]}
+                series={[{ data: [{ value: value[1] }], innerRadius: 80,}]}
                 {...size}
                 sx={{ display: 'flex', justifyContent: 'center', marginRight: {xs: '2.5rem', md: '4rem' } , marginLeft: {sm: '5.5rem', md: '0rem', lg: '2rem'} }}
               >
-                <PieCenterLabel>{data[0].value}</PieCenterLabel>
+                <PieCenterLabel>{value[1]}</PieCenterLabel>
               </PieChart>
             </Box>
           </Paper>
