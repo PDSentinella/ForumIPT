@@ -11,7 +11,7 @@ async function GetChannels(user_id) {
             body: JSON.stringify({"user_id": user_id}),
         });
         // Check if the response status is in the range of 2xx (success)
-        if ( response.status==200) {
+        if ( response.status===200) {
             const data = await response.json();           
             return data;
         } else {
@@ -42,12 +42,12 @@ async function GetAllChannels(){
 async function RegisterChannel(sendInfo){
 
     try{
-        const response = await fetch(`${base_url}registeruserinchannel`, {
+        const response = await fetch(`${base_url}RegisterUserInChannel`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.parse(sendInfo),
+            body: JSON.stringify(sendInfo),
         });
         return response.status;
     } catch (error) {
