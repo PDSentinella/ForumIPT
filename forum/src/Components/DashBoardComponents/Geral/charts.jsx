@@ -44,7 +44,7 @@ function Charts() {
               <PieChart
                 series={[{ data, innerRadius: 80 }]}
                 {...size}
-                sx={{ display: 'flex', justifyContent: 'center', marginRight: {xs: '2.5rem'} }}
+                sx={{ display: 'flex', justifyContent: 'center', marginRight: {xs: '2.5rem', md: '4rem' } , marginLeft: {sm: '5.5rem', md: '0rem', lg: '2rem'} }}
               >
                 <PieCenterLabel>{data[0].value}</PieCenterLabel>
               </PieChart>
