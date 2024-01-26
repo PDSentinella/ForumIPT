@@ -66,9 +66,9 @@ function Post(props){
             {/*user profile pic, name and publication date*/}
             <div>
                 <div className='flex gap-x-2 '>
-                    <img className="w-8 h-8 cursor-pointer" src={`${publication.user.foto}`} />
+                    <img className="w-8 h-8 cursor-pointer" src={`${publication.profile_image}`} />
                     <div >
-                        <h2 className='text-xs font-thin text-opacity-10'>{publication.user.name}</h2>
+                        <h2 className='text-xs font-thin text-opacity-10'>{publication.nome}</h2>
                         <h2 className="text-xs font-thin text-opacity-40">{publication.time}</h2>
                     </div>
                 </div>
@@ -76,10 +76,10 @@ function Post(props){
             </div>
             {/*messagem e imagem da publicacao */}
             <div className='flex flex-col  gap-y-8 '>
-                
+                {/*
                 <div className={` ${ publication.img =="" && 'hidden'} flex w-full items-center  justify-center overflow-hidden`}>
                     <img  className="w-full" src={`${publication.img}`}/>
-                </div>
+                </div>*/}
                 {/*text message da publicacao*/}
                 <div className='flex items-center justify-center lg:justify-end max-h-24 w-full'>
                     <div className='flex flex-1 max-h-20 overflow-hidden'>

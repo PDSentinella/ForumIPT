@@ -47,21 +47,10 @@ function Post(props){
     const [mo, setMo] = useState(false)
 
     useEffect(() => {
-        getPublicacao()
-       getUser(publication.user)
+
       },[]);
 
-    function getUser(filter="") {
-        fetch('https://api.sheety.co/96746cd1ec0da26ab33a53d1667461a4/ipt/user/'+filter)
-        .then((response) => response.json())
-        .then(json => {
-            let publicationfecth = publicacao
-            publicationfecth.user = json.user
-            console.log(json.user)
-         setPublication(publicationfecth)
-         setUser(json.user)
-        });
-      }
+    
      
       function getPublicacao(filter="") {
         fetch('https://api.sheety.co/96746cd1ec0da26ab33a53d1667461a4/ipt/publicacao/'+filter)
@@ -94,9 +83,9 @@ function Post(props){
             {/*user profile pic, name and publication date*/}
             <div>
                 <div className='flex gap-x-2 '>
-                    <img className="w-8 h-8 cursor-pointer" src={`${typeof user =="object" && user.img}`} />
+                    <img className="w-8 h-8 cursor-pointer" src={`${ publication.profile_image}`} />
                     <div >
-                        <h2 className='text-xs font-thin text-opacity-10'>{typeof user =="object" && user.nome}</h2>
+                        <h2 className='text-xs font-thin text-opacity-10'>{publication.nome}</h2>
                         <h2 className="text-xs font-thin text-opacity-40">{publication.time}</h2>
                     </div>
                 </div>
@@ -105,13 +94,14 @@ function Post(props){
             {/*messagem e imagem da publicacao */}
             <div className='flex flex-col  gap-y-8 '>
                 
-                <div className={` ${ publication.img =="" && 'hidden'} flex w-full items-center  justify-center overflow-hidden`}>
+                {/*<div className={` ${ publication.img =="" && 'hidden'} flex w-full items-center  justify-center overflow-hidden`}>
                     <img  className="w-full" src={`${publication.img}`}/>
                 </div>
+                */}
                 {/*text message da publicacao*/}
                 <div className='flex items-center justify-center lg:justify-end max-h-24 w-full'>
                     <div className='flex flex-1 max-h-20 overflow-hidden'>
-                        <p className='text-sm font-extralight text-justify overflow-ellipsis overflow-hidden '>{props.publicacao.msg}</p>
+                        <p className='text-sm font-extralight text-justify overflow-ellipsis overflow-hidden '>{publication.msg}</p>
                     </div>
                 </div>
                 
@@ -122,7 +112,7 @@ function Post(props){
                 <div className='flex w-full gap-1'>
                         {/*save icon*/}
                         <div  className='flex p-1 justify-center items-center cursor-pointer rounded-xl' >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color={`${saved?'#88b77b':'#ffffff'}`} viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color={`${'#88b77b'}`} viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                             </svg>
                         </div>
@@ -137,19 +127,7 @@ function Post(props){
                 </div>
                 
             </div>
-            {/*
-            {ivisible div that contains the comments is showed (it has to set comments to open}
-            <div className={`flex`}>{${!open && 'hidden'}}
-            {publicacao.coments.map( (comment) => (
-                <>
-                    <h3 className='text-xs'>{comment.commentMsg}</h3>
-                    <div className='flex gap-4'>
-                        <h3 className='text-xs font-light'>-{comment.user.name}</h3>
-                        <h3 className='text-xs font-light'>{comment.time}</h3>
-                    </div>
-                </>     
-            ))}
-            </div> */}
+            
     <div></div>
     </div>
     )

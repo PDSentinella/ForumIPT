@@ -7,6 +7,7 @@ import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
 import CircularProgress from '@mui/material/CircularProgress';
 import { GetChannels } from '../services/channels.api'
+import { GetUserPublications } from '../services/publication.api'
 
 
 
@@ -47,17 +48,19 @@ function HomePage() {
 }]
   const [homePageUser,setHomePageUser] = useState(localStorage.getItem("user"))
   const [publicationcount, setPublicationcount] = useState(5);
-  const [publications, setPublications] = useState([]);
+  const [publications, setPublications] = useState(null);
 
   useEffect(() => {
-    setPublications(getPublicacao(publicationcount))
+    getPublicacao(homePageUser.user_id)
+    
   },[]);
   //5 primeiras publicações das 
 
-  async function getPublicacao() {
-    let channels = await  GetChannels(homePageUser.user_id)
-    console.log(channels)
-    return publicacao
+ async function getPublicacao(user) {
+    let p = await  GetUserPublications(user)
+    setPublications(p)
+    return p
+    
   }
   
 
@@ -74,7 +77,7 @@ function HomePage() {
           <Header></Header>
           <div className='flex flex-col items-center '>
           <AddPost></AddPost>
-          {publications!=[]?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:
+          {publications === null?<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>:
             publications.map((publication) => (
               <Post publicacao={publication}></Post>
             )) 
