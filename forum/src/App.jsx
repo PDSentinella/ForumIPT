@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('user')));
-  }, [user]);
+  }, []);
 
   return (
     <div className="overflow-y-hidden">

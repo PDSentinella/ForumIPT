@@ -27,14 +27,14 @@ async function GetUserPublications(user_id,page,InputFilter = ' ', AscDesc ='DES
     }
 }
 
-async function getPublicationComments(){
+async function getPublicationComments(publication_id){
     try{
-        const response = await fetch(`https://iwork947.azurewebsites.net/api/GetPublications`, {
+        const response = await fetch(`https://iwork947.azurewebsites.net/api/GetCommentsForPublication`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({"user_id":2,"Page":0,"InputFilter":" ","AscDesc":"DESC"}),
+            body: JSON.stringify({"publication_id":publication_id}),
             //InputFilter = ' ' e o AscDesc = ´DESC´
         });
 

@@ -7,15 +7,16 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
-
+const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [user, setUser] = useState({})
 
   useEffect(() => {
+    
     let user = JSON.parse(localStorage.getItem('user'));
     setUser(user);
   },[]);
@@ -26,8 +27,8 @@ const Header = () => {
   const handleClose = (index) => () => {
     
     if (index === 5) {
-      localStorage.setItem("user", "");
-      window.location.reload(false);
+      localStorage.removeItem("user");
+      navigate('/Login');
     }
     setAnchorEl(null);
   };
