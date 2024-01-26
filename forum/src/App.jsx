@@ -1,47 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate } from 'react-router-dom';
+
 import Login from "./Pages/Login";
-import HomePage from "./Pages/HomePage"
+import HomePage from "./Pages/HomePage";
 import Registo from "./Pages/Registo";
 import UserProfilePage from "../src/Pages/UserProfilePage";
-import { Route, Routes } from 'react-router-dom';
-import ChannelPage from './Pages/ChannelPage.jsx'
-import DashBoard from './Pages/DashBoard.jsx'
+import ChannelPage from './Pages/ChannelPage.jsx';
+import DashBoard from './Pages/DashBoard.jsx';
 
 function App() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('user')));
+  }, [user]);
 
   return (
     <div className="overflow-y-hidden">
-    <Routes>
-    <Route
-        exact
-        path="/"
-        element={localStorage.getItem("user") ? <HomePage/> : <Login/>}
-      />
-      <Route
-        exact
-        path="/profile"
-        element={<UserProfilePage></UserProfilePage>}
-      />
-      <Route
-        exact
-        path="/Registo"
-        element={<Registo></Registo>}
-      />
-      <Route
-        exact
-        path="/canal/:id"
-        element={<ChannelPage></ChannelPage>}
-      />
-      <Route
-        exact
-        path="/DashBoard"
-        element={<DashBoard></DashBoard>}
-      />
-    </Routes>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={user ? <HomePage /> : <Login />} />
+        <Route path="/Registo" element={<Registo />} />
+
+        {/* Protected Routes */}
+        {user && (
+          <>
+            <Route path="/profile" element={<UserProfilePage />} />
+            <Route path="/canal/:id" element={<ChannelPage />} />
+            <Route path="/DashBoard" element={<DashBoard />} />
+          </>
+        )}
+
+        {/* Fallback Redirect for any unknown route */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </div>
   );
 }
-
-
 
 export default App;

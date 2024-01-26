@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Drawer from '../Components/DashBoardComponents/Drawer'
 
 const DashBoard = () => {
   return (
-    <div>DashBoard</div>
+    <Drawer></Drawer>
   )
 }
 

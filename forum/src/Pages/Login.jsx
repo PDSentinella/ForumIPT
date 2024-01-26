@@ -101,11 +101,6 @@ export default function Login() {
             
             </Typography>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link to="/Registo" variant="body2">
                   {"Ainda não tem conta? Registe-se!"}
