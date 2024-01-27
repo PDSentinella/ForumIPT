@@ -36,7 +36,6 @@ async function RegisterUser(name, email, genero, password, profile_image) {
         profile_image: profile_image
     }
 
-    console.log(JSON.stringify(userRegister))
     try {
         const response = await fetch(`${base_url}Register`, {
             method: 'POST',
@@ -57,16 +56,3 @@ async function RegisterUser(name, email, genero, password, profile_image) {
 
 
 export {loginUserPassword, RegisterUser}
-
-
-
-
-
-//    let user = {
-//     name: name,
-//     email: email,
-//     password: password,
-//     profile_image: profile_image,
-//     genero: genero,
-//     admin_privileges: admin_privileges
-// }
