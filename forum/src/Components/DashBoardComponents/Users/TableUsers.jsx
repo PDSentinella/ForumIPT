@@ -10,10 +10,8 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import SucessAlert from "../../SucessAlert";
 import FileBase64 from 'react-file-base64';
-import {RegisterUser} from '../../../services/user.api'
 import Grid from '@mui/material/Grid';
 
 function TableUsers() {
@@ -35,9 +33,13 @@ function TableUsers() {
 
     useEffect(() => {
         async function getusers(){
+            let user = JSON.parse(localStorage.getItem('user'));
             const users = await GetUsersDash();
-            console.log(users);
-            setUsersDash(users);
+            
+            // para filtrar o nosso user.
+            const filteredUsers = users.filter((userData) => userData.user_id !== user.user_id);
+
+            setUsersDash(filteredUsers);
         }
         getusers();
     }, []);
