@@ -6,21 +6,18 @@ import Bar from '../Components/Bar'
 import UserInfo from '../Components/UserInfo'
 import UserSaved from '../Components/UserSaved'
 import CircularProgress from '@mui/material/CircularProgress';
+import { getUserData } from '../services/publication.api'
 
 {/*  const [difined,setDefined] = UseState('info');
 */}
 function UserProfilePage(props) {
-  function getUser(filter="") {
-    fetch('https://api.sheety.co/96746cd1ec0da26ab33a53d1667461a4/ipt/user/'+filter)
-    .then((response) => response.json())
-    .then(json => {
-      
-      console.log(typeof json.user)
-    setUserProfilePage(json.user);
-    });
+  async function getUser() {
+    const userdata = await getUserData(JSON.parse(localStorage.user).user_id)
+    console.log(userdata);
+    setUserProfilePage(userdata);
   }
   useEffect(() => {
-    getUser(2)
+    getUser()
   },[]);
   const [userProfilePage,setUserProfilePage] = useState();
   const [selected, setSelected] = useState('info');
