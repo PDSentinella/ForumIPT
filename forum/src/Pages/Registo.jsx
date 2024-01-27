@@ -49,7 +49,7 @@ export default function SignUp() {
       if(!response){
         document.getElementById('errorLabel').innerText = "Dados inseridos insuficientes ou erro no sistema!"
       }else{
-        navigate("/");
+        navigate("/Login");
       }
   } catch (error) {
       document.getElementById('errorLabel').innerText = "Dados invalidos... Por favor tente outra vez!"

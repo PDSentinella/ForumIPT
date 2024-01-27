@@ -12,12 +12,14 @@ function UserActions({params, rowId, setRowId}) {
 
     const handleSubmit = async () => {
       setLoading(true);
-      const {genero, admin_privileges, user_id} = params.row;
-      const result = await UpdateUserById({genero: genero, admin_privileges: admin_privileges, user_id: user_id});
+      const {genero, admin_privileges, user_id, email, aboutme, telefone, jobtitle} = params.row;
+      const result = await UpdateUserById({'genero': genero, 'admin_privileges': admin_privileges, 'email': email, 'user_id': user_id,
+      'aboutme': aboutme, 'telefone': telefone, 'jobtitle': jobtitle});
       if(result.ok){
         setLoading(false);
         setSuccess(true)
         setRowId(null)
+        window.location.reload();
       }
 
     };

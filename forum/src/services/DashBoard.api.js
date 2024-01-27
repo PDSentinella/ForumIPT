@@ -45,5 +45,23 @@ async function UpdateUserById(updateUser){
     }
 }
 
+async function DeleteUserById(updateUser){
+    try {
+        const response = await fetch(`${base_url}DeleteUserById`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updateUser),
+        });
 
-export { GetCounts, GetUsersDash, UpdateUserById }
+      return response;
+
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+
+export { GetCounts, GetUsersDash, UpdateUserById, DeleteUserById }
