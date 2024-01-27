@@ -43,16 +43,16 @@ export default function SignUp() {
     const data = new FormData(event.currentTarget);
     try {
       if(data.get('email') === '' && data.get('password') === '' && data.get('genero') === '' && data.get('name') === ''){
-        document.getElementById('errorLabel').innerText = "Dados insuficientes!"
+        console.log("Dados insuficientes!")
       }
       const response = await RegisterUser(data.get('name'), data.get('email'), data.get('genero'), data.get('password'), File);
       if(!response){
-        document.getElementById('errorLabel').innerText = "Dados inseridos insuficientes ou erro no sistema!"
+        console.log("Dados inseridos insuficientes ou erro no sistema!")
       }else{
         navigate("/Login");
       }
   } catch (error) {
-      document.getElementById('errorLabel').innerText = "Dados invalidos... Por favor tente outra vez!"
+
   }
   };
 

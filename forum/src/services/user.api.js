@@ -36,9 +36,9 @@ async function RegisterUser(name, email, genero, password, profile_image) {
         profile_image: profile_image
     }
 
+    console.log(JSON.stringify(userRegister))
     try {
-        console.log(userRegister);
-        const response = await fetch(`${base_url}register`, {
+        const response = await fetch(`${base_url}Register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
