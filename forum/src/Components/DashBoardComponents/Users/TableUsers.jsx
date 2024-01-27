@@ -92,7 +92,7 @@ function TableUsers() {
       // função responsavel pelo o envio do curso e da senha.
       async function sendInfo(formJson){
         try{
-            const result = await RegisterUser(formJson.name, formJson.email, formJson.genero, formJson.password, formJson.profile_image );
+              await RegisterUser(formJson.name, formJson.email, formJson.genero, formJson.password, formJson.profile_image );
               setAlertOpen(true);
               setOpenDialog(false);
               const update = usersChangeUpdated + 1;
