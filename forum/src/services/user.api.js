@@ -27,23 +27,21 @@ async function loginUserPassword(email, password) {
 }
 
 async function RegisterUser(name, email, genero, password, profile_image) {
-
-    let userRegister = {
-        name: name,
-        email: email,
-        password: password,
-        genero: genero,
-        profile_image: profile_image
-    }
-
     try {
         const response = await fetch(`${base_url}Register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(userRegister),
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password,
+                genero: genero,
+                profile_image: profile_image
+            }),
         });
+
         const data = await response.json();
         return data; 
     } catch (error) {
