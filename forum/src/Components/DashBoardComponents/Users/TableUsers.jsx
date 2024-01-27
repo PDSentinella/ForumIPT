@@ -70,7 +70,7 @@ function TableUsers() {
             {field: 'Edit', headerName: 'Edit', type: 'actions', renderCell: (params) => (  <UserActions {...{ params, rowId, setRowId, setusersChangeUpdated, usersChangeUpdated}} />)},
             {field: 'Remove', headerName: 'Remove', type: 'actions', renderCell: (params) => (  <UserActionsRemove {...{ params, rowId, setRowId, setusersChangeUpdated, usersChangeUpdated}} />)},             
             ],
-        [rowId] // pois se houver uma alteração na linha temos de renderizar os botoes
+        [rowId, usersChangeUpdated] // pois se houver uma alteração na linha temos de renderizar os botoes
       );
 
 
@@ -132,6 +132,12 @@ function TableUsers() {
         columns={columns}
         rows={usersDash}
         getRowId={(row) => row.user_id}
+        initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5},
+            },
+          }
+        }
         pageSize={pageSize}
         pageSizeOptions={[5, 10, 20]}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
