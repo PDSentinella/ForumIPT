@@ -42,6 +42,11 @@ function Post(props){
     const [publication, setPublication] = useState(props.publicacao);
     const [open, setOpen] = useState(false);
     const [mo, setMo] = useState(false)
+    const [saved,setSaved] = useState(false)
+    
+    function savedhandle(){
+        setSaved(!saved)
+    }
     return ( 
 
     <div className={`flex flex-initial flex-col gap-6  pt-6 bg-white mt-2 px-4  w-full h-auto rounded-md  sm:max-w-lg lg:max-w-2xl xl:max-w-4xl`}>
@@ -93,14 +98,15 @@ function Post(props){
                 {/*comment and save icons*/}
                 <div className='flex w-full gap-1'>
                         {/*save icon*/}
-                        <div  className='flex p-1 justify-center items-center cursor-pointer rounded-xl'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#88b77b' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
+                        {/*PencilIcon color={`${saved?"#ffffff":"#88b77b"}`}*/}
+                        <div  className='flex p-1 justify-center items-center cursor-pointer rounded-xl'onClick={()=>{savedhandle()}} >
+                            <svg  xmlns="http://www.w3.org/2000/svg" fill={`${saved?"#88b77b":"none"}`} PencilIcon color="#88b77b" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                             </svg>
                         </div>
                         {/*comment icon*/}
                         <div className='flex p-1 justify-center items-center cursor-pointer rounded-xl'>
-                            <AddComment></AddComment>
+                            <AddComment publication_id={publication.publication_id}></AddComment>
                         </div>
                         {/*<button  className='flex  w-10 h-10 bg-space_cadet justify-center items-center cursor-pointer rounded-xl' onClick={getCanalUser("")}>
                         </button>*/}

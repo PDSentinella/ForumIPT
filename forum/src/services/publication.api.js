@@ -56,7 +56,30 @@ async function getPublicationComments(publication_id){
     }
 }
 
+async function getUserData(user_id){
+    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/GetUser`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({"user_id":user_id}),
+    });
+
+    // Check if the response status is in the range of 2xx (success)
+    if (response.status==200) {
+        const data = await response.json();
+        return data;
+    } else {
+        // Return an empty array for a 404 response
+        return [];
+    }}
+    catch(error){
+        console.error("Error in getUser:", error)
+        return []
+    }
+}
 
 
 
-export { GetUserPublications}
+
+export { GetUserPublications,getPublicationComments,getUserData}

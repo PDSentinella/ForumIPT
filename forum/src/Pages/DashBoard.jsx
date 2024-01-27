@@ -19,16 +19,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { Avatar, Button } from '@mui/material';
-import { Link, useNavigate, Outlet } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-
-
-import GeralComponent from './Geral';
-import UsersComponent from './Users';
-import PubsComponent from './Pubs';
-import CanaisComponent from './Canais';
 
 
 // Tamanho do drawer aberto
@@ -226,9 +220,9 @@ export default function DashBoard(props) {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{flexGrow: 1, p: 3, paddingTop: `calc(${theme.mixins.toolbar.minHeight}px + 8px)`,}}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {/* Aqui vão ser inseridos os componentes do lado direito do drawer!*/}
-        <Outlet />
+
       </Box>
     </Box>
   );
