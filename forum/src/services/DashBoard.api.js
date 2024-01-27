@@ -45,7 +45,6 @@ async function UpdateUserById(updateUser){
     }
 }
 
-<<<<<<< HEAD
 async function DeleteUserById(updateUser){
     try {
         const response = await fetch(`${base_url}DeleteUserById`, {
@@ -66,7 +65,3 @@ async function DeleteUserById(updateUser){
 
 
 export { GetCounts, GetUsersDash, UpdateUserById, DeleteUserById }
-=======
-
-export { GetCounts, GetUsersDash, UpdateUserById }
->>>>>>> parent of 8012fd7 (Revert "Merge branch 'antonio' into paulo")
