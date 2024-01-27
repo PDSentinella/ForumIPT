@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import TablePubs from '../../Components/DashBoardComponents/Pubs/TablePubs';
 
 const Pubs = () => {
   return (
-    <div>Pubs</div>
+    <TablePubs/>
   )
 }
 

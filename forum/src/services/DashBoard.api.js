@@ -27,6 +27,19 @@ async function GetUsersDash(){
     }
 }
 
+async function GetPubs(){
+    try {
+        const response = await fetch(`${base_url}getpubs`, {
+            method: 'GET'
+        });
+        const data = await response.json();
+        console.log(data)
+        return data; 
+    } catch (error) {
+        throw error; 
+    }
+}
+
 async function UpdateUserById(updateUser){
     try {
         const response = await fetch(`${base_url}UpdateUserById`, {
@@ -64,4 +77,4 @@ async function DeleteUserById(updateUser){
 }
 
 
-export { GetCounts, GetUsersDash, UpdateUserById, DeleteUserById }
+export { GetCounts, GetUsersDash, UpdateUserById, DeleteUserById, GetPubs }
