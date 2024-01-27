@@ -4,7 +4,7 @@ import { green } from '@mui/material/colors';
 import React, { useEffect, useState } from 'react'
 import { UpdateUserById } from '../../../services/DashBoard.api'
 
-function UserActions({params, rowId, setRowId}) {
+function UserActions({params, rowId, setRowId, setusersChangeUpdated, usersChangeUpdated}) {
 
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -18,8 +18,10 @@ function UserActions({params, rowId, setRowId}) {
       if(result.ok){
         setLoading(false);
         setSuccess(true)
-        setRowId(null)
-        window.location.reload();
+        setRowId(null);
+        //desta forma não é preciso dar reload
+        const update = usersChangeUpdated + 1;
+        setusersChangeUpdated(update);
       }
 
     };

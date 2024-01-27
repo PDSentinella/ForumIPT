@@ -6,7 +6,7 @@ import { green } from '@mui/material/colors';
 import React, { useState } from 'react';
 import { DeleteUserById } from '../../../services/DashBoard.api';
 
-function UserActionsRemove({ params, rowId, setRowId }) {
+function UserActionsRemove({ params, rowId, setRowId, setusersChangeUpdated, usersChangeUpdated }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -21,7 +21,9 @@ function UserActionsRemove({ params, rowId, setRowId }) {
       setLoading(false);
       setSuccess(true);
       setRowId(null);
-      window.location.reload();
+      //desta forma não é preciso dar reload
+      const update = usersChangeUpdated + 1;
+      setusersChangeUpdated(update);
     }
   };
 

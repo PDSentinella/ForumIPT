@@ -13,6 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import SucessAlert from "../../SucessAlert";
 import FileBase64 from 'react-file-base64';
 import Grid from '@mui/material/Grid';
+import {RegisterUser} from '../../../services/user.api'
 
 function TableUsers() {
 
@@ -26,10 +27,19 @@ function TableUsers() {
 
     const [alertOpen, setAlertOpen] = useState(false);
 
+    const [formState, setFormState] = useState({
+      name: '',
+      email: '',
+      genero: '',
+      password: '',
+    });
+
     const [ File , setFile] = useState("");
 
     //para saber que linha esta ativa
     const [rowId, setRowId] = useState(null);
+
+    const [usersChangeUpdated, setusersChangeUpdated] = useState(0);
 
     useEffect(() => {
         async function getusers(){
@@ -42,7 +52,7 @@ function TableUsers() {
             setUsersDash(filteredUsers);
         }
         getusers();
-    }, []);
+    }, [usersChangeUpdated]);
 
     const columns = useMemo(
         () => [
@@ -57,17 +67,14 @@ function TableUsers() {
             {field: 'telefone', headerName: 'Telefone', width: 170, editable: true},
             {field: 'jobtitle', headerName: 'Profissão', width: 170, editable: true},
             {field: 'locations', headerName: 'Localização', width: 170, editable: true},
-            {field: 'Edit', headerName: 'Edit', type: 'actions', renderCell: (params) => (  <UserActions {...{ params, rowId, setRowId }} />)},
-            {field: 'Remove', headerName: 'Remove', type: 'actions', renderCell: (params) => (  <UserActionsRemove {...{ params, rowId, setRowId }} />)},             
+            {field: 'Edit', headerName: 'Edit', type: 'actions', renderCell: (params) => (  <UserActions {...{ params, rowId, setRowId, setusersChangeUpdated, usersChangeUpdated}} />)},
+            {field: 'Remove', headerName: 'Remove', type: 'actions', renderCell: (params) => (  <UserActionsRemove {...{ params, rowId, setRowId, setusersChangeUpdated, usersChangeUpdated}} />)},             
             ],
         [rowId] // pois se houver uma alteração na linha temos de renderizar os botoes
       );
 
 
       // funções para tratamento do dialog e do respetivo submit
-      function handleOpen(){
-        setOpenDialog(!openDialog)
-      }
 
       const handleClose = () => {
         setOpenDialog(false);
@@ -85,7 +92,11 @@ function TableUsers() {
       // função responsavel pelo o envio do curso e da senha.
       async function sendInfo(formJson){
         try{
-            setAlertOpen(true);
+            const result = await RegisterUser(formJson.name, formJson.email, formJson.genero, formJson.password, formJson.profile_image );
+              setAlertOpen(true);
+              setOpenDialog(false);
+              const update = usersChangeUpdated + 1;
+              setusersChangeUpdated(update);
         }catch(error){
 
         }
@@ -100,74 +111,111 @@ function TableUsers() {
 
   return (
     <>
-   <Box sx={{ width:'100%'}}>
-    <Typography variant='h3' component='h3' sx={{ textAlign: 'center', mt: 3, mb: 3}}> Gestão de Utilizadores</Typography>
-    <Box sx={{display: 'flex', justifyContent: {xs:'flex-start', xl: 'flex-end'}, marginBottom: 1, marginRight: {xl: 1}, marginLeft: {xs: 1}}}>
-        <Button onClick={() => {setOpenDialog(true)}} sx={{color: 'black'}}><GroupAddOutlinedIcon sx={{ fontSize: 30, cursor: 'pointer'}}/></Button>
-    </Box>
-    <DataGrid
+    <Box sx={{ width: '100%' }}>
+      <Typography variant="h3" component="h3" sx={{ textAlign: 'center', mt: 3, mb: 3 }}>
+        Gestão de Utilizadores
+      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: { xs: 'flex-start', xl: 'flex-end' },
+          marginBottom: 1,
+          marginRight: { xl: 1 },
+          marginLeft: { xs: 1 },
+        }}
+      >
+        <Button onClick={() => setOpenDialog(true)} sx={{ color: 'black' }}>
+          <GroupAddOutlinedIcon sx={{ fontSize: 30, cursor: 'pointer' }} />
+        </Button>
+      </Box>
+      <DataGrid
         columns={columns}
         rows={usersDash}
-        getRowId={row => row.user_id}
+        getRowId={(row) => row.user_id}
         pageSize={pageSize}
-        rowsPerPageOptions={[5, 10, 20]}
+        pageSizeOptions={[5, 10, 20]}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         getRowSpacing={(params) => ({
           top: params.isFirstVisible ? 0 : 5,
           bottom: params.isLastVisible ? 0 : 5,
         })}
         onCellEditStop={(params) => setRowId(params.id)}
-    >
+      ></DataGrid>
+    </Box>
 
-    </DataGrid>
-   </Box>
-
-
-   <Dialog open={openDialog} onClose={handleClose}>
-        <DialogContent>
-          <Box className="flex-col sm:!flex">
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField required fullWidth id="name" label="name" name="name" autoComplete="Nome Completo" />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField required fullWidth id="email" label="email" name="email" autoComplete="email" />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField required fullWidth id="genero" label="genero" name="genero" autoComplete="genero" />
-              </Grid>
-              <Grid item xs={12}>
-                <FileBase64 multiple={false} onDone={getFiles} />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="Password"
-                />
-              </Grid>
+    <Dialog open={openDialog} onClose={handleClose}>
+      <DialogContent>
+        <Typography variant='h4' sx={{ my: 2, textAlign: 'center'}}>Criação de um utilizador</Typography>
+        <Box component="form" className="flex-col sm:!flex">
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                name="name"
+                autoComplete="Nome Completo"
+                value={formState.name}
+                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+              />
             </Grid>
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button
-            onClick={() => {
-              const formData = new FormData(document.forms["userForm"]);
-              const formJson = Object.fromEntries(formData.entries());
-              //sendInfo(formJson);
-            }}
-          >
-            Adicionar
-          </Button>
-        </DialogActions>
-      </Dialog>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
+                value={formState.email}
+                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="genero"
+                label="Genero"
+                name="genero"
+                autoComplete="genero"
+                value={formState.genero}
+                onChange={(e) => setFormState({ ...formState, genero: e.target.value })}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FileBase64 multiple={false} onDone={getFiles} />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="Password"
+                value={formState.password}
+                onChange={(e) => setFormState({ ...formState, password: e.target.value })}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button
+          onClick={() => {
+            sendInfo({ ...formState, profile_image: File });
+          }}
+        >
+          Adicionar
+        </Button>
+      </DialogActions>
+    </Dialog>
     <SucessAlert open={alertOpen} handleClose={handleCloseAlert} />
-    </>
+  </>
   )
 }
 

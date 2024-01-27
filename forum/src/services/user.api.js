@@ -46,7 +46,6 @@ async function RegisterUser(name, email, genero, password, profile_image) {
             body: JSON.stringify(userRegister),
         });
         const data = await response.json();
-        console.log(data);
         return data; 
     } catch (error) {
         console.log(error);
