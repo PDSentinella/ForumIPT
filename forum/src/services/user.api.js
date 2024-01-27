@@ -37,8 +37,7 @@ async function RegisterUser(name, email, genero, password, profile_image) {
     }
 
     try {
-        console.log(userRegister);
-        const response = await fetch(`${base_url}register`, {
+        const response = await fetch(`${base_url}Register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +45,6 @@ async function RegisterUser(name, email, genero, password, profile_image) {
             body: JSON.stringify(userRegister),
         });
         const data = await response.json();
-        console.log(data);
         return data; 
     } catch (error) {
         console.log(error);
@@ -58,16 +56,3 @@ async function RegisterUser(name, email, genero, password, profile_image) {
 
 
 export {loginUserPassword, RegisterUser}
-
-
-
-
-
-//    let user = {
-//     name: name,
-//     email: email,
-//     password: password,
-//     profile_image: profile_image,
-//     genero: genero,
-//     admin_privileges: admin_privileges
-// }

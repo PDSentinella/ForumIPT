@@ -95,7 +95,7 @@ const navigate = useNavigate();
         <Divider />
         {
           user.admin_privileges === true ?
-          <Link to="/DashBoard">
+          <Link to="/DashBoard/Geral">
             <MenuItem onClick={() => handleClose(1)}> DashBoard </MenuItem> 
           </Link>
           : ''
