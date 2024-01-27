@@ -11,6 +11,8 @@ import { Box } from '@mui/system';
 import { GetAllChannels, GetChannels } from '../services/channels.api';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { addPublication } from '../services/publication.api';
+import FileBase64 from 'react-file-base64';
 
 
     
@@ -41,13 +43,14 @@ function AddPost(props){
       try {
         console.log(data.get("canal"));
         let publicationData = {
-          "user_id":localStorage.getItem("user"),
-          "canal":data.get("canal"),
+          "user_id":JSON.parse(localStorage.getItem("user")).user_id,
+          "canal":parseInt(data.get("canal")),
           "titulo":data.get("titulo"),
           "msg":data.get("menssagem"),
-          "imagem":data.get("imagem"),
+          "imagem":data.get("imagem").base64,
           "pubdate":"12"
         }
+        console.log(publicationData)
         //const response = await addPublication(publicationData)
         }
      catch (error) {
@@ -63,6 +66,10 @@ function AddPost(props){
 
       getChannels();
      },[]);
+     function getFiles(File){
+      console.log(File.base64)
+      return File.base64
+    }
     return ( 
     <div className={`flex flex-initial gap-4 items-center  justify-between bg-white mt-2 p-2  w-full h-auto rounded-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl`}>
             {/*titulo*/}
@@ -135,13 +142,13 @@ function AddPost(props){
                         <TextField
                             autoFocus
                             required
-                            id="message"
+                            id="menssagem"
                             defaultValue={""}
                             multiline
                             rows={4}
                             fullWidth
                             type="text"
-                            name="messagem"
+                            name="menssagem"
                             
                         />
                         
