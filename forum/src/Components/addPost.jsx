@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -7,6 +7,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CommentsDialog from './Comments';
+import { Box } from '@mui/system';
+import { GetAllChannels, GetChannels } from '../services/channels.api';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 
     
@@ -15,7 +19,14 @@ import CommentsDialog from './Comments';
 
 function AddPost(props){
     const [opend, setOpend] = React.useState(false);
-  
+    const [canais, setCanais] = useState([]);
+    const [canal, setCanal] = useState({ });
+    const handleChange = (event) => {
+      // vai ao array canais e seleciona o canal correspondente pelo id.
+      const selectedCanalId = event.target.value;
+      const selectedCanal = canais.find((canal) => canal.canal_id === selectedCanalId);
+      setCanal(selectedCanal);
+    };
     const handleClickOpen = () => {
       setOpend(true);
     };
@@ -23,6 +34,35 @@ function AddPost(props){
     const handleClose = () => {
       setOpend(false);
     };
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      try {
+        console.log(data.get("canal"));
+        let publicationData = {
+          "user_id":localStorage.getItem("user"),
+          "canal":data.get("canal"),
+          "titulo":data.get("titulo"),
+          "msg":data.get("menssagem"),
+          "imagem":data.get("imagem"),
+          "pubdate":"12"
+        }
+        //const response = await addPublication(publicationData)
+        }
+     catch (error) {
+        console.log(error);
+    }
+    };
+    useEffect(() => {
+      async function getChannels(){
+       const channels = await GetChannels(2);
+       setCanais(channels);
+       
+      }
+
+      getChannels();
+     },[]);
     return ( 
     <div className={`flex flex-initial gap-4 items-center  justify-between bg-white mt-2 p-2  w-full h-auto rounded-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl`}>
             {/*titulo*/}
@@ -38,51 +78,73 @@ function AddPost(props){
                         </button>
                 </div>
                 <Dialog
-                maxWidth={"lg"}
+                fullWidth={"sm"}
+                maxWidth={"sm"}
                 open={opend}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                
                 >
                         <DialogTitle id="alert-dialog-title">
                         {"Comments"}
                         </DialogTitle>
-                        <DialogContent>
+                        <Box component="form" onSubmit={handleSubmit} noValidate>
+                        <DialogContent >
                         <DialogContentText id="alert-dialog-description">
                         </DialogContentText>
+                        <Select
+                        id="listaCanais"
+                        value={canal.canal_id}
+                        name="canal"
+                        fullWidth
+                        onChange={handleChange}
+                        autoWidth
+                        label="Canal"
+                        >
+                        {canais.map((canal) =>
+                                <MenuItem key={canal.canal_id} value={canal.canal_id}>
+                                  {canal.nome}
+                                </MenuItem>
+                              )}
+                        </Select>
                         <TextField
                             autoFocus
-                            required
                             margin="dense"
-                            id="Titulo"
-                            name="Titulo"
-                            label="Titulo"
+                            id="titulo"
+                            label="titulo"
                             type="text"
                             fullWidth
                             variant="standard"
+                            name="titulo"
                         />
+                        <img></img>
                         <TextField
                             autoFocus
                             required
                             margin="dense"
-                            id="Imagem"
-                            name="Imagem"
+                            id="tmagem"
+                            name="imagem"
                             label="Imagem"
                             type="file"
-                            fullWidth
+                            
+                            
                             variant="standard"
                         />
+                        <h2 className='ml-2 my-2'>Messagem</h2>
                         <TextField
                             autoFocus
                             required
-                            margin="dense"
-                            id="Message"
-                            name="Menssagem"
-                            label="Message"
-                            type="text"
+                            id="message"
+                            defaultValue={""}
+                            multiline
+                            rows={4}
                             fullWidth
-                            variant="standard"
+                            type="text"
+                            name="messagem"
+                            
                         />
+                        
                          <DialogActions>
                         
                         </DialogActions>
@@ -90,9 +152,10 @@ function AddPost(props){
                        
                         </DialogContent>
                         <DialogActions>
-                        <Button color="primary"  onClick={handleClose}>Post</Button>
+                        <Button type="submit">Post</Button>
                         <Button onClick={handleClose} autoFocus>Close</Button>
                         </DialogActions>
+                        </Box>
       </Dialog>
     </div>
     )
