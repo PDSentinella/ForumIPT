@@ -40,6 +40,19 @@ async function GetPubs(){
     }
 }
 
+async function GetChannels(){
+    try {
+        const response = await fetch(`${base_url}GetCanaisDashBoard`, {
+            method: 'GET'
+        });
+        const data = await response.json();
+        console.log(data)
+        return data; 
+    } catch (error) {
+        throw error; 
+    }
+}
+
 async function UpdateUserById(updateUser){
     try {
         const response = await fetch(`${base_url}UpdateUserById`, {
@@ -77,4 +90,4 @@ async function DeleteUserById(updateUser){
 }
 
 
-export { GetCounts, GetUsersDash, UpdateUserById, DeleteUserById, GetPubs }
+export { GetCounts, GetUsersDash, UpdateUserById, DeleteUserById, GetPubs, GetChannels }
