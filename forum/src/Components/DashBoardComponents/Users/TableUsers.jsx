@@ -60,7 +60,7 @@ function TableUsers() {
             {field: 'user_id', headerName: 'ID', width: 60},
             {field: 'nome', headerName: 'Nome', width: 170},
             {field: 'email', headerName: 'Email', width: 200, editable: true},
-            {field: 'password', headerName: 'Password', width: 170, sortable: false},
+            {field: 'password', headerName: 'Password', width: 170, sortable: false, valueGetter: (params) => '********', editable: true },
             {field: 'genero', headerName: 'Genero', width: 125, editable: true},
             {field: 'admin_privileges', headerName: 'Admin', width: 120, type:'boolean', editable: true},
             {field: 'aboutme', headerName: 'About', width: 150, editable: true},

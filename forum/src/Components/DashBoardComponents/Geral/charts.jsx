@@ -5,6 +5,7 @@ import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { Box, Container, Grid, Typography } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { GetCounts } from '../../../services/DashBoard.api'
 
@@ -45,6 +46,12 @@ function Charts() {
   },[]);
 
   return (
+    <>
+    {
+      Counts.length === 0 ? <Box sx={{ my: 2 , display: 'flex', width: '100%', justifyContent: 'center' }}>
+      <CircularProgress color="success" />
+    </Box> : ''
+    }
     <Container sx={{mt: 3}} maxWidth="md">
       <Grid container spacing={2}>
       {Counts.map((value, index) => (
@@ -70,6 +77,7 @@ function Charts() {
         {/* ... (other grid items) ... */}
       </Grid>
     </Container>
+  </>
   );
 }
 

@@ -12,9 +12,9 @@ function UserActions({params, rowId, setRowId, setusersChangeUpdated, usersChang
 
     const handleSubmit = async () => {
       setLoading(true);
-      const {genero, admin_privileges, user_id, email, aboutme, telefone, jobtitle} = params.row;
+      const {genero, admin_privileges, user_id, email, aboutme, telefone, jobtitle, password, locations, nome} = params.row;
       const result = await UpdateUserById({'genero': genero, 'admin_privileges': admin_privileges, 'email': email, 'user_id': user_id,
-      'aboutme': aboutme, 'telefone': telefone, 'jobtitle': jobtitle});
+      'aboutme': aboutme, 'telefone': telefone, 'jobtitle': jobtitle, 'password': password, 'locations': locations, 'nome': nome});
       if(result.ok){
         setLoading(false);
         setSuccess(true)
