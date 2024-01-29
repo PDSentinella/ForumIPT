@@ -104,13 +104,14 @@ function SideBar(props){
                 </Link> 
                     {/*Home*/}
                     
-                    <div className='flex gap-x-2 items-center cursor-pointer'>
+                    <Link to="/Chat" reloadDocument><div className='flex gap-x-2 items-center cursor-pointer'>
                         <div className=' flex rounded items-center justify-center w-6 h-6 '>
                         <MessageOutlinedIcon sx={{ color: 'white', fontSize: 32}}/>  
                         </div>
 
                         <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Mensagens</h1>
-                    </div>                     
+                    </div>
+                    </Link>                     
                     {/*Your treads*/}
                     <div className='flex gap-x-2 items-center cursor-pointer '>
                         <div className=' flex rounded items-center justify-center w-6 h-6 '>

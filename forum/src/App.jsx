@@ -11,6 +11,7 @@ import Geral from './Pages/Dashboard/Geral.jsx';
 import Users from './Pages/Dashboard/Users.jsx';
 import Canais from './Pages/Dashboard/Canais.jsx';
 import Pubs from './Pages/Dashboard/Pubs.jsx';
+import Chat from './Pages/WebChat/Chat.jsx'
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -23,15 +24,17 @@ function App() {
     <div className="overflow-y-hidden">
       <Routes>
         {/* Public Routes */}
+        {/* Public Routes */}
         <Route path="/" element={user ? <HomePage /> : <Login />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Registo" element={<Registo />} />
+        <Route path="/Login" element={user ? <Navigate to="/" /> : <Login />}/>
+        <Route path="/Registo" element={user ? <Navigate to="/" /> : <Registo />} />
 
         {/* Protected Routes */}
         {user && (
           <>
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/canal/:id" element={<ChannelPage />} />
+            <Route path="/Chat" element={<Chat />}/>
             {/* Dashboard com nested Routes */}
             {
               user.admin_privileges === true ?   (<Route path="/DashBoard" element={<DashBoard />}>
