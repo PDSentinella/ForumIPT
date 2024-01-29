@@ -31,7 +31,7 @@ function AddComment(props){
         console.log(data.get("nome"));
         let CommentData = {
           "user_id":JSON.parse(localStorage.getItem("user")).user_id,
-          "user_id":props.publication_id,
+          "publication_id":props.publication_id,
           "comment":data.get("comment"),
           
         }
