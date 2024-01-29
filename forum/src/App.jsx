@@ -34,6 +34,11 @@ function App() {
             <Route path="/canal/:id" element={<ChannelPage />} />
                {/* Dashboard com nested Routes */}
             <Route path="/DashBoard" element={<DashBoard />} >
+            {/* Redirect para o geral sempre que o utilizador meter uma rota dentro do sub dominio dashboard invalida */}
+            <Route
+                index
+                element={<Navigate to="/Dashboard/Geral" />}  
+              />
               <Route path="Geral" element={<Geral />} /> 
               <Route path="users" element={<Users />} />
               <Route path="Pubs" element={<Pubs />} />

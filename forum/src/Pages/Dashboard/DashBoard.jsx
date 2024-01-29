@@ -23,6 +23,8 @@ import { Link, useNavigate, Outlet } from 'react-router-dom';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import SkipPreviousOutlinedIcon from '@mui/icons-material/SkipPreviousOutlined';
+
 
 
 import GeralComponent from './Geral';
@@ -165,7 +167,7 @@ export default function DashBoard(props) {
         <Divider />
           {/* Lista de cima -> Vista geral, Users , Pubs, Canais*/}
         <List>
-          {['Vista Geral', 'Users', 'Publicações', 'Canais'].map((text, index) => (
+          {['Voltar', 'Vista Geral', 'Users', 'Publicações', 'Canais'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -182,14 +184,14 @@ export default function DashBoard(props) {
                   }}
                 >
                   {index === 0 ? (
-                   <Link to="geral"> <HomeOutlinedIcon sx={{ color: 'gray' }} /> </Link>
+                   <Link to="/"> <SkipPreviousOutlinedIcon sx={{ color: 'gray' }} /> </Link>
                     ) : index === 1 ? (
-                     <Link to="users"> <GroupOutlinedIcon sx={{ color: 'gray' }} /> </Link>
+                      <Link to="geral"> <HomeOutlinedIcon sx={{ color: 'gray' }} /> </Link>
                     ) : index === 2 ? (
-                     <Link to="pubs"> <StickyNote2OutlinedIcon sx={{ color: 'gray' }} /> </Link>
+                      <Link to="users"> <GroupOutlinedIcon sx={{ color: 'gray' }} /> </Link>
                     ) : index === 3 ? (
-                      <Link to="canais"> <StickyNote2OutlinedIcon sx={{ color: 'gray' }} /> </Link>
-                    ) : ''
+                      <Link to="pubs"> <StickyNote2OutlinedIcon sx={{ color: 'gray' }} /> </Link>
+                    ) : index === 4 ?  (<Link to="canais"> <StickyNote2OutlinedIcon sx={{ color: 'gray' }} /> </Link>) :  ''
                     }
                   
                 </ListItemIcon>
