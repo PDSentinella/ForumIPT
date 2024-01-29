@@ -50,6 +50,7 @@ function HomePage() {
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState(null);
   const [openSideBar, setOpenSideBar] = useState(false);
+  
   useEffect(() => {
     getPublicacao(homePageUser.user_id,0,"","DESC")
     
