@@ -44,7 +44,7 @@ function AddPost(props){
         console.log(data.get("canal"));
         let publicationData = {
           "user_id":JSON.parse(localStorage.getItem("user")).user_id,
-          "canal":parseInt(data.get("canal")),
+          "canal":data.get("canal"),
           "titulo":data.get("titulo"),
           "msg":data.get("menssagem"),
           "imagem":data.get("imagem"),
