@@ -82,10 +82,9 @@ function HomePage() {
           <div className='flex flex-col w-full '>
           <Header></Header>
           <div className='flex flex-col items-center '>
-          <div className='sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
-          <input className='m-10 w-full h-10 rounded-md '  onChange={(event)=>{setFilter(event.target.value)}}></input>
-          <button>P</button>
-          </div>
+          {/*<div className='sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
+          <input className=' w-full h-10 rounded-lg '  onChange={(event)=>{setFilter(event.target.value)}}></input>
+          </div>*/}
           <AddPost></AddPost>
           {publications === null?(<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>):
           (publications.length==0?<div className='flex w-96 h-96 py-48 justify-items-center ali'><h1 className='text-center'>Não esta escrito em nenhum canal<br/>se <strong onClick={handleOpenSideBar}>increva</strong> em uma canal</h1><button></button></div>:

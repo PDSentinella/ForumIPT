@@ -2,6 +2,7 @@ import {useState} from 'react'
 import React from 'react';
 import AddComment from './AddComment';
 import { setSavePublicationStatus } from '../services/publication.api';
+import { DeletePubById } from '../services/DashBoard.api';
 
 /* https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiO8lpJcBozNvY6ocapye6oly0SLGa80Bxw&usqp=CAU*/
 let publicacao = {
@@ -44,7 +45,12 @@ function Post(props){
     const [open, setOpen] = useState(false);
     const [mo, setMo] = useState(false)
     const [saved,setSaved] = useState(false)
-    
+
+    async function deletePublication(){
+        const response = await DeletePubById(publication.publication_id)
+        console.log(response)
+    }
+
     async function savedhandle(){
         let savedUserPublicatoinData = {"user_id":JSON.parse(localStorage.getItem("user")).user_id,"publication_id":publication.publication_id,"saved":!saved}
         console.log(savedUserPublicatoinData)
@@ -69,7 +75,7 @@ function Post(props){
                         <div className={`${mo==false && 'hidden'} right-10 relative top-0 p-2 w-20 h-14 bg-ipt justify-center items-start flex flex-col gap-1`}>
                             {/*<button className='text-xs text-white rounded-sm '>publicacao</button>/*/}
                             <button className='text-xs text-white rounded-sm '>denunciar</button>
-                            <button className={` ${JSON.parse(localStorage.getItem("user")).nome==publication.nome && 'hidden'} text-xs text-white rounded-sm `}>delete</button>
+                            <button className={` ${JSON.parse(localStorage.getItem("user")).nome==publication.nome && 'hidden'} text-xs text-white rounded-sm `} onClick={()=>{deletePublication()}}>delete</button>
                         </div>
                     </div>
                 </div>
