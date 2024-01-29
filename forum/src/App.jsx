@@ -26,8 +26,8 @@ function App() {
         {/* Public Routes */}
         {/* Public Routes */}
         <Route path="/" element={user ? <HomePage /> : <Login />} />
-        <Route path="/Login" element={user ? <Navigate to="/" /> : <Login />}/>
-        <Route path="/Registo" element={user ? <Navigate to="/" /> : <Registo />} />
+        <Route path="/Login" element={user === null ? <Navigate to="/" /> : <Login />}/>
+        <Route path="/Registo" element={user === null? <Navigate to="/" /> : <Registo />} />
 
         {/* Protected Routes */}
         {user && (
