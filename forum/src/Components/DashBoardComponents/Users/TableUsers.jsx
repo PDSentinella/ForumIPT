@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useEffect, useState } from 'react';
 import { Avatar, Box, Button, Typography } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar} from '@mui/x-data-grid';
 import {GetUsersDash} from '../../../services/DashBoard.api';
 import UserActions from './UserActionsEdit';
 import UserActionsRemove from './UserActionsRemove';
@@ -60,7 +60,7 @@ function TableUsers() {
             {field: 'user_id', headerName: 'ID', width: 60},
             {field: 'nome', headerName: 'Nome', width: 170},
             {field: 'email', headerName: 'Email', width: 200, editable: true},
-            {field: 'password', headerName: 'Password', width: 170, sortable: false},
+            {field: 'password', headerName: 'Password', width: 170, sortable: false, valueGetter: (params) => '********', editable: true },
             {field: 'genero', headerName: 'Genero', width: 125, editable: true},
             {field: 'admin_privileges', headerName: 'Admin', width: 120, type:'boolean', editable: true},
             {field: 'aboutme', headerName: 'About', width: 150, editable: true},
@@ -139,6 +139,15 @@ function TableUsers() {
           }
         }
         pageSize={pageSize}
+        slots={{ toolbar: GridToolbar }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+          },
+        }}
+        disableColumnFilter
+        disableColumnSelector
+        disableDensitySelector
         pageSizeOptions={[5, 10, 20]}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         getRowSpacing={(params) => ({
