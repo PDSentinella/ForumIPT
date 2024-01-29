@@ -44,6 +44,11 @@ function TableUsers() {
           
       if (result.ok) {
         setSuccessRemove((prevSuccess) => ({ ...prevSuccess, [publication_id]: true }));
+
+        setTimeout(() => {
+          setSuccessRemove((prevSuccess) => ({ ...prevSuccess, [publication_id]: false }));
+        }, 1000); // 1000 milliseconds = 1 second
+
         // desta forma não é preciso dar reload
         const update = pubsChangeUpdated + 1;
         setpubsChangeUpdated(update);
@@ -74,6 +79,13 @@ function TableUsers() {
     
       if (result.ok) {
         setSuccess((prevSuccess) => ({ ...prevSuccess, [publication_id]: true }));
+
+      // desta forma ve se o verde e ainda muda outra vez para normal.
+      setTimeout(() => {
+        setSuccess((prevSuccess) => ({ ...prevSuccess, [publication_id]: false }));
+      }, 1000); // 1000 milliseconds = 1 second
+
+                
         // desta forma não é preciso dar reload
         const update = pubsChangeUpdated + 1;
         setpubsChangeUpdated(update);
@@ -85,13 +97,14 @@ function TableUsers() {
 
 
     useEffect(() => {
-        async function getpublicacoes(){
-            const pubs = await GetPubs();
-            setpubsDash(pubs);
-            // Aqui ao contrario dos users não será necessario filtrar.
-        }
-        getpublicacoes();
-    }, [pubsChangeUpdated]);
+      async function getpublicacoes() {
+          const pubs = await GetPubs();
+          setpubsDash(pubs);
+           // Aqui ao contrario dos users não será necessario filtrar.
+      }
+  
+      getpublicacoes();
+  }, [pubsChangeUpdated]);
 
     const columns = useMemo(
         () => [
@@ -100,7 +113,10 @@ function TableUsers() {
             {field: 'titulo', headerName: 'Titulo', width: 250, editable: true, sortable: false},
             {field: 'canal', headerName: 'Canal Associado', width: 250, editable: false, sortable: true},
             {field: 'msg', headerName: 'Mensagem', width: 500, editable: true, sortable: false},
-            {field: 'pubdate', headerName: 'Data de publicaçao', width: 125, editable: true},
+            {field: 'pubdate', headerName: 'Data de publicaçao', type: 'dateTime', width: 150, editable: false, filterable: true, valueGetter: (params) => {const date = new Date(params.row.pubdate);  return date; },  renderCell: (params) => {
+              const date = new Date(params.row.pubdate);
+              return date.toLocaleDateString('en-gb');
+          }, },
             {field: 'Edit', headerName: 'Edit', type: 'actions', renderCell: (params) => (  <Edit {...{ params, rowId, setRowId, handleEdit, loading, success}} loading={loading[params.row.publication_id]}
               success={success[params.row.publication_id]} />)},
             {field: 'Remove', headerName: 'Remove', type: 'actions', renderCell: (params) => (  <Remove {...{ params, rowId, setRowId, handleRemoveClick, loadingRemove, successRemove}} loading={loadingRemove[params.row.publication_id]}

@@ -71,6 +71,28 @@ async function DeletePubById(Pub){
 
 //---------------------------- Funçoes do dashboard relatias aos canais ----------------------------------
 
+async function CreateChannel(nome, senha, channel_image) {
+    try {
+        const response = await fetch(`${base_url}AddChannel`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nome: nome,
+                senha: senha,
+                channel_image: channel_image
+            }),
+        });
+
+        const data = await response.json();
+        return data; 
+    } catch (error) {
+        console.log(error);
+        throw error; 
+    }
+}
+
 async function GetChannels(){
     try {
         const response = await fetch(`${base_url}GetCanaisDashBoard`, {
@@ -175,4 +197,4 @@ async function DeleteUserById(updateUser){
 }
 
 
-export { GetCounts, GetUsersDash, UpdateUserById, DeleteUserById, GetPubs, GetChannels, DeletePubById, DeleteChannelById, UpdatePubById, UpdateChannelById}
+export { GetCounts, GetUsersDash, UpdateUserById, DeleteUserById, GetPubs, GetChannels, DeletePubById, DeleteChannelById, UpdatePubById, UpdateChannelById, CreateChannel}
