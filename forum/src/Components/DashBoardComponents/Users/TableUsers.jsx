@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useEffect, useState } from 'react';
 import { Avatar, Box, Button, Typography } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar} from '@mui/x-data-grid';
 import {GetUsersDash} from '../../../services/DashBoard.api';
 import UserActions from './UserActionsEdit';
 import UserActionsRemove from './UserActionsRemove';
@@ -139,6 +139,15 @@ function TableUsers() {
           }
         }
         pageSize={pageSize}
+        slots={{ toolbar: GridToolbar }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+          },
+        }}
+        disableColumnFilter
+        disableColumnSelector
+        disableDensitySelector
         pageSizeOptions={[5, 10, 20]}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         getRowSpacing={(params) => ({
