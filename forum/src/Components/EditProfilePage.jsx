@@ -58,7 +58,7 @@ function EditProfilePage(props){
     return ( 
     <>
                 <div className='flex gap-2'>  
-                        <button className='text-sm sm:text-base bg-pale_purple rounded px-2 py-1'onClick={handleClickOpen}>Editar Perfil</button>
+                        <button className='text-sm sm:text-base bg-white rounded px-2 py-1 'onClick={handleClickOpen}>Editar Perfil</button>
                 </div> 
                 <Dialog
                 fullWidth={"sm"}

@@ -43,7 +43,7 @@ function Drawerl(props){
                       }}
                   >
                     <h1 className={`text-white truncate ${!props.open && 'hidden'} cursor-pointer`}>
-                      <Link to={`/canal/${channel.canal_id}`}>{channel.nome}</Link>
+                      <Link  reloadDocument to={`/canal/${channel.canal_id}`}>{channel.nome}</Link>
                     </h1>
                   </Box>
 

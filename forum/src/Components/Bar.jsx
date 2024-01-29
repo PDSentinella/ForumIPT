@@ -12,7 +12,7 @@ function Bar(props){
                     
                     {/* Menu*/}
 
-                    <div className={`flex  justify-center cursor-pointer `}>
+                    <div className={`flex  justify-center cursor-pointer `} onClick={()=>{setOpen(open)}}>
                         <div className={` flex items-center justify-center bg-ipt w-6 h-6 `}>
                             <MenuOutlinedIcon sx={{ color: 'white', fontSize: 30}}/>  
                         </div>
