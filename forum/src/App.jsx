@@ -32,18 +32,17 @@ function App() {
           <>
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/canal/:id" element={<ChannelPage />} />
-               {/* Dashboard com nested Routes */}
-            <Route path="/DashBoard" element={<DashBoard />} >
-            {/* Redirect para o geral sempre que o utilizador meter uma rota dentro do sub dominio dashboard invalida */}
-            <Route
-                index
-                element={<Navigate to="/Dashboard/Geral" />}  
-              />
-              <Route path="Geral" element={<Geral />} /> 
+            {/* Dashboard com nested Routes */}
+            {
+              user.admin_privileges === true ?   (<Route path="/DashBoard" element={<DashBoard />}>
+              {/* Redirect para o geral sempre que o utilizador meter uma rota dentro do sub domínio dashboard invalida */}
+              <Route index element={<Navigate to="/Dashboard/Geral" />} />
+              <Route path="Geral" element={<Geral />} />
               <Route path="users" element={<Users />} />
               <Route path="Pubs" element={<Pubs />} />
               <Route path="Canais" element={<Canais />} />
-            </Route>
+            </Route>) : <Route path="/" element={<Navigate to="/" />}/>
+            }
           </>
         )}
 
