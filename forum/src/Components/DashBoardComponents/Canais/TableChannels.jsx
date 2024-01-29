@@ -5,8 +5,17 @@ import { DataGrid, GridToolbar} from '@mui/x-data-grid';
 import {GetChannels} from '../../../services/DashBoard.api';
 import { DeleteChannelById } from '../../../services/DashBoard.api';
 import { UpdateChannelById } from '../../../services/DashBoard.api';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import { Button } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import FileBase64 from 'react-file-base64';
 import Remove from '../Remove';
 import Edit from '../Edit';
+import {CreateChannel} from '../../../services/DashBoard.api'
 
 function TableChannels() {
 
@@ -18,19 +27,72 @@ function TableChannels() {
 
     //para saber que linha esta ativa
     const [rowId, setRowId] = useState(null);
-
+    
+    const [alertOpen, setAlertOpen] = useState(false);
+    
     const [channelsChangeUpdated, setChannelsChangeUpdated] = useState(0);
+    
+    const [formState, setFormState] = useState({
+      name: '',
+      senha: '',
+    });
+    
+    // Funções relativas aos componentes Filhos remove e edit.
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+
+    const [loadingRemove, setLoadingRemove] = useState(false);
+    const [successRemove, setSuccessRemove] = useState(false);
+
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const [ File , setFile] = useState("");
+    
+    const handleClose = () => {
+      setOpenDialog(false);
+      
+    };
+
+    const handleCloseAlert = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      
+      setAlertOpen(false);
+    };
+    
+    // função responsavel pelo o envio do curso e da senha.
+    async function sendInfo(formJson){
+      try{
+            await CreateChannel(formJson.nome, formJson.senha, File );
+            setAlertOpen(true);
+            setOpenDialog(false);
+            const update = channelsChangeUpdated + 1;
+            setChannelsChangeUpdated(update);
+      }catch(error){
+
+      }
+    };
+
+
+    function getFiles(File){
+      console.log(File.base64)
+      setFile(File.base64)
+    }
+
 
 
     useEffect(() => {
-        async function getpublicacoes(){
+        async function getAllChannels(){
             const pubs = await GetChannels();
             setChannelsDash(pubs);
             // Aqui ao contrario dos users não será necessario filtrar.
         }
-        getpublicacoes();
+        getAllChannels();
     }, [channelsChangeUpdated]);
 
+
+    // ------------------------ tabela ------------------------------
     const columns = useMemo(
         () => [
             {field: 'channel_image', headerName: 'Imagem', width: 150, renderCell: params=> <Avatar src={params.row.channel_image}/>, sortable: false, filterable: false},
@@ -46,12 +108,6 @@ function TableChannels() {
       );
 
 
-    // Funções relativas aos componentes Filhos remove e edit.
-    const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
-
-    const [loadingRemove, setLoadingRemove] = useState(false);
-    const [successRemove, setSuccessRemove] = useState(false);
 
 
     // delete channel
@@ -64,17 +120,24 @@ function TableChannels() {
       // Faz update do loading de uma linha especifica
       setLoadingRemove((prevLoading) => ({ ...prevLoading, [canal_id]: true }));
         
-      const result = await DeleteChannelById({ 'publication_id': canal_id });
+      const result = await DeleteChannelById({ 'canal_id': canal_id });
         
       // Faz set do loading de form a acabar o mesmo para de seguida dar como concluida a ação.
       setLoadingRemove((prevLoading) => ({ ...prevLoading, [canal_id]: false }));
           
       if (result.ok) {
         setSuccessRemove((prevSuccess) => ({ ...prevSuccess, [canal_id]: true }));
+
+        // desta forma ve se o verde e ainda muda outra vez para normal.
+        setTimeout(() => {
+          setSuccessRemove((prevSuccess) => ({ ...prevSuccess, [canal_id]: false }));
+        }, 1000); // 1000 milliseconds = 1 second
+
         // desta forma não é preciso dar reload
         const update = channelsChangeUpdated + 1;
         setChannelsChangeUpdated(update);
         setRowId(null);
+        
         }
 
     };
@@ -96,6 +159,13 @@ function TableChannels() {
     
       if (result.ok) {
         setSuccess((prevSuccess) => ({ ...prevSuccess, [canal_id]: true }));
+
+        // desta forma ve se o verde e ainda muda outra vez para normal.
+        setTimeout(() => {
+          setSuccess((prevSuccess) => ({ ...prevSuccess, [canal_id]: false }));
+        }, 1000); // 1000 milliseconds = 1 second
+
+                
         // desta forma não é preciso dar reload
         const update = channelsChangeUpdated + 1;
         setChannelsChangeUpdated(update);
@@ -118,6 +188,9 @@ function TableChannels() {
           marginLeft: { xs: 1 },
         }}
       >
+        <Button onClick={() => setOpenDialog(true)} sx={{ color: 'black' }}>
+          <GroupAddOutlinedIcon sx={{ fontSize: 30, cursor: 'pointer' }} />
+        </Button>
       </Box>
       <DataGrid
         columns={columns}
@@ -148,6 +221,53 @@ function TableChannels() {
         onCellEditStop={(params) => setRowId(params.id)}
       ></DataGrid>
     </Box>
+    <Dialog open={openDialog} onClose={handleClose}>
+      <DialogContent>
+        <Typography variant='h4' sx={{ my: 2, textAlign: 'center'}}>Criação de um Canal</Typography>
+        <Box component="form" className="flex-col sm:!flex">
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="nome"
+                label="nome"
+                name="nome"
+                autoComplete="Nome do Canal"
+                value={formState.nome}
+                onChange={(e) => setFormState({ ...formState, nome: e.target.value })}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FileBase64 multiple={false} onDone={getFiles} />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="senha"
+                label="senha"
+                type="password"
+                id="senha"
+                autoComplete="senha"
+                value={formState.senha}
+                onChange={(e) => setFormState({ ...formState, senha: e.target.value })}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button
+          onClick={() => {
+            sendInfo({ ...formState, profile_image: File });
+          }}
+        >
+          Adicionar
+        </Button>
+      </DialogActions>
+    </Dialog>
   </>
   )
 }
