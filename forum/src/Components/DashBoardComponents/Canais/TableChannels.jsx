@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useEffect, useState } from 'react';
 import { Avatar, Box, Typography } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar} from '@mui/x-data-grid';
 import {GetChannels} from '../../../services/DashBoard.api';
 import { DeleteChannelById } from '../../../services/DashBoard.api';
 import { UpdateChannelById } from '../../../services/DashBoard.api';
@@ -130,6 +130,15 @@ function TableChannels() {
           }
         }
         pageSize={pageSize}
+        slots={{ toolbar: GridToolbar }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+          },
+        }}
+        disableColumnFilter
+        disableColumnSelector
+        disableDensitySelector
         pageSizeOptions={[5, 10, 20]}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         getRowSpacing={(params) => ({

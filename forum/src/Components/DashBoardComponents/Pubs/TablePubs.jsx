@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useEffect, useState } from 'react';
 import { Avatar, Box, Typography } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import {GetPubs} from '../../../services/DashBoard.api';
 import Remove from '../Remove';
 import Edit from '../Edit';
@@ -97,7 +97,7 @@ function TableUsers() {
         () => [
             {field: 'imagem', headerName: 'Imagem', width: 100, renderCell: params=> <Avatar src={params.row.imagem}/>, sortable: false, filterable: false},
             {field: 'publication_id', headerName: 'ID', width: 100, editable: false, filterable: true},
-            {field: 'titulo', headerName: 'Titulo', width: 250, editable: true},
+            {field: 'titulo', headerName: 'Titulo', width: 250, editable: true, sortable: false},
             {field: 'canal', headerName: 'Canal Associado', width: 250, editable: false, sortable: true},
             {field: 'msg', headerName: 'Mensagem', width: 500, editable: true, sortable: false},
             {field: 'pubdate', headerName: 'Data de publicaçao', width: 125, editable: true},
@@ -139,6 +139,15 @@ function TableUsers() {
             },
           }
         }
+        slots={{ toolbar: GridToolbar }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+          },
+        }}
+        disableColumnFilter
+        disableColumnSelector
+        disableDensitySelector
         pageSize={pageSize}
         pageSizeOptions={[5, 10, 20]}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
