@@ -1,14 +1,27 @@
-import React, {useState} from 'react'
-const canais = [
+import React, {useState, useEffect} from 'react'
+import { GetChannels } from '../services/channels.api';
+/*const canais = [
     "base de dados",
     "POO",
     "AC",
     "EDA",
     "Probabilidades Estastisticas",
     "InterfaceWeb"
-]
+] */
 const UserInfo = (props) => {
     const [userInfo,setUserInfo] = useState(props.user);
+    const [canais,setCanais] = useState([])
+    useEffect(() => {
+        async function fetchChannels() {
+            let user = JSON.parse(localStorage.getItem('user'));
+            const channels = await GetChannels(user.user_id);
+            setCanais(channels);
+          }
+        
+          //fetchChannels();
+        
+      },[]);
+    
   return (
     <div className='flex flex-col justify-between p-4 lg:gap-y-16 items-center w-full h-full gap-y-8 pt-16'>
         <h3>{userInfo.email}</h3>

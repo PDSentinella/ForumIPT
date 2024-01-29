@@ -6,6 +6,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Box } from '@mui/material';
+import FileBase64 from 'react-file-base64';
+import { UpdateUserById } from '../services/DashBoard.api';
 
 
     
@@ -23,6 +26,34 @@ function EditProfilePage(props){
     const handleClose = () => {
       setOpend(false);
     };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        try {
+          console.log(data.get("nome"));
+          let userData = {
+            "user_id":JSON.parse(localStorage.getItem("user")).user_id,
+            "nome":data.get("nome"),
+            "email":data.get("email"),
+            "telefone":data.get("telefone"),
+            /*"locations":data.get("locations"),*/
+            "jobtitle":data.get("jobtitle"),
+            "aboutme":data.get("aboutme"),
+            'genero': JSON.parse(localStorage.getItem("user")).genero, 
+            'admin_privileges': JSON.parse(localStorage.getItem("user")).admin_privileges
+          }
+          console.log(userData)
+          const result = await UpdateUserById(userData);
+          if(result.ok){
+            window.location.reload(false)
+            handleClose();
+          }
+          //const response = await addPublication(publicationData)
+          }
+       catch (error) {
+          console.log(error);
+      }
+      };
     return ( 
     <>
                 <div className='flex gap-2'>  
@@ -39,6 +70,7 @@ function EditProfilePage(props){
                         <DialogTitle id="alert-dialog-title">
                         {"Edit"}
                         </DialogTitle>
+                        <Box component="form" onSubmit={handleSubmit} noValidate>
                         <DialogContent>
                         <DialogContentText id="alert-dialog-description">
                         </DialogContentText>
@@ -46,6 +78,7 @@ function EditProfilePage(props){
                         <TextField
                             autoFocus
                             required
+                            name="nome"
                             id="Nome"
                             defaultValue={userEditProfilePage.nome}
                             fullWidth
@@ -54,6 +87,7 @@ function EditProfilePage(props){
                         <TextField
                             autoFocus
                             required
+                            name="email"
                             id="Email"
                             defaultValue={userEditProfilePage.email}
                             fullWidth
@@ -62,6 +96,7 @@ function EditProfilePage(props){
                         <TextField
                             autoFocus
                             required
+                            name="telefone"
                             id="Telefone"
                             defaultValue={userEditProfilePage.Telefone}
                             fullWidth
@@ -70,6 +105,7 @@ function EditProfilePage(props){
                         <TextField
                             autoFocus
                             required
+                            name="locations"
                             id="Location"
                             defaultValue={userEditProfilePage.Locations}
                             fullWidth
@@ -78,6 +114,7 @@ function EditProfilePage(props){
                         <TextField
                             autoFocus
                             required
+                            name="jobtitle"
                             id="jobtitle"
                             defaultValue={userEditProfilePage.jobtitle}
                             fullWidth
@@ -86,6 +123,7 @@ function EditProfilePage(props){
                         <TextField
                             autoFocus
                             required
+                            name="aboutme"
                             id="aboutme"
                             defaultValue={userEditProfilePage.aboutme}
                             multiline
@@ -107,9 +145,10 @@ function EditProfilePage(props){
                        
                         </DialogContent>
                         <DialogActions>
-                        <Button color="primary"  onClick={handleClose}>Save</Button>
+                        <Button type="submit" color="primary">Save</Button>
                         <Button onClick={handleClose} autoFocus>Close</Button>
                         </DialogActions>
+                        </Box>
       </Dialog>
     </>
     
