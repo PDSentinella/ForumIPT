@@ -50,14 +50,17 @@ function HomePage() {
   const [publicationcount, setPublicationcount] = useState(5);
   const [publications, setPublications] = useState(null);
   const [openSideBar, setOpenSideBar] = useState(false);
+  const [filter, setFilter] = useState("")
+  const [ascdes,setAscdes] = useState("DESC")
   useEffect(() => {
-    getPublicacao(homePageUser.user_id,0,"","DESC")
+    getPublicacao(homePageUser.user_id,0,filter,ascdes)
     
   },[]);
   //5 primeiras publicações das 
 
  async function getPublicacao(user,page,filter,ascdes) {
-    let p = await  GetUserPublications(user,0,"","DESC")
+    let p = await  GetUserPublications(user,0,filter,ascdes)
+    //publications
     setPublications(p)
     console.log(p)
     

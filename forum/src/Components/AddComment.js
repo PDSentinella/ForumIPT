@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CommentsDialog from './Comments';
+import { Box } from '@mui/material';
 
 
     
@@ -22,6 +23,29 @@ function AddComment(props){
   
     const handleClose = () => {
       setOpend(false);
+    };
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      try {
+        console.log(data.get("nome"));
+        let CommentData = {
+          "user_id":JSON.parse(localStorage.getItem("user")).user_id,
+          "user_id":props.publication_id,
+          "comment":data.get("comment"),
+          
+        }
+        console.log(CommentData)
+        //const result = await UpdateUserById(userData);
+        /*if(result.ok){
+          window.location.reload(false)
+          handleClose();
+        }*/
+        //const response = await addPublication(publicationData)
+        }
+     catch (error) {
+        console.log(error);
+    }
     };
     return ( 
     <div className={`flex flex-initial gap-4 items-center  justify-between bg-white mt-2 p-2  w-full h-auto rounded-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl`}>
@@ -39,7 +63,8 @@ function AddComment(props){
                         
                 </div>
                 <Dialog
-                maxWidth={"lg"}
+                fullWidth={"sm"}
+                maxWidth={"sm"}
                 open={opend}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
@@ -52,6 +77,7 @@ function AddComment(props){
                         </DialogTitle>
                         
                         </DialogActions>
+                        <Box component="form" onSubmit={handleSubmit} noValidate>
                         <DialogContent>
                        
                         
@@ -67,16 +93,18 @@ function AddComment(props){
                             fullWidth
                             variant="standard"
                         />
-                        <Button>Post</Button>
+                        <Button type="submit">Post</Button>
                         
                         </DialogActions>
                          
                        
                         <CommentsDialog publication_id = {props.publication_id}/>
                         </DialogContent>
+                        </Box>
                         <DialogActions>
                         <Button onClick={handleClose} autoFocus>Close</Button>
                         </DialogActions>
+                        
       </Dialog>
     </div>
     )

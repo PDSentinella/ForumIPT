@@ -47,7 +47,7 @@ function AddPost(props){
           "canal":parseInt(data.get("canal")),
           "titulo":data.get("titulo"),
           "msg":data.get("menssagem"),
-          "imagem":data.get("imagem").base64,
+          "imagem":data.get("imagem"),
           "pubdate":"12"
         }
         console.log(publicationData)
@@ -128,7 +128,6 @@ function AddPost(props){
                         <img></img>
                         <TextField
                             autoFocus
-                            required
                             margin="dense"
                             id="tmagem"
                             name="imagem"
