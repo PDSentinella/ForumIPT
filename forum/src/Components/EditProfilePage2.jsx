@@ -18,7 +18,7 @@ import { UpdateUserById } from '../services/DashBoard.api';
 function EditProfilePage(props){
     const [opend, setOpend] = useState(false);
     const [userEditProfilePage,setUserEditProfilePage] = useState(props.user);
-    
+  
     const handleClickOpen = () => {
       setOpend(true);
     };
@@ -31,21 +31,17 @@ function EditProfilePage(props){
         const data = new FormData(event.currentTarget);
         try {
           console.log(data.get("nome"));
-          /*let userData2 = {
-            "genero":JSON.parse(localStorage.getItem("user")).genero,
-            "admin_privileges": JSON.parse(localStorage.getItem("user")).admin_privileges,
-            "email":data.get("email"),
+          let userData = {
             "user_id":JSON.parse(localStorage.getItem("user")).user_id,
-            "aboutme":data.get("aboutme"),
+            "nome":data.get("nome"),
+            "email":data.get("email"),
             "telefone":data.get("telefone"),
+            /*"locations":data.get("locations"),*/
             "jobtitle":data.get("jobtitle"),
-            "password":"",
-            "locations":data.get("locations"),
-            "nome":data.get("nome")
-            
-          }*/
-          let userData = {"genero": "genero", "admin_privileges":true, "email": "email", "user_id": 33,
-          "aboutme": "aboutme", "telefone": "telefone", "jobtitle": "jobtitle", "password": "password", "locations": "locations", "nome": "nome"}
+            "aboutme":data.get("aboutme"),
+            'genero': JSON.parse(localStorage.getItem("user")).genero, 
+            'admin_privileges': JSON.parse(localStorage.getItem("user")).admin_privileges
+          }
           console.log(userData)
           const result = await UpdateUserById(userData);
           if(result.ok){
@@ -61,7 +57,7 @@ function EditProfilePage(props){
     return ( 
     <>
                 <div className='flex gap-2'>  
-                        <button className='text-sm sm:text-base bg-white rounded px-2 py-1 'onClick={handleClickOpen}>Editar Perfil</button>
+                        <button className='text-sm sm:text-base bg-pale_purple rounded px-2 py-1'onClick={handleClickOpen}>Editar Perfil</button>
                 </div> 
                 <Dialog
                 fullWidth={"sm"}

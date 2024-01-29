@@ -58,7 +58,6 @@ function Post(props){
         //fazer função backend
         //let response = await setSavePublicationStatus(savedUserPublicatoinData)
         setSaved(!saved)
-        
     }
     return ( 
 
