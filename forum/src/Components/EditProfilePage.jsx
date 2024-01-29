@@ -33,10 +33,11 @@ function EditProfilePage(props){
           console.log(data.get("nome"));
           let userData = {
             "user_id":JSON.parse(localStorage.getItem("user")).user_id,
+            "genero":JSON.parse(localStorage.getItem("user")).genero,
             "nome":data.get("nome"),
             "email":data.get("email"),
             "telefone":data.get("telefone"),
-            /*"locations":data.get("locations"),*/
+            "locations":data.get("locations"),
             "jobtitle":data.get("jobtitle"),
             "aboutme":data.get("aboutme"),
             'genero': JSON.parse(localStorage.getItem("user")).genero, 

@@ -82,8 +82,8 @@ function HomePage() {
           <div className='flex flex-col w-full '>
           <Header></Header>
           <div className='flex flex-col items-center '>
-          <div className=''>
-          <input className='m-10 w-96 h-10 rounded-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'  onChange={(event)=>{setFilter(event.target.value)}}></input>
+          <div className='sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
+          <input className='m-10 w-full h-10 rounded-md '  onChange={(event)=>{setFilter(event.target.value)}}></input>
           <button>P</button>
           </div>
           <AddPost></AddPost>
