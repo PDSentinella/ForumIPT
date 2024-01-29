@@ -86,6 +86,7 @@ async function GetChannels(){
 
 
 async function UpdateChannelById(updatechannel){
+    console.log(updatechannel)
     try {
         const response = await fetch(`${base_url}UpdateChannelById`, {
             method: 'POST',

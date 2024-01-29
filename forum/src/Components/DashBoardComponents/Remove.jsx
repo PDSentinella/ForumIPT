@@ -34,7 +34,7 @@ function Remove({ params, rowId, setRowId, handleRemoveClick, loading, success }
             height: 40,
           }}
           disabled={loading}
-          onClick={(event) => handleRemoveClick(event, params)}
+          onClick={(event) => handleRemoveClick(event, params, setRowId)}
         >
           <ClearOutlined />
         </Fab>

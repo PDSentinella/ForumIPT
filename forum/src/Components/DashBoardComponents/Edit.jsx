@@ -4,9 +4,7 @@ import { green } from '@mui/material/colors';
 import React from 'react'
 
 function Edit({params, rowId, setRowId, handleEdit, loading, success}) {
-
-
-
+  
   return (
     <Box
     sx={{
@@ -35,7 +33,7 @@ function Edit({params, rowId, setRowId, handleEdit, loading, success}) {
         }}
         disabled={params.id !== rowId || loading}
         // eslint-disable-next-line no-restricted-globals
-        onClick={handleEdit(event, params)}
+        onClick={(event) => handleEdit(event, params, setRowId)}
 
       >
         <Save />

@@ -37,10 +37,10 @@ function TableChannels() {
             {field: 'canal_id', headerName: 'ID', width: 150, editable: false, filterable: true},
             {field: 'nome', headerName: 'Canal', width: 300, editable: true},
             {field: 'senha', headerName: 'Senha', width: 300, editable: true},
-            {field: 'Edit', headerName: 'Edit', type: 'actions', renderCell: (params) => (  <Edit {...{ params, rowId, setRowId, handleEdit, loading, success}} loading={loading[params.row.publication_id]}
-              success={success[params.row.publication_id]} />)},            
-            {field: 'Remove', headerName: 'Remove', type: 'actions', renderCell: (params) => (  <Remove {...{ params, rowId, setRowId, handleRemoveClick, loadingRemove, successRemove}} loading={loadingRemove[params.row.publication_id]}
-              success={successRemove[params.row.publication_id]} />)},       
+            {field: 'Edit', headerName: 'Edit', type: 'actions', renderCell: (params) => (  <Edit {...{ params, rowId, setRowId, handleEdit, loading, success}} loading={loading[params.row.canal_id]}
+              success={success[params.row.canal_id]} />)},            
+            {field: 'Remove', headerName: 'Remove', type: 'actions', renderCell: (params) => (  <Remove {...{ params, rowId, setRowId, handleRemoveClick, loadingRemove, successRemove}} loading={loadingRemove[params.row.canal_id]}
+              success={successRemove[params.row.canal_id]} />)},       
             ],
         [rowId, channelsChangeUpdated] // pois se houver uma alteração na linha temos de renderizar os botoes
       );
@@ -55,7 +55,7 @@ function TableChannels() {
 
 
     // delete channel
-    const handleRemoveClick = async (event, params) => {
+    const handleRemoveClick = async (event, params, setRowId) => {
       // Impede que as ações se reproduzam para os restantes elemetos.
       event.stopPropagation();
         
@@ -74,32 +74,34 @@ function TableChannels() {
         // desta forma não é preciso dar reload
         const update = channelsChangeUpdated + 1;
         setChannelsChangeUpdated(update);
+        setRowId(null);
         }
 
     };
 
-    const handleEdit = async (event, params) => {
+    const handleEdit = async (event, params, setRowId) => {
       // Impede que as ações se reproduzam para os restantes elemetos.
       event.stopPropagation();
-
+    
       const { canal_id } = params.row
-
+    
       // Faz update do loading de uma linha especifica
-      setLoadingRemove((prevLoading) => ({ ...prevLoading, [canal_id]: true }));
-        
-      const {nome, senha} = params.row;
-      const result = await UpdateChannelById({'canal_id': canal_id, 'nome': nome, 'senha': senha});
-
-      // Faz set do loading de form a acabar o mesmo para de seguida dar como concluida a ação.
+      setLoading((prevLoading) => ({ ...prevLoading, [canal_id]: true }));
+    
+      const { nome, senha } = params.row;
+      const result = await UpdateChannelById({ 'canal_id': canal_id, 'nome': nome, 'senha': senha });
+    
+      // Faz set do loading de form a acabar o mesmo para de seguida dar como concluída a ação.
       setLoading((prevLoading) => ({ ...prevLoading, [canal_id]: false }));
-            
-     if (result.ok) {
-      setSuccess((prevSuccess) => ({ ...prevSuccess, [canal_id]: true }));
-       // desta forma não é preciso dar reload
-       const update = channelsChangeUpdated + 1;
-       setChannelsChangeUpdated(update);
-       }
-      };
+    
+      if (result.ok) {
+        setSuccess((prevSuccess) => ({ ...prevSuccess, [canal_id]: true }));
+        // desta forma não é preciso dar reload
+        const update = channelsChangeUpdated + 1;
+        setChannelsChangeUpdated(update);
+        setRowId(null);
+      }
+    };
 
   return (
     <>

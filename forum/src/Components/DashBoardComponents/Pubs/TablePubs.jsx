@@ -28,7 +28,7 @@ function TableUsers() {
     const [loadingRemove, setLoadingRemove] = useState(false);
     const [successRemove, setSuccessRemove] = useState(false);
 
-    const handleRemoveClick = async (event, params) => {
+    const handleRemoveClick = async (event, params, setRowId ) => {
       // Impede que as ações se reproduzam para os restantes elemetos.
       event.stopPropagation();
         
@@ -47,33 +47,39 @@ function TableUsers() {
         // desta forma não é preciso dar reload
         const update = pubsChangeUpdated + 1;
         setpubsChangeUpdated(update);
+        setRowId(null);
         }
 
     };
 
 
-    const handleEdit = async (event, params) => {
+    const handleEdit = async (event, params, setRowId) => {
       // Impede que as ações se reproduzam para os restantes elemetos.
       event.stopPropagation();
-
-      const { publication_id } = params.row
-
+    
+      const { publication_id } = params.row;
+    
       // Faz update do loading de uma linha especifica
-      setLoadingRemove((prevLoading) => ({ ...prevLoading, [publication_id]: true }));
-        
-      const {msg, titulo} = params.row;
-      const result = await UpdatePubById({'publication_id': publication_id, 'msg': msg, 'titulo': titulo});
-
-      // Faz set do loading de form a acabar o mesmo para de seguida dar como concluida a ação.
+      setLoading((prevLoading) => ({ ...prevLoading, [publication_id]: true }));
+    
+      const { msg, titulo } = params.row;
+      const result = await UpdatePubById({
+        'publication_id': publication_id,
+        'msg': msg,
+        'titulo': titulo
+      });
+    
+      // Faz set do loading de forma a acabar o mesmo para de seguida dar como concluída a ação.
       setLoading((prevLoading) => ({ ...prevLoading, [publication_id]: false }));
-            
-     if (result.ok) {
-      setSuccess((prevSuccess) => ({ ...prevSuccess, [publication_id]: true }));
-       // desta forma não é preciso dar reload
-       const update = pubsChangeUpdated + 1;
-       setpubsChangeUpdated(update);
-       }
-      };
+    
+      if (result.ok) {
+        setSuccess((prevSuccess) => ({ ...prevSuccess, [publication_id]: true }));
+        // desta forma não é preciso dar reload
+        const update = pubsChangeUpdated + 1;
+        setpubsChangeUpdated(update);
+        setRowId(null)
+      }
+    };
 
 
 
@@ -93,7 +99,7 @@ function TableUsers() {
             {field: 'publication_id', headerName: 'ID', width: 100, editable: false, filterable: true},
             {field: 'titulo', headerName: 'Titulo', width: 250, editable: true},
             {field: 'canal', headerName: 'Canal Associado', width: 250, editable: false, sortable: true},
-            {field: 'msg', headerName: 'Mensagem', width: 500, sortable: false},
+            {field: 'msg', headerName: 'Mensagem', width: 500, editable: true, sortable: false},
             {field: 'pubdate', headerName: 'Data de publicaçao', width: 125, editable: true},
             {field: 'Edit', headerName: 'Edit', type: 'actions', renderCell: (params) => (  <Edit {...{ params, rowId, setRowId, handleEdit, loading, success}} loading={loading[params.row.publication_id]}
               success={success[params.row.publication_id]} />)},
