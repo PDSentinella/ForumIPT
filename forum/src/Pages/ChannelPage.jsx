@@ -59,11 +59,11 @@ function ChannelPage() {
           <input className=' w-full h-10 rounded-lg '  onChange={(event)=>{setFilter(event.target.value)}}></input>
           </div>*/}
           {publications === null?(<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>):
-          (publications.length==0?<div className='flex w-full h-96 py-48 justify-items-center ali'><h1 className='text-center'>Não tem publicações neste canal</h1><button></button></div>:
+          ((publications==undefined)?<div className='flex w-full h-96 justify-center items-center'><h1 className='text-center'>Não tem publicações neste canal</h1></div>:
             (publications.map((publication) => (
               <Post publicacao={publication}></Post>
             )) 
-          ))}
+            ))}
          
          
           </div>

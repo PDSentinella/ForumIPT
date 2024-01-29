@@ -36,7 +36,7 @@ function EditProfilePage(props){
             "nome":data.get("nome"),
             "email":data.get("email"),
             "telefone":data.get("telefone"),
-            /*"locations":data.get("locations"),*/
+            "locations":data.get("locations"),
             "jobtitle":data.get("jobtitle"),
             "aboutme":data.get("aboutme"),
             'genero': JSON.parse(localStorage.getItem("user")).genero, 
@@ -98,7 +98,7 @@ function EditProfilePage(props){
                             required
                             name="telefone"
                             id="Telefone"
-                            defaultValue={userEditProfilePage.Telefone}
+                            defaultValue={userEditProfilePage.telefone}
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>Location</h2>

@@ -51,7 +51,7 @@ function AddPost(props){
           "pubdate":"12"
         }
         console.log(publicationData)
-        //const response = await addPublication(publicationData)
+        const response = await addPublication(publicationData)
         }
      catch (error) {
         console.log(error);
