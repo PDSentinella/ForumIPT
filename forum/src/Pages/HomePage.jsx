@@ -4,12 +4,10 @@ import Footer from '../Components/HomePage/Footer'
 import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
-import Bar from '../Components/Bar'
 import CircularProgress from '@mui/material/CircularProgress';
 import { GetChannels } from '../services/channels.api'
 import { GetUserPublications } from '../services/publication.api'
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
-import { Box, Button } from '@mui/material'
 import { ArrowBackIosSharp } from '@mui/icons-material'
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 
