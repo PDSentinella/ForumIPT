@@ -54,11 +54,9 @@ function Post(props){
 
     async function savedhandle(){
         let savedUserPublicatoinData = {"user_id":JSON.parse(localStorage.getItem("user")).user_id,"publication_id":publication.publication_id,"saved":!saved}
-        console.log(savedUserPublicatoinData)
-        //fazer função backend
-        let response = await setSavePublicationStatus(savedUserPublicatoinData)
-        setSaved(!saved)
-        console.log(response)
+        console.log(savedUserPublicatoinData);
+        let response = await setSavePublicationStatus(savedUserPublicatoinData);
+        setSaved(!saved);
     }
     return ( 
 
@@ -73,7 +71,7 @@ function Post(props){
                         </svg>
                     </div>
                     <div className='w-0 h-0 overflow-visible'>
-                        <div className={`${mo==false && 'hidden'} right-10 relative top-0 p-2 w-20 h-14 bg-ipt justify-center items-start flex flex-col gap-1`}>
+                        <div className={`${mo==false && 'hidden'} rounded-lg right-10 relative top-0 p-2 w-20 h-14 bg-ipt justify-center items-start flex flex-col gap-1`}>
                             {/*<button className='text-xs text-white rounded-sm '>publicacao</button>/*/}
                             {<button className='text-xs text-white rounded-sm '>denunciar</button>}
                             <button className={` ${JSON.parse(localStorage.getItem("user")).nome!=publication.nome && 'hidden'} text-xs text-white rounded-sm `} onClick={()=>{deletePublication()}}>delete</button>
