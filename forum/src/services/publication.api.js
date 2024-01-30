@@ -30,6 +30,32 @@ async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') 
     }
 }
 
+async function updatePublicationComments(comentarioData){
+    try{
+        const response = await fetch(`https://iwork947.azurewebsites.net/api/GetCommentsForPublication`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(comentarioData),
+            //InputFilter = ' ' e o AscDesc = ´DESC´
+        });
+
+        // Check if the response status is in the range of 2xx (success)
+        if (response.status==200) {
+            const data = await response.json();
+            return data;
+        } else {
+            // Return an empty array for a 404 response
+            return [];
+        }
+    }
+    catch(error){
+        console.error("Error in getPublicationComments:", error)
+        return []
+    }
+}
+
 async function getPublicationComments(publication_id){
     try{
         const response = await fetch(`https://iwork947.azurewebsites.net/api/GetCommentsForPublication`, {
@@ -103,7 +129,7 @@ async function addPublication(publicationData){
 
 async function setSavePublicationStatus(savedData){
     //mudar url, fazer a função
-    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/GetUser`, {
+    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/SavePublication`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
