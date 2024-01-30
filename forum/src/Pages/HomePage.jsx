@@ -64,6 +64,7 @@ function HomePage() {
   function handleOpenSideBar(){
     setOpenSideBar(!openSideBar);
   }
+
   return (
     <>
       <div className='h-full relative top-0'>
@@ -89,7 +90,7 @@ function HomePage() {
           
           <AddPost></AddPost>
           {publications === null?(<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>):
-          (publications.length==0?<div className='flex w-full h-96 justify-center items-center'><h1 className='text-center'>Não esta escrito em nenhum canal<br/>se <strong onClick={handleOpenSideBar}>increva</strong> em uma canal</h1><button></button></div>:
+          (publications.length===0?<div className='flex w-full h-96 justify-center items-center'><h1 className='text-center'>Não esta escrito em nenhum canal<br/>se <strong onClick={handleOpenSideBar}>increva</strong> em uma canal</h1><button></button></div>:
             (publications.map((publication) => (
               <Post publicacao={publication}></Post>
             )) 
@@ -101,9 +102,6 @@ function HomePage() {
           </div>
         </div>
       </div>
-      </div>
-      <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
-        <Bar></Bar>
       </div>
     
     </>
