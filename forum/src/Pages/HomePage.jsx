@@ -53,13 +53,13 @@ function HomePage() {
   const [filter, setFilter] = useState("")
   const [ascdes,setAscdes] = useState("DESC")
   useEffect(() => {
-    getPublicacao(homePageUser.user_id,publicationcount,filter,ascdes)
+    getPublicacao(homePageUser.user_id,0,filter,ascdes)
     
   },[filter,ascdes]);
   //5 primeiras publicações das 
 
- async function getPublicacao(user,page,filter,ascdes) {
-    let p = await  GetUserPublications(user,0,filter,ascdes)
+ async function getPublicacao(user,page,f,ascdes) {
+    let p = await  GetUserPublications(user,0,f,"DESC")
     //publications
     setPublications(p)
     console.log(p)

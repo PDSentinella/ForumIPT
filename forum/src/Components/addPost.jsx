@@ -53,7 +53,7 @@ function AddPost(props){
         console.log(publicationData)
         const response = await addPublication(publicationData)
         console.log(response)
-        //setUpdate(update+1);
+        await setUpdate(update+1);
         handleClose();
         }
      catch (error) {
