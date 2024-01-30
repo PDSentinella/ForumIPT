@@ -64,7 +64,7 @@ function HomePage() {
           <div className='flex flex-col w-full '>
           <Header></Header>
           <div className='flex flex-col items-center '>
-          {<div className=' flex justify-center w-full px-10 py-2 rounded-lg bg-ipt items-center gap-x-4 sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
+          {<div className=' flex justify-center w-full px-5 py-2 rounded-lg bg-ipt items-center gap-x-4 sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
             <input className=' w-full h-7 rounded-2xl p-2 ' onChange={(event)=>{setFilter(event.target.value)}}></input>
             <div className='flex justify-center items-center h-7 px-2 gap-x-1 rounded-2xl bg-white'>
               <SearchSharpIcon sx={{ fontSize: 18 }}></SearchSharpIcon>
