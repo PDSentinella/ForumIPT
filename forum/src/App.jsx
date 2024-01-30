@@ -12,6 +12,7 @@ import Users from './Pages/Dashboard/Users.jsx';
 import Canais from './Pages/Dashboard/Canais.jsx';
 import Pubs from './Pages/Dashboard/Pubs.jsx';
 import Chat from './Pages/WebChat/Chat.jsx'
+import PDF from "./Pages/PdfReader/pdf.jsx";
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -35,6 +36,7 @@ function App() {
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/canal/:id" element={<ChannelPage />} />
             <Route path="/Chat" element={<Chat />}/>
+            <Route path="/pdf" element={<PDF />}/>
             {/* Dashboard com nested Routes */}
             {
               user.admin_privileges === true ?   (<Route path="/DashBoard" element={<DashBoard />}>
