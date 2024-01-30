@@ -59,6 +59,7 @@ function HomePage() {
   //5 primeiras publicações das 
 
  async function getPublicacao(user,page,filter,ascdes) {
+  console.log(filter)
     let p = await  GetUserPublications(user,0,filter,ascdes)
     //publications
     setPublications(p)
