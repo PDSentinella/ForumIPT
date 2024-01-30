@@ -152,6 +152,7 @@ function SideBar(props){
                 formData.set('canal_id', JSON.stringify(canal.canal_id));
                 formData.append('user_id', JSON.stringify(user.user_id));
                 const formJson = Object.fromEntries(formData.entries());
+                console.log(formJson)
                 sendInfo(formJson);
                 handleClose();
 

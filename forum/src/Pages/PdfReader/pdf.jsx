@@ -26,9 +26,6 @@ function PDF() {
           />
         </Worker>
       </div>
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
     </div>
   );
 }
