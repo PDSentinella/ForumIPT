@@ -77,11 +77,11 @@ function Charts() {
         <Grid item xs={8} sm={12} md={8}>  {/* Neste caso o lg não será necessario porque o md é suficiente a partir dos 900*/}
         <Paper rounded elevation={6} sx={{padding: {sx: '2rem'}}}>
           <Typography sx={{ p: 1}} variant='h6'>Atalhos</Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column', p: 2}}>
+          <Box sx={{ display: 'flex', gap: 2, flexDirection: 'column', p: 2.5}}>
           <Link to="/DashBoard/geral"><Typography variant='body1'>Geral</Typography></Link>
-          <Link to="/Dashboard/users"><Typography>Gestão de utilizadores</Typography></Link>
-          <Link to="/Dashboard/pubs"><Typography>Gestão de Publicações</Typography></Link>
-          <Link to="/Dashboard/canais"><Typography>Gestão de canais</Typography></Link>
+          <Link to="/Dashboard/users"><Typography variant='body1'>Gestão de utilizadores</Typography></Link>
+          <Link to="/Dashboard/pubs"><Typography variant='body1'>Gestão de Publicações</Typography></Link>
+          <Link to="/Dashboard/canais"><Typography variant='body1'>Gestão de canais</Typography></Link>
           </Box>
         </Paper>
         </Grid>
