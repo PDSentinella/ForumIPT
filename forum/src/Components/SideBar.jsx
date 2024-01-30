@@ -115,7 +115,7 @@ function SideBar(props){
                     </div>
                     </Link>                     
                     {/*Your treads*/}
-                    <Link to="/profile" reloadDocument>
+                    <Link to="/profile/g" reloadDocument>
                     <div className='flex gap-x-2 items-center cursor-pointer '>
                         <div className=' flex rounded items-center justify-center w-6 h-6 '>
                         <BookmarkAddedOutlinedIcon sx={{ color: 'white', fontSize: 32}}/>  

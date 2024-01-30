@@ -220,7 +220,7 @@ export default function DashBoard(props) {
                     color: 'gray'
                   }}
                 >
-                  {index % 2 === 0 ? <Link to="/profile"><Avatar src={user ? user.profile_image : ''} /> </Link> : <Button onClick={handleClose}><LogoutOutlinedIcon sx={{color: 'gray'}} /></Button>}
+                  {index % 2 === 0 ? <Link to="/profile/info"><Avatar src={user ? user.profile_image : ''} /> </Link> : <Button onClick={handleClose}><LogoutOutlinedIcon sx={{color: 'gray'}} /></Button>}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>

@@ -20,7 +20,7 @@ function UserProfilePage(props) {
     getUser()
   },[]);
   const [userProfilePage,setUserProfilePage] = useState();
-  const [selected, setSelected] = useState(props.selected);
+  const [selected, setSelected] = useState(window.location.pathname.replace("/profile/",""));
   return (
     <>
     
