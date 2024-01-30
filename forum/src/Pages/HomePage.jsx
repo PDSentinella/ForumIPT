@@ -9,9 +9,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { GetChannels } from '../services/channels.api'
 import { GetUserPublications } from '../services/publication.api'
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { ArrowBackIosSharp } from '@mui/icons-material'
-
+import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 
 
 
@@ -64,12 +64,17 @@ function HomePage() {
           <div className='flex flex-col w-full '>
           <Header></Header>
           <div className='flex flex-col items-center '>
-          {<div className=' flex gap-x-4 sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
-          <input className=' w-full h-10 rounded-lg '  onChange={(event)=>{setFilter(event.target.value)}}></input>
-          <div className='flex items-center p-1 gap-x-1 rounded-lg bg-white'>
-            <div variant="contained" ><ArrowBackIosSharp sx={{ fontSize: 12 }} /></div>
-            <div variant="contained" ><ArrowForwardIosSharpIcon sx={{ fontSize: 12 }} /></div>
-          </div>
+          {<div className=' flex justify-center w-full px-10 py-2 rounded-lg bg-ipt items-center gap-x-4 sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
+            <input className=' w-full h-7 rounded-2xl p-2 ' onChange={(event)=>{setFilter(event.target.value)}}></input>
+            <div className='flex justify-center items-center h-7 px-2 gap-x-1 rounded-2xl bg-white'>
+              <SearchSharpIcon sx={{ fontSize: 18 }}></SearchSharpIcon>
+            </div>
+            <div className='flex justify-center items-center h-7 px-2 gap-x-1 rounded-2xl bg-white'>
+              <div className='flex h-full'>
+                <div variant="contained" ><ArrowBackIosSharp sx={{ fontSize: 10 }} /></div>
+                <div variant="contained" ><ArrowForwardIosSharpIcon sx={{ fontSize: 10 }} /></div>
+              </div>
+            </div>
           </div>}
           
           <AddPost></AddPost>
