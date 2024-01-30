@@ -19,6 +19,7 @@ import Select from '@mui/material/Select';
 import { Box } from "@mui/material";
 import { RegisterChannel } from "../services/channels.api";
 import SucessAlert from "./SucessAlert";
+import DehazeSharpIcon from '@mui/icons-material/DehazeSharp';
 
 //instagram side bar, quando a screen é grande o suficiente a side bar expande de vez, podemos recriar algo parecido usando xs-max: ou algo do genero, tentar
 function SideBar(props){
@@ -87,9 +88,7 @@ function SideBar(props){
             <div className={`${open ?'w-72 absolute': 'w-0 sm:w-16  '} max-sm:hidden absolute duration-300 h-full bg-ipt overflow-y-auto z-20 `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
                 <div className={`flex  cursor-pointer items-center justify-center w-full gap-x-6 pt-8`}>
                     <div className={`  w-8 h-8  items-center justify-center border-pale_purple rounded`} onClick={()=>handleOpen()}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="" PencilIcon color='#EEF4F8ff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="" >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
+                      <DehazeSharpIcon sx={{ color: 'white', fontSize: 32}}></DehazeSharpIcon>
                     </div>
                     <h1 className={`${!open && 'hidden'} duration-500 text-4xl text-white font-bold`}>FORUM</h1>  
                 </div>
