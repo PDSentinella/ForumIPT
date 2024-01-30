@@ -30,15 +30,14 @@ async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') 
     }
 }
 
-async function updatePublicationComments(comentarioData){
+async function addComments(comentarioData){
     try{
-        const response = await fetch(`https://iwork947.azurewebsites.net/api/GetCommentsForPublication`, {
+        const response = await fetch(`https://iwork947.azurewebsites.net/api/AddComment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(comentarioData),
-            //InputFilter = ' ' e o AscDesc = ´DESC´
         });
 
         // Check if the response status is in the range of 2xx (success)
@@ -154,4 +153,4 @@ async function setSavePublicationStatus(savedData){
 
 
 
-export { GetUserPublications,getPublicationComments,getUserData,addPublication,setSavePublicationStatus}
+export { GetUserPublications,getPublicationComments,getUserData,addPublication,setSavePublicationStatus,addComments}

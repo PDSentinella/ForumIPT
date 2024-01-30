@@ -107,7 +107,7 @@ function EditProfilePage(props){
                             required
                             name="locations"
                             id="Location"
-                            defaultValue={userEditProfilePage.Locations}
+                            defaultValue={userEditProfilePage.locations}
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>JobTitle</h2>

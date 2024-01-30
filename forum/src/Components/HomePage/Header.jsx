@@ -87,7 +87,7 @@ const navigate = useNavigate();
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <Link to="/profile">
+        <Link to="/profile/info">
           <MenuItem onClick={() => handleClose(1)}>
             <Avatar src={user.profile_image} /> Profile
           </MenuItem>
