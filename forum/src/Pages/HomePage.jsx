@@ -8,44 +8,15 @@ import Bar from '../Components/Bar'
 import CircularProgress from '@mui/material/CircularProgress';
 import { GetChannels } from '../services/channels.api'
 import { GetUserPublications } from '../services/publication.api'
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import { Button } from '@mui/material'
+import { ArrowBackIosSharp } from '@mui/icons-material'
 
 
 
 
 function HomePage() {
-  var publicacao = [{
-    titulo:"Date of the final exams",
-    img:"",
-    user:{name:"Paulo Santo",
-        foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg"       
-        },
-    time:"2 hrs ago",
-    msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
-    
-    coments:[
-    {
-        user:{
-                name:"Paulo",
-                foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg",
-                teacher:true
-            },
-        commentMsg:"Good after noon teacher. I think that 18 Dezember will be a good date to do the test",
-        time:"2hrs ago",
-        teacher:false
-    }  ,
-
-    {
-        user:{
-                name:"Toninho",
-                foto:"",
-                teacher:false
-            },
-        commentMsg:"Good afternoon. I think that 18 dezember will ber an excellent day to do our asigniment",
-        time:"12/1/4",
-    },
-
-            ]
-}]
+  
   const [homePageUser,setHomePageUser] = useState(JSON.parse(localStorage.getItem("user")))
   const [publicationcount, setPublicationcount] = useState(0);
   const [publications, setPublications] = useState(null);
@@ -66,6 +37,17 @@ function HomePage() {
     
   }
 
+  const handleProximaPagina = ()=>{
+    setPublicationcount(publicationcount+3)
+  }
+  const handlePaginaAnterior = ()=>{
+    let pagina = publicationcount-3
+    if(pagina<0){
+      pagina = 0
+    }
+    setPublicationcount(pagina)
+  }
+
   
   
   ///lista de publicações
@@ -82,8 +64,12 @@ function HomePage() {
           <div className='flex flex-col w-full '>
           <Header></Header>
           <div className='flex flex-col items-center '>
-          {<div className='sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
+          {<div className=' flex gap-x-4 sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
           <input className=' w-full h-10 rounded-lg '  onChange={(event)=>{setFilter(event.target.value)}}></input>
+          <div className='flex items-center p-1 gap-x-1 rounded-lg bg-white'>
+            <div variant="contained" ><ArrowBackIosSharp sx={{ fontSize: 12 }} /></div>
+            <div variant="contained" ><ArrowForwardIosSharpIcon sx={{ fontSize: 12 }} /></div>
+          </div>
           </div>}
           
           <AddPost></AddPost>

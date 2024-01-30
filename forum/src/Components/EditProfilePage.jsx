@@ -30,8 +30,8 @@ function EditProfilePage(props){
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         try {
-          //console.log(data.get("nome"));
-          let userData2 = {
+          console.log(data.get("nome"));
+          let userData = {
             "user_id":JSON.parse(localStorage.getItem("user")).user_id,
             "nome":data.get("nome"),
             "email":data.get("email"),
@@ -42,8 +42,6 @@ function EditProfilePage(props){
             'genero': JSON.parse(localStorage.getItem("user")).genero, 
             'admin_privileges': JSON.parse(localStorage.getItem("user")).admin_privileges
           }
-          let userData = {"genero": "genero", "admin_privileges":true, "email": "email", "user_id": 34,
-          "aboutme": "aboutme", "telefone": "telefone", "jobtitle": "jobtitle", "password": "password", "locations": "locations", "nome": "nome"}
           console.log(userData)
           const result = await UpdateUserById(userData);
           if(result.ok){
