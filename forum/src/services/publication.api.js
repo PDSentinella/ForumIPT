@@ -156,7 +156,7 @@ async function getUserSavedPublication(user_id,page){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({"user_id":user_id,"Page":page}),
+        body: JSON.stringify({"user_id":user_id/*,"Page":page*/}),
     });
 
     // Check if the response status is in the range of 2xx (success)
