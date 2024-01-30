@@ -29,8 +29,8 @@ function HomePage() {
   },[filter,ascdes]);
   //5 primeiras publicações das 
 
- async function getPublicacao(user,page,filter,ascdes) {
-    let p = await  GetUserPublications(user,0,filter,ascdes)
+ async function getPublicacao(user,page,f,ascdes) {
+    let p = await  GetUserPublications(user,0,f,"DESC")
     //publications
     setPublications(p)
     console.log(p)
