@@ -17,6 +17,7 @@ import { addComments } from '../services/publication.api';
 
 function AddComment(props){
     const [opend, setOpend] = React.useState(false);
+    const [reload,setReload] = React.useState(0);
   
     const handleClickOpen = () => {
       setOpend(true);
@@ -24,6 +25,10 @@ function AddComment(props){
   
     const handleClose = () => {
       setOpend(false);
+    };
+    const reloadComments = () =>{
+      let r = reload +1;
+      setReload(r)
     };
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -38,9 +43,9 @@ function AddComment(props){
         }
         console.log(CommentData)
         const result = await addComments(CommentData);
-        if(result.status==200){
+        
           window.location.reload(false)
-        }
+        
         }
      catch (error) {
         console.log(error);
