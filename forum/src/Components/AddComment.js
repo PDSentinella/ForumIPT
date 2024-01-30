@@ -8,6 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CommentsDialog from './Comments';
 import { Box } from '@mui/material';
+import { addComments } from '../services/publication.api';
 
 
     
@@ -36,11 +37,10 @@ function AddComment(props){
           
         }
         console.log(CommentData)
-        //const result = await UpdateUserById(userData);
-        /*if(result.ok){
+        const result = await addComments(CommentData);
+        if(result.status==200){
           window.location.reload(false)
-          handleClose();
-        }*/
+        }
         //const response = await addPublication(publicationData)
         }
      catch (error) {
