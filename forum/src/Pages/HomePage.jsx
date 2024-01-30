@@ -23,10 +23,11 @@ function HomePage() {
   const [openSideBar, setOpenSideBar] = useState(false);
   const [filter, setFilter] = useState("")
   const [ascdes,setAscdes] = useState("DESC")
+  const [search,setSearch] = useState(0)
   useEffect(() => {
-    getPublicacao(homePageUser.user_id,0,filter,ascdes)
+    getPublicacao(homePageUser.user_id,publicationcount,filter,ascdes)
     
-  },[filter,ascdes]);
+  },[filter,ascdes,search,publicationcount]);
   //5 primeiras publicações das 
 
  async function getPublicacao(user,page,f,ascdes) {
@@ -39,13 +40,22 @@ function HomePage() {
 
   const handleProximaPagina = ()=>{
     setPublicationcount(publicationcount+3)
+    console.log(publicationcount)
+  }
+  const handleSearch = ()=>{
+    console.log(search)
+    let s = search +1
+    setSearch(s)
+    
   }
   const handlePaginaAnterior = ()=>{
+
     let pagina = publicationcount-3
     if(pagina<0){
       pagina = 0
     }
     setPublicationcount(pagina)
+    console.log(pagina)
   }
 
   
@@ -65,15 +75,15 @@ function HomePage() {
           <div className='flex flex-col w-full '>
           <Header></Header>
           <div className='flex flex-col items-center '>
-          {<div className=' flex justify-center w-full px-10 py-2 rounded-lg bg-ipt items-center gap-x-4 sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
-            <input className=' w-full h-7 rounded-2xl p-2 ' onChange={(event)=>{setFilter(event.target.value)}}></input>
-            <div className='flex justify-center items-center h-7 px-2 gap-x-1 rounded-2xl bg-white'>
+          {<div className=' flex justify-center w-full px-5 py-2 rounded-lg bg-ipt items-center gap-x-4 sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
+            <input className=' w-full h-7 rounded-2xl p-2 border-0	' onChange={(event)=>{setFilter(event.target.value)}}></input>
+            <div className='flex justify-center items-center h-7 px-2 gap-x-1 rounded-2xl bg-white' onClick={()=>{handleSearch()}}>
               <SearchSharpIcon sx={{ fontSize: 18 }}></SearchSharpIcon>
             </div>
             <div className='flex justify-center items-center h-7 px-2 gap-x-1 rounded-2xl bg-white'>
               <div className='flex h-full'>
-                <div variant="contained" ><ArrowBackIosSharp sx={{ fontSize: 10 }} /></div>
-                <div variant="contained" ><ArrowForwardIosSharpIcon sx={{ fontSize: 10 }} /></div>
+                <div variant="contained" onClick={()=>{handlePaginaAnterior()}} ><ArrowBackIosSharp sx={{ fontSize: 10 }} /></div>
+                <div variant="contained"onClick={()=>{handleProximaPagina()}} ><ArrowForwardIosSharpIcon sx={{ fontSize: 10 }} /></div>
               </div>
             </div>
           </div>}

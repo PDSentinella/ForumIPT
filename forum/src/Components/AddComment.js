@@ -8,6 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CommentsDialog from './Comments';
 import { Box } from '@mui/material';
+import { addComments } from '../services/publication.api';
 
 
     
@@ -28,20 +29,18 @@ function AddComment(props){
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       try {
-        console.log(data.get("nome"));
+        const user = JSON.parse(localStorage.getItem("user"))
         let CommentData = {
-          "user_id":JSON.parse(localStorage.getItem("user")).user_id,
+          "user_id":user.user_id,
           "publication_id":props.publication_id,
           "comentario":data.get("comentario"),
           
         }
         console.log(CommentData)
-        //const result = await UpdateUserById(userData);
-        /*if(result.ok){
+        const result = await addComments(CommentData);
+        if(result.status==200){
           window.location.reload(false)
-          handleClose();
-        }*/
-        //const response = await addPublication(publicationData)
+        }
         }
      catch (error) {
         console.log(error);
