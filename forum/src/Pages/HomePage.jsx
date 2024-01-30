@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../Components/Header'
-import Footer from '../Components/Footer'
+import Header from '../Components/HomePage/Header'
+import Footer from '../Components/HomePage/Footer'
 import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
@@ -47,13 +47,13 @@ function HomePage() {
             ]
 }]
   const [homePageUser,setHomePageUser] = useState(JSON.parse(localStorage.getItem("user")))
-  const [publicationcount, setPublicationcount] = useState(5);
+  const [publicationcount, setPublicationcount] = useState(0);
   const [publications, setPublications] = useState(null);
   const [openSideBar, setOpenSideBar] = useState(false);
   const [filter, setFilter] = useState("")
   const [ascdes,setAscdes] = useState("DESC")
   useEffect(() => {
-    getPublicacao(homePageUser.user_id,0,filter,ascdes)
+    getPublicacao(homePageUser.user_id,publicationcount,filter,ascdes)
     
   },[filter,ascdes]);
   //5 primeiras publicações das 

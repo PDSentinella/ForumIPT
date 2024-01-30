@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import UserCard from '../Components/UserCard'
-import Footer from '../Components/Footer'
+import Footer from '../Components/HomePage/Footer'
 import SideBar from '../Components/SideBar'
 import Bar from '../Components/Bar'
 import UserInfo from '../Components/UserInfo'

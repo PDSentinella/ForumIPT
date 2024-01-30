@@ -79,7 +79,7 @@ async function getUserData(user_id){
     }
 }
 async function addPublication(publicationData){
-    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/GetUser`, {
+    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/AddPublication`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

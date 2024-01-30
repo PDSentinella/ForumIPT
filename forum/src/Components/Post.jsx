@@ -44,7 +44,7 @@ function Post(props){
     const [publication, setPublication] = useState(props.publicacao);
     const [open, setOpen] = useState(false);
     const [mo, setMo] = useState(false)
-    const [saved,setSaved] = useState(false)
+    const [saved,setSaved] = useState(props.publicacao.saved?true:false)
 
     async function deletePublication(){
         const response = await DeletePubById({"publication_id":publication.publication_id})
