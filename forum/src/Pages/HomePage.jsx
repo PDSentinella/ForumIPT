@@ -85,7 +85,7 @@ function HomePage() {
               </div>
             </div>
             <div className='flex justify-center items-center h-7  rounded-2xl bg-ipt' onClick={()=>{handleSearch()}}>
-              <h1 className='text-white'>{publicationcount}</h1>
+              <h1 className='text-white text-sm  '>{publicationcount}</h1>
             </div>
           </div>}
           
