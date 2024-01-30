@@ -31,7 +31,7 @@ function HomePage() {
   //5 primeiras publicações das 
 
  async function getPublicacao(user,page,f,ascdes) {
-    let p = await  GetUserPublications(user,0,f,"DESC")
+    let p = await  GetUserPublications(user,page,f,"DESC")
     //publications
     setPublications(p)
     console.log(p)
@@ -39,7 +39,7 @@ function HomePage() {
   }
 
   const handleProximaPagina = ()=>{
-    setPublicationcount(publicationcount+3)
+    setPublicationcount(publicationcount+1)
     console.log(publicationcount)
   }
   const handleSearch = ()=>{
@@ -50,7 +50,7 @@ function HomePage() {
   }
   const handlePaginaAnterior = ()=>{
 
-    let pagina = publicationcount-3
+    let pagina = publicationcount-1
     if(pagina<0){
       pagina = 0
     }
