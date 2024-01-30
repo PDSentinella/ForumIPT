@@ -101,6 +101,13 @@ const navigate = useNavigate();
           : ''
         }
 
+        <Link to="/pdf">
+          <MenuItem onClick={() => handleClose(1)}>
+           PDF
+          </MenuItem>
+        </Link>
+        <Divider />
+
         <MenuItem onClick={handleClose(5)}>
           <ListItemIcon>
             <Logout fontSize="small" />
