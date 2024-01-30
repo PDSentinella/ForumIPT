@@ -3,7 +3,7 @@ const base_url = "https://iwork947.azurewebsites.net/api/";
 
 async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') {
     try {
-        const response = await fetch(`https://iwork947.azurewebsites.net/api/GetPublications`, {
+        const response = await fetch(`${base_url}GetPublications`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -13,10 +13,10 @@ async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') 
         });
 
         // Check if the response status is in the range of 2xx (success)
-        if(response.status==202){
+        if(response.status===202){
             return [];
         }
-        else if (response.status==200) {
+        else if (response.status===200) {
             const data = await response.json();
             return data;
         } else {
@@ -32,7 +32,7 @@ async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') 
 
 async function addComments(comentarioData){
     try{
-        const response = await fetch(`https://iwork947.azurewebsites.net/api/AddComment`, {
+        const response = await fetch(`${base_url}AddComment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ async function addComments(comentarioData){
         });
 
         // Check if the response status is in the range of 2xx (success)
-        if (response.status==200) {
+        if (response.status===200) {
             const data = await response.json();
             return data;
         } else {
@@ -57,7 +57,7 @@ async function addComments(comentarioData){
 
 async function getPublicationComments(publication_id){
     try{
-        const response = await fetch(`https://iwork947.azurewebsites.net/api/GetCommentsForPublication`, {
+        const response = await fetch(`${base_url}GetCommentsForPublication`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ async function getPublicationComments(publication_id){
 }
 
 async function getUserData(user_id){
-    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/GetUser`, {
+    try{const response = await fetch(`${base_url}GetUser`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ async function getUserData(user_id){
     });
 
     // Check if the response status is in the range of 2xx (success)
-    if (response.status==200) {
+    if (response.status===200) {
         const data = await response.json();
         return data;
     } else {
@@ -104,7 +104,7 @@ async function getUserData(user_id){
     }
 }
 async function addPublication(publicationData){
-    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/AddPublication`, {
+    try{const response = await fetch(`${base_url}AddPublication`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ async function addPublication(publicationData){
     });
 
     // Check if the response status is in the range of 2xx (success)
-    if (response.status==200) {
+    if (response.status===200) {
         const data = await response.json();
         return data;
     } else {
@@ -128,7 +128,7 @@ async function addPublication(publicationData){
 
 async function setSavePublicationStatus(savedData){
     //mudar url, fazer a função
-    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/SavePublication`, {
+    try{const response = await fetch(`${base_url}SavePublication`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ async function setSavePublicationStatus(savedData){
     });
 
     // Check if the response status is in the range of 2xx (success)
-    if (response.status==200) {
+    if (response.status===200) {
         const data = await response.json();
         return data;
     } else {
@@ -151,7 +151,7 @@ async function setSavePublicationStatus(savedData){
 }
 async function getUserSavedPublication(user_id,page){
     //mudar url, fazer a função
-    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/GetPubsSaved`, {
+    try{const response = await fetch(`${base_url}GetPubsSaved`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -160,7 +160,7 @@ async function getUserSavedPublication(user_id,page){
     });
 
     // Check if the response status is in the range of 2xx (success)
-    if (response.status==200) {
+    if (response.status===200) {
         const data = await response.json();
         return data;
     } else {

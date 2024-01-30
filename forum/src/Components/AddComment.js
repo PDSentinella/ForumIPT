@@ -1,10 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CommentsDialog from './Comments';
 import { Box } from '@mui/material';
@@ -36,11 +35,9 @@ function AddComment(props){
           "comentario":data.get("comentario"),
           
         }
-        console.log(CommentData)
+        
         const result = await addComments(CommentData);
-        if(result.status==200){
-          window.location.reload(false)
-        }
+        handleClose();
         }
      catch (error) {
         console.log(error);
