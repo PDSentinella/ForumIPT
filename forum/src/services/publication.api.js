@@ -38,7 +38,6 @@ async function addComments(comentarioData){
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(comentarioData),
-            //InputFilter = ' ' e o AscDesc = ´DESC´
         });
 
         // Check if the response status is in the range of 2xx (success)

@@ -32,8 +32,8 @@ function App() {
         {/* Protected Routes */}
         {user && (
           <>
-            <Route path="/profile" element={<UserProfilePage />} />
-            <Route path="/canal/:id" element={<ChannelPage />} />
+            <Route path="/profile" element={<UserProfilePage selected="info"/>} />
+            <Route path="/canal/:id" element={<ChannelPage  />} />
             <Route path="/Chat" element={<Chat />}/>
             {/* Dashboard com nested Routes */}
             {

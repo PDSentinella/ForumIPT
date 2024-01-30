@@ -96,7 +96,7 @@ function SideBar(props){
 
                 
             <div className={`flex flex-col flex-1 justify-center gap-y-6 pt-8 ${!open ?'items-center w-full ':'items-start ml-14 w-62'}`}>
-                <Link to="/" reloadDocument><div className={`flex gap-x-2 justify-center cursor-pointer `}>
+                <Link to="/User" reloadDocument><div className={`flex gap-x-2 justify-center cursor-pointer `}>
                         <div className={` flex rounded items-center justify-center w-6 h-6 `}>
                           <HomeOutlinedIcon sx={{ color: 'white', fontSize: 32}}/>  
                         </div>
@@ -115,12 +115,14 @@ function SideBar(props){
                     </div>
                     </Link>                     
                     {/*Your treads*/}
+                    <Link to="/profile" reloadDocument>
                     <div className='flex gap-x-2 items-center cursor-pointer '>
                         <div className=' flex rounded items-center justify-center w-6 h-6 '>
                         <BookmarkAddedOutlinedIcon sx={{ color: 'white', fontSize: 32}}/>  
                         </div>
                         <h1 className={`${!open&&'hidden'}  text-white font-bold tracking-wide`}>Saved</h1>
                     </div>  
+                    </Link>
                     {/*Saved*/}
                     {/*Drawerl*/}
                     <Drawerl open={open}></Drawerl>

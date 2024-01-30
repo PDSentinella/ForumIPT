@@ -29,9 +29,9 @@ function AddComment(props){
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       try {
-        console.log(data.get("nome"));
+        const user = JSON.parse(localStorage.getItem("user"))
         let CommentData = {
-          "user_id":JSON.parse(localStorage.getItem("user")).user_id,
+          "user_id":user.user_id,
           "publication_id":props.publication_id,
           "comentario":data.get("comentario"),
           
@@ -41,7 +41,6 @@ function AddComment(props){
         if(result.status==200){
           window.location.reload(false)
         }
-        //const response = await addPublication(publicationData)
         }
      catch (error) {
         console.log(error);
