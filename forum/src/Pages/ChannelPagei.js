@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../Components/Header'
-import Footer from '../Components/Footer'
+import Header from '../Components/HomePage/Header'
+import Footer from '../Components/HomePage/Footer'
 import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
 import Bar from '../Components/Bar'
+import CircularProgress from '@mui/material/CircularProgress';
+
 function ChannelPage() {
     const [selected, setSelected] = useState("");
   useEffect(() => {

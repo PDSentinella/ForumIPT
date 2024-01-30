@@ -24,7 +24,28 @@ async function GetChannels(user_id) {
     }
 }
 
-
+async function GetChannelWithDescription(channel_id) {
+    try {
+        const response = await fetch(`${base_url}GetChannelWithDescription`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"canal_id": channel_id}),
+        });
+        // Check if the response status is in the range of 2xx (success)
+        if ( response.status===200) {
+            const data = await response.json();           
+            return data;
+        } else {
+            // Return an empty array for a 404 response
+            return [];
+        }
+    } catch (error) {
+        // Log other errors, or handle them as needed
+        console.error("Error in GetChannels:", error);
+    }
+}
 
 async function GetAllChannels(){
     try {
@@ -56,4 +77,4 @@ async function RegisterChannel(sendInfo){
     }
 }
 
-export { GetChannels, GetAllChannels, RegisterChannel }
+export { GetChannels, GetAllChannels, RegisterChannel , GetChannelWithDescription }

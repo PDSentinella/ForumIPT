@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import UserCard from '../Components/UserCard'
-import Footer from '../Components/Footer'
+import Footer from '../Components/HomePage/Footer'
 import SideBar from '../Components/SideBar'
 import Bar from '../Components/Bar'
 import UserInfo from '../Components/UserInfo'
@@ -28,7 +28,7 @@ function UserProfilePage(props) {
       <div className="flex  h-screen w-full ">
 
         <SideBar></SideBar>
-        {typeof userProfilePage =="object"?<><div className={` flex flex-col bg-alice-blue  items-center sm:px-16 px-8  flex-1 h-full  w-full overflow-y-auto`}>
+        {typeof userProfilePage =="object"?<><div className={` flex flex-col bg-background-gray  items-center sm:px-16 px-8  flex-1 h-full  w-full overflow-y-auto`}>
             {typeof userProfilePage =="object" && <UserCard user={userProfilePage}></UserCard>}    
             {/*content appear div*/}
             <div className='w-full mt-4 self-center'>

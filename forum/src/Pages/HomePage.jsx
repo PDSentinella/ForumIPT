@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../Components/Header'
-import Footer from '../Components/Footer'
+import Header from '../Components/HomePage/Header'
+import Footer from '../Components/HomePage/Footer'
 import SideBar from '../Components/SideBar'
 import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
@@ -47,13 +47,13 @@ function HomePage() {
             ]
 }]
   const [homePageUser,setHomePageUser] = useState(JSON.parse(localStorage.getItem("user")))
-  const [publicationcount, setPublicationcount] = useState(5);
+  const [publicationcount, setPublicationcount] = useState(0);
   const [publications, setPublications] = useState(null);
   const [openSideBar, setOpenSideBar] = useState(false);
   const [filter, setFilter] = useState("")
   const [ascdes,setAscdes] = useState("DESC")
   useEffect(() => {
-    getPublicacao(homePageUser.user_id,0,filter,ascdes)
+    getPublicacao(homePageUser.user_id,publicationcount,filter,ascdes)
     
   },[filter,ascdes]);
   //5 primeiras publicações das 
@@ -82,13 +82,13 @@ function HomePage() {
           <div className='flex flex-col w-full '>
           <Header></Header>
           <div className='flex flex-col items-center '>
-          <div className=''>
-          <input className='m-10 w-96 h-10 rounded-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'  onChange={(event)=>{setFilter(event.target.value)}}></input>
-          <button>P</button>
-          </div>
+          {<div className='sm:max-w-lg lg:max-w-2xl xl:max-w-4xl'>
+          <input className=' w-full h-10 rounded-lg '  onChange={(event)=>{setFilter(event.target.value)}}></input>
+          </div>}
+          
           <AddPost></AddPost>
           {publications === null?(<><div className='w-full h-48 '></div><CircularProgress color="success" /><div className='w-full h-96 flex'></div></>):
-          (publications.length==0?<div className='flex w-96 h-96 py-48 justify-items-center ali'><h1 className='text-center'>Não esta escrito em nenhum canal<br/>se <strong onClick={handleOpenSideBar}>increva</strong> em uma canal</h1><button></button></div>:
+          (publications.length==0?<div className='flex w-full h-96 justify-center items-center'><h1 className='text-center'>Não esta escrito em nenhum canal<br/>se <strong onClick={handleOpenSideBar}>increva</strong> em uma canal</h1><button></button></div>:
             (publications.map((publication) => (
               <Post publicacao={publication}></Post>
             )) 

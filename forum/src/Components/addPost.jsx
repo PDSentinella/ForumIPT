@@ -23,6 +23,8 @@ function AddPost(props){
     const [opend, setOpend] = React.useState(false);
     const [canais, setCanais] = useState([]);
     const [canal, setCanal] = useState({ });
+    const [update,setUpdate] = useState(1);
+
     const handleChange = (event) => {
       // vai ao array canais e seleciona o canal correspondente pelo id.
       const selectedCanalId = event.target.value;
@@ -46,12 +48,13 @@ function AddPost(props){
           "user_id":JSON.parse(localStorage.getItem("user")).user_id,
           "canal":data.get("canal"),
           "titulo":data.get("titulo"),
-          "msg":data.get("menssagem"),
-          "imagem":data.get("imagem"),
-          "pubdate":"12"
-        }
+          "msg":data.get("menssagem")
+                        }
         console.log(publicationData)
-        //const response = await addPublication(publicationData)
+        const response = await addPublication(publicationData)
+        console.log(response)
+        //setUpdate(update+1);
+        handleClose();
         }
      catch (error) {
         console.log(error);
@@ -66,6 +69,7 @@ function AddPost(props){
 
       getChannels();
      },[]);
+
      function getFiles(File){
       console.log(File.base64)
       return File.base64
@@ -117,6 +121,7 @@ function AddPost(props){
                         </Select>
                         <TextField
                             autoFocus
+                            required
                             margin="dense"
                             id="titulo"
                             label="titulo"
