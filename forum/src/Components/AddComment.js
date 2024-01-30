@@ -32,7 +32,7 @@ function AddComment(props){
         let CommentData = {
           "user_id":JSON.parse(localStorage.getItem("user")).user_id,
           "publication_id":props.publication_id,
-          "comment":data.get("comment"),
+          "comentario":data.get("comentario"),
           
         }
         console.log(CommentData)
@@ -86,9 +86,9 @@ function AddComment(props){
                             autoFocus
                             required
                             margin="dense"
-                            id="comment"
-                            name="comment"
-                            label="Comment"
+                            id="comentario"
+                            name="comentario"
+                            label="Comentario"
                             type="text"
                             fullWidth
                             variant="standard"

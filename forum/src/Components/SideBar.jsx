@@ -64,7 +64,7 @@ function SideBar(props){
             setAlertOpen(true);
             setTimeout(() => { 
                 window.location.reload();
-              }, 1000); // 1000 milliseconds = 1 second
+              }, 1000);
         }catch(error){
 
         }
@@ -75,6 +75,7 @@ function SideBar(props){
        async function getChannels(){
         const channels = await GetAllChannels();
         setCanais(channels);
+        
        }
 
        getChannels();
