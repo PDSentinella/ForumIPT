@@ -1,7 +1,7 @@
 const base_url = "https://iwork947.azurewebsites.net/api/";
 
 
-async function GetUserPublications(user_id,page=0,InputFilter = ' ', AscDesc ='DESC') {
+async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') {
     try {
         const response = await fetch(`https://iwork947.azurewebsites.net/api/GetPublications`, {
             method: 'POST',
