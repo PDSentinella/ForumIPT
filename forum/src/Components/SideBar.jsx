@@ -62,6 +62,9 @@ function SideBar(props){
         try{
             await RegisterChannel(formJson);
             setAlertOpen(true);
+            setTimeout(() => { 
+                window.location.reload();
+              }, 1000);
         }catch(error){
 
         }
