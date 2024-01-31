@@ -2,6 +2,7 @@ import {useState} from 'react'
 import React from 'react';
 import AddComment from './AddComment';
 import { setSavePublicationStatus } from '../services/publication.api';
+import { deleteSavePublicationStatus } from '../services/publication.api';
 import { DeletePubById } from '../services/DashBoard.api';
 import MoreHorizSharpIcon from '@mui/icons-material/MoreHorizSharp';
 
@@ -33,7 +34,7 @@ function Post(props){
         if(!saved){
             response = await setSavePublicationStatus(savedUserPublicatoinData);}
         else{
-            response = await deletePublication(savedUserPublicatoinData);
+            response = await deleteSavePublicationStatus(savedUserPublicatoinData);
         }
         setSaved(!saved);
     }
