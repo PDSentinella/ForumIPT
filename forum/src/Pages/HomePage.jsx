@@ -32,6 +32,7 @@ function HomePage() {
     if(f !== ''){
       let p = await GetUserPublicationsWithFilter(user, page, f, "DESC");
       //publications
+      console.log('filter')
       setPublications(p)
       console.log(p)
     }else{

@@ -33,7 +33,7 @@ async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') 
 
 async function GetUserPublicationsWithFilter(user_id,page=0,InputFilter, AscDesc ='DESC') {
     try {
-        const response = await fetch(`${base_url}GetPublications`, {
+        const response = await fetch(`${base_url}GetPublicationsWithFilter`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
