@@ -13,17 +13,18 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { addPublication } from '../services/publication.api';
 import FileBase64 from 'react-file-base64';
-
+import AddSharpIcon from '@mui/icons-material/AddSharp';
 
     
 
 
 
 function AddPost(props){
-    const [opend, setOpend] = React.useState(false);
-    const [canais, setCanais] = useState([]);
-    const [canal, setCanal] = useState({ });
-    const [update,setUpdate] = useState(1);
+  //hooks
+    const [opend, setOpend] = React.useState(false);//hook MUI open/close dialog status
+    const [canais, setCanais] = useState([]); // hook usado para fazer atualização da seleção de um canal
+    const [canal, setCanal] = useState({ }); //hook para o canal efetivamente escolhido
+    const [update,setUpdate] = useState(1); //hook para fazer o render de dados especificos na pagina (nao usado)
 
     const handleChange = (event) => {
       // vai ao array canais e seleciona o canal correspondente pelo id.
@@ -31,35 +32,42 @@ function AddPost(props){
       const selectedCanal = canais.find((canal) => canal.canal_id === selectedCanalId);
       setCanal(selectedCanal);
     };
+    //MUI dialog handles open dialog status (using opend hook)
     const handleClickOpen = () => {
       setOpend(true);
     };
-  
+    //MUI dialog handles close dialog status (using opend hook)
     const handleClose = () => {
       setOpend(false);
     };
-
+    //por entermedio de uma função de serviço tenta faz post de uma publicação
     const handleSubmit = async (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       try {
         console.log(data.get("canal"));
+        //objecto json a ser enviado para fazer o post da publicaçao
         let publicationData = {
           "user_id":JSON.parse(localStorage.getItem("user")).user_id,
           "canal":data.get("canal"),
           "titulo":data.get("titulo"),
           "msg":data.get("menssagem")
-                        }
-        console.log(publicationData)
+        }
+        //test console.log
+        //console.log(publicationData)
+        //resposta da função service
         const response = await addPublication(publicationData)
         console.log(response)
-        await setUpdate(update+1);
+        //chama hook update
+        //await setUpdate(update+1);
+        //fecha o MUI dialog
         handleClose();
         }
      catch (error) {
         console.log(error);
     }
     };
+    //faz o fetch usando uma função service dos canais a ser selecionado para ser associado pela publicação
     useEffect(() => {
       async function getChannels(){
        const channels = await GetChannels(2);
@@ -69,7 +77,7 @@ function AddPost(props){
 
       getChannels();
      },[]);
-
+     //funcao para transforma file em base 64
      function getFiles(File){
       console.log(File.base64)
       return File.base64
@@ -81,16 +89,17 @@ function AddPost(props){
                 
         
       
-                <div className="flex items-center justify-center ">
-                        <button className='w-6 h-6 bg-ipt rounded-md'onClick={handleClickOpen}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#F0E4FFff' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
-                            </svg>
+                <div className="flex items-center justify-center justify-items-center ">
+                        <button className=' flex w-6 h-6 items-center justify-center bg-ipt rounded-md'onClick={handleClickOpen}>
+                            <AddSharpIcon sx={{ color: 'white', fontSize: 20}}></AddSharpIcon>
                         </button>
                 </div>
+                {/*MUI dialog*/}
                 <Dialog
+                /*proporcão escolhida*/
                 fullWidth={"sm"}
                 maxWidth={"sm"}
+                /*dialog status*/
                 open={opend}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
@@ -100,6 +109,7 @@ function AddPost(props){
                         <DialogTitle id="alert-dialog-title">
                         {"Comments"}
                         </DialogTitle>
+                        {/*MUI (Box) component usado para fazer o encapsulamento do form (formulario)*/}
                         <Box component="form" onSubmit={handleSubmit} noValidate>
                         <DialogContent >
                         <DialogContentText id="alert-dialog-description">
@@ -119,6 +129,7 @@ function AddPost(props){
                                 </MenuItem>
                               )}
                         </Select>
+                        {/* MUI input componet para receber o titulo da publicação*/}
                         <TextField
                             autoFocus
                             required
@@ -130,7 +141,7 @@ function AddPost(props){
                             variant="standard"
                             name="titulo"
                         />
-                        <img></img>
+                        {/* MUI input componet para receber a imagem da publicação*/}
                         <TextField
                             autoFocus
                             margin="dense"
@@ -143,6 +154,7 @@ function AddPost(props){
                             variant="standard"
                         />
                         <h2 className='ml-2 my-2'>Messagem</h2>
+                        {/* MUI input componet para receber a mensagem da publicação*/}
                         <TextField
                             autoFocus
                             required
@@ -154,16 +166,12 @@ function AddPost(props){
                             type="text"
                             name="menssagem"
                             
-                        />
-                        
-                         <DialogActions>
-                        
-                        </DialogActions>
-                         
-                       
+                        />                   
                         </DialogContent>
                         <DialogActions>
+                        {/* MUI (Button) componet para fazer o submit do form */}
                         <Button type="submit">Post</Button>
+                        {/* MUI (Button) componet para fazer o componte dialog */}
                         <Button onClick={handleClose} autoFocus>Close</Button>
                         </DialogActions>
                         </Box>
