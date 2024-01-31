@@ -54,11 +54,9 @@ function Post(props){
 
     async function savedhandle(){
         let savedUserPublicatoinData = {"user_id":JSON.parse(localStorage.getItem("user")).user_id,"publication_id":publication.publication_id,"saved":!saved}
-        console.log(savedUserPublicatoinData)
-        //fazer função backend
-        let response = await setSavePublicationStatus(savedUserPublicatoinData)
-        setSaved(!saved)
-        console.log(response)
+        console.log(savedUserPublicatoinData);
+        let response = await setSavePublicationStatus(savedUserPublicatoinData);
+        setSaved(!saved);
     }
     return ( 
 
