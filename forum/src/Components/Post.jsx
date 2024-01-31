@@ -1,8 +1,7 @@
 import {useState} from 'react'
 import React from 'react';
 import AddComment from './AddComment';
-import { setSavePublicationStatus } from '../services/publication.api';
-import { deleteSavePublicationStatus } from '../services/publication.api';
+import { deleteSavePublicationStatus, setSavePublicationStatus } from '../services/publication.api';
 import { DeletePubById } from '../services/DashBoard.api';
 import MoreHorizSharpIcon from '@mui/icons-material/MoreHorizSharp';
 
@@ -25,18 +24,19 @@ function Post(props){
     }
     //usa uma função serviço para fazer o handle de salvar uma publicação
     async function savedhandle(){
+        setSaved(!saved);
         const user = JSON.parse(localStorage.getItem("user"));
         let savedUserPublicatoinData = {"user_id":user.user_id,"publication_id":publication.publication_id}
         //test
         console.log(savedUserPublicatoinData);
-        console.log(!saved)
+        console.log(saved)
         let response =null;
-        if(!saved){
+        if(saved){
             response = await setSavePublicationStatus(savedUserPublicatoinData);}
         else{
             response = await deleteSavePublicationStatus(savedUserPublicatoinData);
         }
-        setSaved(!saved);
+        
     }
     return ( 
 
