@@ -223,7 +223,7 @@ async function deleteSavePublicationStatus(savedData){
 
 async function getUserSavedPublication(user_id,page){
     //mudar url, fazer a função
-    try{const response = await fetch(`${base_url}GetPubsSaved`, {
+    try{const response = await fetch(`${base_url}GetUserSavedPublication`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
