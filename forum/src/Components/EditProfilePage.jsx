@@ -79,6 +79,7 @@ function EditProfilePage(props){
                         <DialogTitle id="alert-dialog-title">
                         {"Edit"}
                         </DialogTitle>
+                        {/*MUI (Box) component usado para fazer o encapsulamento do form (formulario)*/}
                         <Box component="form" onSubmit={handleSubmit} noValidate>
                         <DialogContent>
                         <DialogContentText id="alert-dialog-description">
@@ -93,6 +94,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>Email</h2>
+                        {/* MUI input componet para receber o email do user*/}
                         <TextField
                             autoFocus
                             required
@@ -102,6 +104,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>Telefone</h2>
+                        {/* MUI input componet para receber o telefone do user*/}
                         <TextField
                             autoFocus
                             required
@@ -111,6 +114,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>Location</h2>
+                        {/* MUI input componet para receber o location do user*/}
                         <TextField
                             autoFocus
                             required
@@ -120,6 +124,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>JobTitle</h2>
+                        {/* MUI input componet para receber o jobtitle do user*/}
                         <TextField
                             autoFocus
                             required
@@ -129,6 +134,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>About Me</h2>
+                        {/* MUI input componet para receber o about do user*/}
                         <TextField
                             autoFocus
                             required
@@ -154,7 +160,9 @@ function EditProfilePage(props){
                        
                         </DialogContent>
                         <DialogActions>
+                        {/* MUI (Button) componet para fazer o submit do form */}
                         <Button type="submit" color="primary">Save</Button>
+                        {/* MUI (Button) componet para fazer o componte dialog */}
                         <Button onClick={handleClose} autoFocus>Close</Button>
                         </DialogActions>
                         </Box>

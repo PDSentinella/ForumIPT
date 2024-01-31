@@ -6,6 +6,7 @@ function SucessAlert({ open, handleClose }) {
 
   return (
     <>
+    {/*MUI alert warn*/}
    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}  anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
