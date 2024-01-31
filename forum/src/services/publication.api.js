@@ -31,6 +31,35 @@ async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') 
     }
 }
 
+async function GetUserPublicationsWithFilter(user_id,page=0,InputFilter, AscDesc ='DESC') {
+    try {
+        const response = await fetch(`${base_url}GetPublicationsWithFilter`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"user_id":user_id,"Page":page,"InputFilter":InputFilter,"AscDesc":AscDesc}),
+            //InputFilter = ' ' e o AscDesc = ´DESC´
+        });
+
+        // Check if the response status is in the range of 2xx (success)
+        if(response.status===202){
+            return [];
+        }
+        else if (response.status===200) {
+            const data = await response.json();
+            return data;
+        } else {
+            // Return an empty array for a 404 response
+            return [];
+        }
+    } catch (error) {
+        // Log other errors, or handle them as needed
+        console.error("Error in GetUserPublications:", error);
+        return []
+    }
+}
+
 
 // Função responsavel pela adição de comentarios.
 
@@ -219,4 +248,4 @@ async function getUserSavedPublication(user_id,page){
 
 
 
-export { GetUserPublications,getPublicationComments,getUserData,addPublication,setSavePublicationStatus,addComments,getUserSavedPublication,deleteSavePublicationStatus}
+export { GetUserPublications,getPublicationComments,getUserData,addPublication,setSavePublicationStatus,addComments,getUserSavedPublication,deleteSavePublicationStatus, GetUserPublicationsWithFilter}

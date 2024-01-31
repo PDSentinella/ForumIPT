@@ -6,7 +6,7 @@ import Post from '../Components/Post'
 import AddPost from '../Components/addPost'
 import CircularProgress from '@mui/material/CircularProgress';
 import { GetChannels } from '../services/channels.api'
-import { GetUserPublications } from '../services/publication.api'
+import { GetUserPublications, GetUserPublicationsWithFilter } from '../services/publication.api'
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import { ArrowBackIosSharp } from '@mui/icons-material'
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
@@ -29,10 +29,18 @@ function HomePage() {
   //5 primeiras publicações das 
 
  async function getPublicacao(user,page,f,ascdes) {
-    let p = await  GetUserPublications(user,page,f,"DESC")
-    //publications
-    setPublications(p)
-    console.log(p)
+    if(f !== ''){
+      let p = await GetUserPublicationsWithFilter(user, page, f, "DESC");
+      //publications
+      console.log('filter')
+      setPublications(p)
+      console.log(p)
+    }else{
+      let p = await  GetUserPublications(user,page,f,"DESC");
+      //publications
+      setPublications(p)
+      console.log(p)
+    }
     
   }
   //paginação
