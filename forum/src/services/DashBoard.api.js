@@ -2,6 +2,9 @@
 const base_url = "https://iwork947.azurewebsites.net/api/";
 
 
+// Todas as funções relacionadas com o Dashboard encontram-se neste ficheiro.
+
+
 // Função para ir buscar as contagens relativas aos users , pubs, comments...
 
 async function GetCounts(){

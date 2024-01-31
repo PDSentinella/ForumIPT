@@ -1,6 +1,12 @@
 // user.api.js
 
 const base_url = "https://iwork947.azurewebsites.net/api/";
+
+// Todas as funções relacionadas com os users encontram-se neste ficheiro.
+
+
+// Função responsavel pelo login do utilizador.
+
 async function loginUserPassword(email, password) {
 
     let userLogin = {
@@ -25,6 +31,9 @@ async function loginUserPassword(email, password) {
         throw error;
     }
 }
+
+
+// Função responsavel pelo Registo do utilizador.
 
 async function RegisterUser(name, email, genero, password, profile_image) {
     try {

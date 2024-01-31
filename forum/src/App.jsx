@@ -25,7 +25,6 @@ function App() {
     <div className="overflow-y-hidden">
       <Routes>
         {/* Public Routes */}
-        {/* Public Routes */}
         <Route path="/" element={user ? <HomePage /> : <Login />} />
         <Route path="/Login" element={user === null ? <Navigate to="/" /> : <Login />}/>
         <Route path="/Registo" element={user === null? <Navigate to="/" /> : <Registo />} />
