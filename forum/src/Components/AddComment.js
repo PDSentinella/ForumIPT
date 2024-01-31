@@ -42,7 +42,7 @@ function AddComment(props){
         }
         
         const result = await addComments(CommentData);
-        handleClose();
+        window.location.reload(false)
         }
      catch (error) {
         console.log(error);

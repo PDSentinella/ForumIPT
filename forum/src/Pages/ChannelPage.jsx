@@ -74,9 +74,9 @@ function ChannelPage() {
         </div>
       </div>
       </div>
-      <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
+      {/*<div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
         <Bar></Bar>
-      </div>
+  </div>*/}
     
     </>
   )
