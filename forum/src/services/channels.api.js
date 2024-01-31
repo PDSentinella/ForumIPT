@@ -1,6 +1,11 @@
 const base_url = "https://iwork947.azurewebsites.net/api/";
 
 
+// Todas as funções relacionadas com os canais encontram-se neste ficheiro.
+
+
+// Função responsavel para ir buscar todos os canais para um utilizador especifico.
+
 async function GetChannels(user_id) {
     try {
         const response = await fetch(`${base_url}GetChannels`, {
@@ -23,6 +28,9 @@ async function GetChannels(user_id) {
         console.error("Error in GetChannels:", error);
     }
 }
+
+
+// Função responsavel para ir buscar os canais e descrição.
 
 async function GetChannelWithDescription(channel_id) {
     try {
@@ -47,6 +55,8 @@ async function GetChannelWithDescription(channel_id) {
     }
 }
 
+// Função responsavel para ir buscar todos os canais.
+
 async function GetAllChannels(){
     try {
         const response = await fetch(`${base_url}GetAllChannels`, {
@@ -59,6 +69,7 @@ async function GetAllChannels(){
     }
 }
 
+// Função responsavel para registar um utilizador num canal.
 
 async function RegisterChannel(sendInfo){
 

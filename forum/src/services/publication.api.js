@@ -1,5 +1,6 @@
 const base_url = "https://iwork947.azurewebsites.net/api/";
 
+// Todas as funções relacionadas com os publicações encontram-se neste ficheiro.
 
 async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') {
     try {
@@ -30,6 +31,9 @@ async function GetUserPublications(user_id,page=0,InputFilter, AscDesc ='DESC') 
     }
 }
 
+
+// Função responsavel pela adição de comentarios.
+
 async function addComments(comentarioData){
     try{
         const response = await fetch(`${base_url}AddComment`, {
@@ -54,6 +58,9 @@ async function addComments(comentarioData){
         return []
     }
 }
+
+
+// Função responsavel por ir buscar os comentarios para uma publicação.
 
 async function getPublicationComments(publication_id){
     try{
@@ -81,6 +88,8 @@ async function getPublicationComments(publication_id){
     }
 }
 
+// Função responsavel por ir buscar os dados do utilizador.
+
 async function getUserData(user_id){
     try{const response = await fetch(`${base_url}GetUser`, {
         method: 'POST',
@@ -103,6 +112,9 @@ async function getUserData(user_id){
         return []
     }
 }
+
+// Função responsavel por adicionar uma publicação.
+
 async function addPublication(publicationData){
     try{const response = await fetch(`${base_url}AddPublication`, {
         method: 'POST',
@@ -125,6 +137,8 @@ async function addPublication(publicationData){
         return []
     }
 }
+
+// Função responsavel por salvar / associar uma publicação ao utilizador.
 
 async function setSavePublicationStatus(savedData){
     //mudar url, fazer a função
@@ -149,6 +163,9 @@ async function setSavePublicationStatus(savedData){
         return []
     }
 }
+
+// Função responsavel por retirar uma publicação ao utilizador.
+
 async function deleteSavePublicationStatus(savedData){
     //mudar url, fazer a função
     try{const response = await fetch(`https://iwork947.azurewebsites.net/api/SavedFalse`, {
@@ -172,6 +189,9 @@ async function deleteSavePublicationStatus(savedData){
         return []
     }
 }
+
+// Função responsavel por ir buscar as publicações salvas para um utilizador.
+
 async function getUserSavedPublication(user_id,page){
     //mudar url, fazer a função
     try{const response = await fetch(`${base_url}GetPubsSaved`, {
