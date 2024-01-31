@@ -2,60 +2,40 @@ import {useState} from 'react'
 import React from 'react';
 import AddComment from './AddComment';
 import { setSavePublicationStatus } from '../services/publication.api';
+import { deleteSavePublicationStatus } from '../services/publication.api';
 import { DeletePubById } from '../services/DashBoard.api';
+import MoreHorizSharpIcon from '@mui/icons-material/MoreHorizSharp';
 
-/* https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiO8lpJcBozNvY6ocapye6oly0SLGa80Bxw&usqp=CAU*/
-let publicacao = {
-    titulo:"Date of the final exams",
-    img:"",
-    user:{name:"Paulo Santo",
-        foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg"       
-        },
-    time:"2 hrs ago",
-    msg:"Dear Students\n I want to inform you that after 6 moths of our cooperation it is necessary to test you knowlege by th final exam, It means we need to find a date for our final exam, In this semester you were extremely under the stress due to",
-    
-    coments:[
-    {
-        user:{
-                name:"Paulo",
-                foto:"https://w0.peakpx.com/wallpaper/367/169/HD-wallpaper-heart-aesthetic.jpg",
-                teacher:true
-            },
-        commentMsg:"Good after noon teacher. I think that 18 Dezember will be a good date to do the test",
-        time:"2hrs ago",
-        teacher:false
-    }  ,
 
-    {
-        user:{
-                name:"Toninho",
-                foto:"",
-                teacher:false
-            },
-        commentMsg:"Good afternoon. I think that 18 dezember will ber an excellent day to do our asigniment",
-        time:"12/1/4",
-    },
 
-            ]
-}
 
 
 function Post(props){
+    //hooks
     const [publication, setPublication] = useState(props.publicacao);
-    const [open, setOpen] = useState(false);
     const [mo, setMo] = useState(false)
     const [saved,setSaved] = useState(props.publicacao.saved?true:false)
 
+    //usa uma função serviço para deletar uma publicação
     async function deletePublication(){
         const response = await DeletePubById({"publication_id":publication.publication_id})
-        console.log(response)
-        window.location.reload();
+        //test
+        //console.log(response)
+        //window.location.reload();
     }
-
+    //usa uma função serviço para fazer o handle de salvar uma publicação
     async function savedhandle(){
-        let savedUserPublicatoinData = {"user_id":JSON.parse(localStorage.getItem("user")).user_id,"publication_id":publication.publication_id,"saved":!saved}
+        const user = JSON.parse(localStorage.getItem("user"));
+        let savedUserPublicatoinData = {"user_id":user.user_id,"publication_id":publication.publication_id}
+        //test
         console.log(savedUserPublicatoinData);
-        let response = await setSavePublicationStatus(savedUserPublicatoinData);
+        console.log(!saved)
+        let response =null;
+        if(!saved){
+            response = await setSavePublicationStatus(savedUserPublicatoinData);}
+        else{
+            response = await deleteSavePublicationStatus(savedUserPublicatoinData);
+        }
         setSaved(!saved);
     }
     return ( 
@@ -65,10 +45,10 @@ function Post(props){
             <div className='flex justify-between pr-1'>
                 <h1 className='text-xl font-bold'>{publication.titulo}</h1>
                 <div>
+                    {/*tres pontos*/}
                     <div onClick={()=>{setMo(!mo)}}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5" >
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                        </svg>
+                        {/*MUI Três pontos icon*/}
+                        <MoreHorizSharpIcon sx={{ fontSize: 30}}></MoreHorizSharpIcon>
                     </div>
                     <div className='w-0 h-0 overflow-visible'>
                         <div className={`${mo==false && 'hidden'} rounded-lg right-10 relative top-0 p-2 w-20 h-14 bg-ipt justify-center items-start flex flex-col gap-1`}>
@@ -119,28 +99,9 @@ function Post(props){
                         {/*comment icon*/}
                         <div className='flex p-1 justify-center items-center cursor-pointer rounded-xl'>
                             <AddComment publication_id={publication.publication_id}></AddComment>
-                        </div>
-                        {/*<button  className='flex  w-10 h-10 bg-space_cadet justify-center items-center cursor-pointer rounded-xl' onClick={getCanalUser("")}>
-                        </button>*/}
-                        
-                    
+                        </div>            
                 </div>
-                
             </div>
-            {/*
-            {ivisible div that contains the comments is showed (it has to set comments to open}
-            <div className={`flex`}>{${!open && 'hidden'}}
-            {publicacao.coments.map( (comment) => (
-                <>
-                    <h3 className='text-xs'>{comment.commentMsg}</h3>
-                    <div className='flex gap-4'>
-                        <h3 className='text-xs font-light'>-{comment.user.name}</h3>
-                        <h3 className='text-xs font-light'>{comment.time}</h3>
-                    </div>
-                </>     
-            ))}
-            </div> */}
-    <div></div>
     </div>
     )
 }

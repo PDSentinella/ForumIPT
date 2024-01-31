@@ -25,11 +25,12 @@ function UserProfilePage(props) {
       <div className="flex  h-screen w-full ">
 
         <SideBar></SideBar>
+        {/*enquantoo userProfilePage não for recebido mostra o componte MUI (CirculaProgress)*/}
         {typeof userProfilePage =="object"?<><div className={` flex flex-col bg-background-gray  items-center sm:px-16 px-8  flex-1 h-full  w-full overflow-y-auto`}>
             {typeof userProfilePage =="object" && <UserCard user={userProfilePage}></UserCard>}    
             {/*content appear div*/}
             <div className='w-full mt-4 self-center'>
-            {/*<div className={` relative  border-2  ${selected=='info' && 'w-24 left-36'} ${selected=='g' && 'w-24 left-56'} `}></div>*/}
+            {/*barra de seleção do userprofile page*/}
               <div className=' flex items-center  w-full justify-around border-t '>
                 <button className={` flex justify-center items-center p-1 gap-x-1 ${selected ==='info'&& 'border-t-2'}`} onClick={()=>{setSelected('info')}} >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -49,7 +50,7 @@ function UserProfilePage(props) {
                 <h1 className='absolute invisible sm:visible sm:relative '> CV/Resume</h1>
                 </button>
               </div>
-              {/* content bellow chooser content*/}
+              {/* content selecionado na barra de seleção*/}
               <div className='flex justify-center items-center mb-16'>
                 {typeof userProfilePage =="object"? (selected==='info'?(<UserInfo user={userProfilePage} ></UserInfo>):selected==='g'?(<UserSaved user={userProfilePage}></UserSaved>):selected==='cv'&&(<div>resume</div>)):<CircularProgress color="success" />}
                 
@@ -57,10 +58,11 @@ function UserProfilePage(props) {
             </div>  
         </div></>:<div className='flex w-full h-96'><div className=' w-1/2'></div><CircularProgress color="success" /></div>}
       </div>
-      </div>
-      <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
+      </div> 
+      {/*Antiga soluçõa para a side bar*/}
+      {/*<div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
         <Bar></Bar>
-      </div>
+  </div>*/}
     </>
   )
 }

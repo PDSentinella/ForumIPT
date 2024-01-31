@@ -16,21 +16,26 @@ import { UpdateUserById } from '../services/DashBoard.api';
 
 
 function EditProfilePage(props){
-    const [opend, setOpend] = useState(false);
-    const [userEditProfilePage,setUserEditProfilePage] = useState(props.user);
-  
+  //hooks
+    const [opend, setOpend] = useState(false);//hook para o MUI dialog (open/close status)
+    const [userEditProfilePage,setUserEditProfilePage] = useState(props.user);//hook receber por props e guarda o user
+  //MUI dialog handles open dialog status (using opend hook)
     const handleClickOpen = () => {
       setOpend(true);
     };
-  
+    //MUI dialog handles close dialog status (using opend hook)  
     const handleClose = () => {
       setOpend(false);
     };
+    //por entermedio de uma função de serviço faz a update de algumas propriedades do user
     const handleSubmit = async (event) => {
         event.preventDefault();
+        //form 
         const data = new FormData(event.currentTarget);
         try {
-          console.log(data.get("nome"));
+          //test
+          //console.log(data.get("nome"));
+          //objecto json a ser enviado para fazer o post da publicaçao
           let userData = {
             "user_id":JSON.parse(localStorage.getItem("user")).user_id,
             "nome":data.get("nome"),
@@ -42,10 +47,14 @@ function EditProfilePage(props){
             'genero': JSON.parse(localStorage.getItem("user")).genero, 
             'admin_privileges': JSON.parse(localStorage.getItem("user")).admin_privileges
           }
+          //test
           console.log(userData)
           const result = await UpdateUserById(userData);
+          //se a resposta for do tipo 200
           if(result.ok){
+            //faz o reload da pagina
             window.location.reload(false)
+            //fecha o form
             handleClose();
           }
           //const response = await addPublication(publicationData)
@@ -70,6 +79,7 @@ function EditProfilePage(props){
                         <DialogTitle id="alert-dialog-title">
                         {"Edit"}
                         </DialogTitle>
+                        {/*MUI (Box) component usado para fazer o encapsulamento do form (formulario)*/}
                         <Box component="form" onSubmit={handleSubmit} noValidate>
                         <DialogContent>
                         <DialogContentText id="alert-dialog-description">
@@ -84,6 +94,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>Email</h2>
+                        {/* MUI input componet para receber o email do user*/}
                         <TextField
                             autoFocus
                             required
@@ -93,6 +104,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>Telefone</h2>
+                        {/* MUI input componet para receber o telefone do user*/}
                         <TextField
                             autoFocus
                             required
@@ -102,6 +114,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>Location</h2>
+                        {/* MUI input componet para receber o location do user*/}
                         <TextField
                             autoFocus
                             required
@@ -111,6 +124,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>JobTitle</h2>
+                        {/* MUI input componet para receber o jobtitle do user*/}
                         <TextField
                             autoFocus
                             required
@@ -120,6 +134,7 @@ function EditProfilePage(props){
                             fullWidth
                         />
                         <h2 className='ml-4 my-2'>About Me</h2>
+                        {/* MUI input componet para receber o about do user*/}
                         <TextField
                             autoFocus
                             required
@@ -145,7 +160,9 @@ function EditProfilePage(props){
                        
                         </DialogContent>
                         <DialogActions>
+                        {/* MUI (Button) componet para fazer o submit do form */}
                         <Button type="submit" color="primary">Save</Button>
+                        {/* MUI (Button) componet para fazer o componte dialog */}
                         <Button onClick={handleClose} autoFocus>Close</Button>
                         </DialogActions>
                         </Box>

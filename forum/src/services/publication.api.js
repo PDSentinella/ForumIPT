@@ -128,7 +128,30 @@ async function addPublication(publicationData){
 
 async function setSavePublicationStatus(savedData){
     //mudar url, fazer a função
-    try{const response = await fetch(`${base_url}SavePublication`, {
+    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/SavedTrue`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(savedData),
+    });
+
+    // Check if the response status is in the range of 2xx (success)
+    if (response.status===200) {
+        const data = await response.json();
+        return data;
+    } else {
+        // Return an empty array for a 404 response
+        return [];
+    }}
+    catch(error){
+        console.error("Error in getUser:", error)
+        return []
+    }
+}
+async function deleteSavePublicationStatus(savedData){
+    //mudar url, fazer a função
+    try{const response = await fetch(`https://iwork947.azurewebsites.net/api/SavedFalse`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -176,4 +199,4 @@ async function getUserSavedPublication(user_id,page){
 
 
 
-export { GetUserPublications,getPublicationComments,getUserData,addPublication,setSavePublicationStatus,addComments,getUserSavedPublication}
+export { GetUserPublications,getPublicationComments,getUserData,addPublication,setSavePublicationStatus,addComments,getUserSavedPublication,deleteSavePublicationStatus}

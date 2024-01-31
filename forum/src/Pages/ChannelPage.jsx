@@ -11,8 +11,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 function ChannelPage() {
-    const [channelD, setChannelD] = useState("");
-    const [publications, setPublications] = useState(null)
+    //hooks
+    const [channelD, setChannelD] = useState("");//hook que recebe o  objeto de um canal
+    const [publications, setPublications] = useState(null)//hook que recebe um array com as publicações de um canal
 
     useEffect(() => {
       
@@ -20,12 +21,14 @@ function ChannelPage() {
 
 
     },[]);
-
+    //faz o fetch dos dados de um canal pelo id usando uma função serviço
     async function getChannelData(channel_id){
+      //test
       //console.log(channel_id)
         const channeldata = await GetChannelWithDescription(channel_id)
         console.log(channeldata)
         setChannelD(channeldata)
+        //test
         //console.log(channeldata.publications)
         setPublications(channeldata.publications)
     }
@@ -74,9 +77,9 @@ function ChannelPage() {
         </div>
       </div>
       </div>
-      <div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
+      {/*<div className=' sm:hidden absolute bottom-0  w-full bg-ipt'>
         <Bar></Bar>
-      </div>
+  </div>*/}
     
     </>
   )

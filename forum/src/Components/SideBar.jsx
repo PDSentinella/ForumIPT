@@ -20,7 +20,7 @@ import { Box } from "@mui/material";
 import { RegisterChannel } from "../services/channels.api";
 import SucessAlert from "./SucessAlert";
 import DehazeSharpIcon from '@mui/icons-material/DehazeSharp';
-
+import PersonAddAltSharpIcon from '@mui/icons-material/PersonAddAltSharp';
 //instagram side bar, quando a screen é grande o suficiente a side bar expande de vez, podemos recriar algo parecido usando xs-max: ou algo do genero, tentar
 function SideBar(props){
     const [open, setOpen] = useState(props.openSideBar?props.openSideBar:false);
@@ -85,10 +85,14 @@ function SideBar(props){
 
       return (
         <>
+        {/*Side Bar*/}
         <div className={`w-12 sm:w-16  flex `} onMouseOver={(e) => {setOpen(true)}} > {/*${open &&'w-0 '} sm:w-16*/}{/*w-0 sm:w-16*/}
+        {/*Abre e fecha a side bar*/}
             <div className={`${open ?'w-72 absolute': 'w-12 sm:w-16  '} absolute duration-300 h-full bg-ipt overflow-y-auto z-20 `} onMouseOver={(e) => {setOpen(true)}} onMouseLeave={()=>{setOpen(false)}}>
                 <div className={`flex  cursor-pointer items-center justify-center w-full gap-x-6 pt-8`}>
+                  {/*Abre e fecha a side bar para dispositivos de toque*/}
                     <div className={`  w-8 h-8  items-center justify-center border-pale_purple rounded`} onClick={()=>handleOpen()}>
+                      {/*MUI incon*/}
                       <DehazeSharpIcon sx={{ color: 'white', fontSize: 32}}></DehazeSharpIcon>
                     </div>
                     <h1 className={`${!open && 'hidden'} duration-500 text-4xl text-white font-bold`}>FORUM</h1>  
@@ -96,6 +100,7 @@ function SideBar(props){
 
                 
             <div className={`flex flex-col flex-1 justify-center gap-y-6 pt-8 ${!open ?'items-center w-full ':'items-start ml-14 w-62'}`}>
+
                 <Link to="/User" reloadDocument><div className={`flex gap-x-2 justify-center cursor-pointer `}>
                         <div className={` flex rounded items-center justify-center w-6 h-6 `}>
                           <HomeOutlinedIcon sx={{ color: 'white', fontSize: 32}}/>  
@@ -130,9 +135,7 @@ function SideBar(props){
                 </div>
                 <Tooltip title="Junta-te a um canal">
                     <button onClick={() => { setOpenDialog(true)}} className={` flex gap-2 p-3 place-self-end self-center mt-8 ml-14 bg-white text-ipt rounded ${!open && 'hidden'}`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-                    </svg>
+                    <PersonAddAltSharpIcon></PersonAddAltSharpIcon>
                         Regista canal
                     </button>
                 </Tooltip>

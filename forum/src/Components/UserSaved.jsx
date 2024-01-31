@@ -13,9 +13,9 @@ const canais = [
   "InterfaceWeb"
 ]
 const UserSaved = (props) => {
-  const [publications,setPublications] = useState(null);
+  const [publications,setPublications] = useState([]);
   const [publicationcount, setPublicationcount] = useState(0);
-
+  const [filter, setFilter] = useState("")
   useEffect(() => {
     getPublication()
   },[]);

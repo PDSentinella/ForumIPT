@@ -15,24 +15,31 @@ import { addComments } from '../services/publication.api';
 
 
 function AddComment(props){
-    const [opend, setOpend] = React.useState(false);
-    const [reload,setReload] = React.useState(0);
-  
+  //hooks  
+    const [opend, setOpend] = React.useState(false);//dialog open status hook
+    const [reload,setReload] = React.useState(0);// relaod comments hook (not used)
+
+
+    //MUI dialog handles open dialog status (using opend hook)
     const handleClickOpen = () => {
       setOpend(true);
     };
-  
+    //MUI dialog handles close dialog status (using opend hook)
     const handleClose = () => {
       setOpend(false);
     };
+    //função para fazer o render só dos comentarios
     const reloadComments = () =>{
       let r = reload +1;
       setReload(r)
     };
+    //tenta fazer o post de um comentario pela função de service
     const handleSubmit = async (event) => {
       event.preventDefault();
+      //form
       const data = new FormData(event.currentTarget);
       try {
+        //data para mandar ao backend para fazer um comentario
         const user = JSON.parse(localStorage.getItem("user"))
         let CommentData = {
           "user_id":user.user_id,
@@ -40,20 +47,21 @@ function AddComment(props){
           "comentario":data.get("comentario"),
           
         }
-        
+        //chama a função de service que chama alguma função no backend
         const result = await addComments(CommentData);
+        //fecha o dialog
         handleClose();
         }
      catch (error) {
+      //previni algum eventual error
         console.log(error);
     }
     };
     return ( 
     <div className={`flex flex-initial gap-4 items-center  justify-between bg-white mt-2 p-2  w-full h-auto rounded-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl`}>
-            {/*titulo*/}
                 
         
-      
+                {/*botao que abre o dialog */}
                 <div className="flex items-center justify-center ">
                     <button className='flex py-1 px-2 justify-center items-center bg-ipt rounded-full' onClick={handleClickOpen}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" PencilIcon color='#FFFFFF' viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -63,49 +71,53 @@ function AddComment(props){
                         </button>
                         
                 </div>
+                {/*MUI dialog*/}
                 <Dialog
+                /*proporcão escolhida*/
                 fullWidth={"sm"}
                 maxWidth={"sm"}
+                /*dialog status*/
                 open={opend}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 >
-                       
+                       {/* dialog actions, dialogtitle e dialogcontent tens as suas perculiaridades de estilo
+                          como posição e tipo de display. Lembra de usar (!) important se nescessário
+                        */}
                         <DialogActions>
-                        <DialogTitle id="alert-dialog-title">
-                        <h1>Comments</h1>
-                        </DialogTitle>
-                        
+                          {/* titulo*/}
+                          <DialogTitle id="alert-dialog-title">
+                            <h1>Comments</h1>
+                          </DialogTitle>
                         </DialogActions>
+                        {/*MUI (Box) component usado para fazer o encapsulamento do form (formulario)*/}
                         <Box component="form" onSubmit={handleSubmit} noValidate>
                         <DialogContent>
-                       
-                        
-                         <DialogActions>
-                         <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="comentario"
-                            name="comentario"
-                            label="Comentario"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <Button type="submit">Post</Button>
-                        
-                        </DialogActions>
-                         
-                       
+                          <DialogActions>
+                            {/* MUI input componet para receber a mensagem do comentario*/}
+                            <TextField
+                                autoFocus
+                                required
+                                margin="dense"
+                                id="comentario"
+                                name="comentario"
+                                label="Comentario"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                            />
+                            <Button type="submit">Post</Button>
+                          </DialogActions>
+                        {/* Nosso componente que da-nos a lista de comentários */}
                         <CommentsDialog publication_id = {props.publication_id}/>
                         </DialogContent>
                         </Box>
                         <DialogActions>
+                          {/* MUI (Button) componet para fazer o componte dialog */}
                         <Button onClick={handleClose} autoFocus>Close</Button>
                         </DialogActions>
-                        
+        {/*fim do dialog*/}
       </Dialog>
     </div>
     )
