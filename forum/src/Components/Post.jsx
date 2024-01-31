@@ -24,10 +24,17 @@ function Post(props){
     }
     //usa uma função serviço para fazer o handle de salvar uma publicação
     async function savedhandle(){
-        let savedUserPublicatoinData = {"user_id":JSON.parse(localStorage.getItem("user")).user_id,"publication_id":publication.publication_id,"saved":!saved}
+        const user = JSON.parse(localStorage.getItem("user"));
+        let savedUserPublicatoinData = {"user_id":user.user_id,"publication_id":publication.publication_id}
         //test
-        //console.log(savedUserPublicatoinData);
-        let response = await setSavePublicationStatus(savedUserPublicatoinData);
+        console.log(savedUserPublicatoinData);
+        console.log(!saved)
+        let response =null;
+        if(!saved){
+            response = await setSavePublicationStatus(savedUserPublicatoinData);}
+        else{
+            response = await deletePublication(savedUserPublicatoinData);
+        }
         setSaved(!saved);
     }
     return ( 
